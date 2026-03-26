@@ -21,6 +21,7 @@ const Index = () => {
       <WhyWeAreDifferent />
       <FounderSection />
       <TestimonialsSection />
+      <ReelSection />
       <ImpactSection />
       <Footer />
     </div>
