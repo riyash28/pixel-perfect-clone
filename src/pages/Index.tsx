@@ -8,6 +8,7 @@ import FounderSection from "@/components/FounderSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import ImpactSection from "@/components/ImpactSection";
 import ReelSection from "@/components/reels/ReelSection";
+import CertificationSection from "@/components/CertificationSection";
 import Footer from "@/components/Footer";
 
 const Index = () => {
