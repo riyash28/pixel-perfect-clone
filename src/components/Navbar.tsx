@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Package, Search, ShoppingCart, User } from "lucide-react";
+import praanrootLogo from "@/assets/praanroot-logo.png";
 
 const navLinks = [
   { label: "Home", to: "/" },
