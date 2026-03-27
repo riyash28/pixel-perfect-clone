@@ -9,7 +9,7 @@ const Footer = () => {
           {/* Brand */}
           <div>
             <h3 className="font-display text-xl font-bold">PRAANROOT</h3>
-            <p className="mt-3 font-body text-sm text-card/70 leading-relaxed">
+            <p className="mt-3 font-body text-sm text-primary-foreground/70 leading-relaxed">
               Safeguarding humanity from harm through advanced nanotechnology and plant-based science.
             </p>
           </div>
