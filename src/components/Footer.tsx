@@ -38,7 +38,7 @@ const Footer = () => {
                 <Link
                   key={cat}
                   to={`/category/${cat.toLowerCase().replace(/['\s]/g, "-").replace("--", "-")}`}
-                  className="font-body text-sm text-card/70 transition-colors hover:text-card"
+                  className="font-body text-sm text-primary-foreground/70 transition-colors hover:text-primary-foreground"
                 >
                   {cat}
                 </Link>
