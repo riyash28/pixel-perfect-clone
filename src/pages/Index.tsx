@@ -9,6 +9,7 @@ import TestimonialsSection from "@/components/TestimonialsSection";
 import ImpactSection from "@/components/ImpactSection";
 import ReelSection from "@/components/reels/ReelSection";
 import CertificationSection from "@/components/CertificationSection";
+import FeaturedBlogsSection from "@/components/FeaturedBlogsSection";
 import Footer from "@/components/Footer";
 
 const Index = () => {
@@ -24,6 +25,7 @@ const Index = () => {
       <TestimonialsSection />
       <ReelSection />
       <CertificationSection />
+      <FeaturedBlogsSection />
       <ImpactSection />
       <Footer />
     </div>
