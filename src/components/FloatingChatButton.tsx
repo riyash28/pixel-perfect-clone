@@ -1,4 +1,4 @@
-import chatLogo from "@/assets/chat-logo.png";
+import chatLogo from "@/assets/chat-logo-clean.png";
 
 const FloatingChatButton = () => {
   return (
@@ -41,14 +41,15 @@ const FloatingChatButton = () => {
         </text>
       </svg>
 
-      {/* Center logo */}
-      <div className="relative w-[50px] h-[50px] sm:w-[80px] sm:h-[80px] rounded-full overflow-hidden bg-primary flex items-center justify-center shadow-lg">
-        <img
-          src={chatLogo}
-          alt="Chat with us"
-          className="w-[85%] h-[85%] object-contain"
-        />
-      </div>
+      {/* Center logo — no background, transparent PNG */}
+      <img
+        src={chatLogo}
+        alt="Chat with us"
+        className="relative w-[55px] h-[55px] sm:w-[90px] sm:h-[90px] object-contain"
+        loading="lazy"
+        width={512}
+        height={512}
+      />
     </a>
   );
 };
