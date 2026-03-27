@@ -34,6 +34,7 @@ const App = () => (
           <Route path="/track-order" element={<TrackOrder />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <FloatingChatButton />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
