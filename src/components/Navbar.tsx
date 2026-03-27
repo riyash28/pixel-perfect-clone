@@ -28,7 +28,7 @@ const Navbar = () => {
               <path d="M20 10c2 1 4 3 4 6" stroke="currentColor" strokeWidth="1.2" fill="none"/>
             </svg>
             <span className="font-display text-xl font-bold tracking-tight text-primary">
-              ZEROHARM
+              PRAANROOT
             </span>
           </div>
           <span className="hidden text-[10px] font-body tracking-widest text-muted-foreground sm:block">
