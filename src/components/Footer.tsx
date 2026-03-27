@@ -66,9 +66,9 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="mt-10 border-t border-card/10 pt-6 text-center">
-          <p className="font-body text-xs text-card/50">
-            © {new Date().getFullYear()} ZeroHarm Sciences. All rights reserved.
+        <div className="mt-10 border-t border-primary-foreground/10 pt-6 text-center">
+          <p className="font-body text-xs text-primary-foreground/50">
+            © {new Date().getFullYear()} PraanRoot Sciences. All rights reserved.
           </p>
         </div>
       </div>
