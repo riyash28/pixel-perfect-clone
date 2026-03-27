@@ -22,7 +22,7 @@ const Footer = () => {
                 <Link
                   key={link}
                   to={link === "Home" ? "/" : `/${link.toLowerCase().replace(" ", "-")}`}
-                  className="font-body text-sm text-card/70 transition-colors hover:text-card"
+                  className="font-body text-sm text-primary-foreground/70 transition-colors hover:text-primary-foreground"
                 >
                   {link}
                 </Link>
