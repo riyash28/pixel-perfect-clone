@@ -15,7 +15,7 @@ const TickerBar = () => {
         {[...items, ...items, ...items, ...items].map((item, i) => (
           <div key={i} className="flex items-center gap-2 whitespace-nowrap">
             <item.icon size={18} className="text-primary" />
-            <span className="font-body text-xs font-semibold tracking-wider text-foreground">
+            <span className="font-body text-sm font-bold tracking-wider text-foreground">
               {item.text}
             </span>
           </div>
