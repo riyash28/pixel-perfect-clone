@@ -51,16 +51,16 @@ const Footer = () => {
             <h4 className="font-body text-sm font-semibold uppercase tracking-wider">Contact Us</h4>
             <div className="mt-4 flex flex-col gap-3">
               <div className="flex items-center gap-2">
-                <Phone size={14} className="text-card/50" />
-                <span className="font-body text-sm text-card/70">+91 73828 38383</span>
+                <Phone size={14} className="text-primary-foreground/50" />
+                <span className="font-body text-sm text-primary-foreground/70">+91 73828 38383</span>
               </div>
               <div className="flex items-center gap-2">
-                <Mail size={14} className="text-card/50" />
-                <span className="font-body text-sm text-card/70">support@zeroharm.in</span>
+                <Mail size={14} className="text-primary-foreground/50" />
+                <span className="font-body text-sm text-primary-foreground/70">support@praanroot.in</span>
               </div>
               <div className="flex items-start gap-2">
-                <MapPin size={14} className="mt-0.5 text-card/50" />
-                <span className="font-body text-sm text-card/70">Hyderabad, India</span>
+                <MapPin size={14} className="mt-0.5 text-primary-foreground/50" />
+                <span className="font-body text-sm text-primary-foreground/70">Hyderabad, India</span>
               </div>
             </div>
           </div>
