@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Mail, Phone, MapPin } from "lucide-react";
+import praanrootLogo from "@/assets/praanroot-logo.png";
 
 const Footer = () => {
   return (
@@ -8,7 +9,7 @@ const Footer = () => {
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
           <div>
-            <h3 className="font-display text-xl font-bold">PRAANROOT</h3>
+            <img src={praanrootLogo} alt="Praanroot Logo" className="h-14 w-auto object-contain brightness-0 invert" />
             <p className="mt-3 font-body text-sm text-primary-foreground/70 leading-relaxed">
               Safeguarding humanity from harm through advanced nanotechnology and plant-based science.
             </p>
