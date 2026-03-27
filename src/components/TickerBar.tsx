@@ -1,10 +1,11 @@
-import { Shield, Droplets, Globe, FlaskConical } from "lucide-react";
+import { Percent, Gift, Truck, Wallet, BadgePercent } from "lucide-react";
 
 const items = [
-  { icon: Shield, text: "NO SIDE EFFECTS" },
-  { icon: Droplets, text: "100% BIOAVAILABLE" },
-  { icon: Globe, text: "ADVANCED NANOTECHNOLOGY" },
-  { icon: FlaskConical, text: "CLINICALLY PROVEN" },
+  { icon: Percent, text: "Get 10% off on Orders above ₹899" },
+  { icon: BadgePercent, text: "Get 11% off + Free Gift on Orders above ₹1199" },
+  { icon: Gift, text: "Get 15% off + Free Gift on Orders above ₹1599" },
+  { icon: Truck, text: "Free Delivery across all India" },
+  { icon: Wallet, text: "COD available" },
 ];
 
 const TickerBar = () => {
