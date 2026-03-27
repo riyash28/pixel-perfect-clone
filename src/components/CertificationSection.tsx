@@ -33,7 +33,7 @@ const CertificationSection = () => {
         <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-card to-transparent z-10 pointer-events-none" />
         <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-card to-transparent z-10 pointer-events-none" />
 
-        <div className="flex w-max animate-marquee hover:[animation-play-state:paused]">
+        <div className="flex w-max animate-marquee">
           {marqueeItems.map((cert, i) => (
             <div
               key={`${cert.id}-${i}`}
@@ -45,7 +45,7 @@ const CertificationSection = () => {
                 loading="lazy"
                 width={512}
                 height={512}
-                className="h-16 md:h-20 w-auto object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500"
+                className="h-16 md:h-20 w-auto object-contain group-hover:scale-110 transition-transform duration-300 ease-in-out"
               />
               <span className="mt-3 text-xs md:text-sm font-body text-muted-foreground group-hover:text-foreground transition-colors duration-300">
                 {cert.name}
