@@ -12,6 +12,7 @@ import Contact from "./pages/Contact";
 import Consult from "./pages/Consult";
 import TrackOrder from "./pages/TrackOrder";
 import NotFound from "./pages/NotFound";
+import FloatingChatButton from "./components/FloatingChatButton";
 
 const queryClient = new QueryClient();
 
@@ -33,6 +34,7 @@ const App = () => (
           <Route path="/track-order" element={<TrackOrder />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <FloatingChatButton />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
