@@ -19,8 +19,16 @@ const Navbar = () => {
     <header className="sticky top-0 z-50 bg-card shadow-sm">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 lg:px-8">
         {/* Logo */}
-        <Link to="/" className="flex items-center">
-          <img src={praanrootLogo} alt="Praanroot Logo" className="h-12 w-auto object-contain" />
+        <Link to="/" className="flex items-center gap-2">
+          <img src={praanrootLogo} alt="Praanroot Logo" className="h-10 w-auto object-contain" />
+          <div className="flex items-baseline gap-1">
+            <span className="font-display text-xl font-bold tracking-tight text-primary">
+              PRAANROOT
+            </span>
+            <span className="hidden text-[10px] font-body tracking-widest text-muted-foreground sm:block">
+              SCIENCES
+            </span>
+          </div>
         </Link>
 
         {/* Desktop Nav */}
