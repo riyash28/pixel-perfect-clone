@@ -43,8 +43,8 @@ const FloatingChatButton = () => {
         </defs>
         <text
           fill="#333333"
-          fontSize="13"
-          fontWeight="500"
+          fontSize="14"
+          fontWeight="700"
           letterSpacing="2px"
           style={{ fontFamily: "'DM Sans', sans-serif" }}
         >
