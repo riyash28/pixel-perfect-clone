@@ -58,7 +58,7 @@ const FloatingChatButton = () => {
       <img
         src={chatLogo}
         alt="Chat with us"
-        className="relative w-[60px] h-[60px] sm:w-[90px] sm:h-[90px] object-contain drop-shadow-lg"
+        className="relative w-[70px] h-[70px] sm:w-[105px] sm:h-[105px] object-contain drop-shadow-lg"
         loading="lazy"
       />
     </a>
