@@ -77,12 +77,12 @@ const ProductCard = ({ product, isCombo }: ProductCardProps) => {
         </div>
 
         {/* CTA */}
-        <button className="mt-3 flex w-full items-center justify-center gap-2 rounded-md bg-accent py-2.5 font-body text-sm font-semibold text-accent-foreground transition-colors hover:bg-zh-orange-dark">
+        <span className="mt-3 flex w-full items-center justify-center gap-2 rounded-md bg-accent py-2.5 font-body text-sm font-semibold text-accent-foreground transition-colors hover:bg-zh-orange-dark">
           <ShoppingCart size={16} />
           ADD TO CART
-        </button>
+        </span>
       </div>
-    </div>
+    </Link>
   );
 };
 
