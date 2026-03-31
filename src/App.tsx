@@ -12,6 +12,7 @@ import Contact from "./pages/Contact";
 import Consult from "./pages/Consult";
 import TrackOrder from "./pages/TrackOrder";
 import NotFound from "./pages/NotFound";
+import ProductDetail from "./pages/ProductDetail";
 import FloatingChatButton from "./components/FloatingChatButton";
 
 const queryClient = new QueryClient();
