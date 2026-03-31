@@ -12,6 +12,7 @@ import Contact from "./pages/Contact";
 import Consult from "./pages/Consult";
 import TrackOrder from "./pages/TrackOrder";
 import NotFound from "./pages/NotFound";
+import ProductDetail from "./pages/ProductDetail";
 import FloatingChatButton from "./components/FloatingChatButton";
 
 const queryClient = new QueryClient();
@@ -26,6 +27,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/category/:categoryName" element={<CategoryPage />} />
           <Route path="/shop" element={<Shop />} />
+          <Route path="/product/:id" element={<ProductDetail />} />
           <Route path="/about" element={<About />} />
           <Route path="/about-us" element={<About />} />
           <Route path="/blog" element={<Blog />} />
