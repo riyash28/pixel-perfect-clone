@@ -76,10 +76,16 @@ const ProductCard = ({ product, isCombo }: ProductCardProps) => {
           )}
         </div>
 
+        {/* Save badge */}
+        {product.originalPrice > product.price && (
+          <p className="mt-1 font-body text-xs font-semibold text-destructive">
+            Save ₹{(product.originalPrice - product.price).toLocaleString("en-IN")}
+          </p>
+        )}
+
         {/* CTA */}
-        <span className="mt-3 flex w-full items-center justify-center gap-2 rounded-md bg-accent py-2.5 font-body text-sm font-semibold text-accent-foreground transition-colors hover:bg-zh-orange-dark">
-          <ShoppingCart size={16} />
-          ADD TO CART
+        <span className="mt-3 flex w-full items-center justify-center gap-2 rounded-lg bg-primary py-2.5 font-body text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90">
+          View product
         </span>
       </div>
     </Link>
