@@ -65,8 +65,10 @@ const ProductDetail = () => {
       {/* Main 2-Column Section */}
       <section className="mx-auto max-w-7xl px-4 pb-12 pt-2">
         <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
-          {/* LEFT — Image Gallery */}
-          <ImageGallery images={images} productName={product.name} discount={discount > 0 ? discount : undefined} />
+          {/* LEFT — Image Gallery (sticky on desktop) */}
+          <div className="lg:self-start lg:sticky lg:top-24">
+            <ImageGallery images={images} productName={product.name} discount={discount > 0 ? discount : undefined} />
+          </div>
 
           {/* RIGHT — Product Details */}
           <div className="flex flex-col gap-6">
