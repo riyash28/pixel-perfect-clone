@@ -11,6 +11,7 @@ import ConsumptionSection from "@/components/product-detail/ConsumptionSection";
 import OfferCards from "@/components/product-detail/OfferCards";
 import TrustBadges from "@/components/product-detail/TrustBadges";
 import ProductAccordion from "@/components/product-detail/ProductAccordion";
+import TabsSection from "@/components/product-detail/TabsSection";
 
 const allProducts = [...bestSellers, ...combos];
 
