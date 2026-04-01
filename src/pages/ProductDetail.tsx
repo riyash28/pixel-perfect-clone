@@ -160,6 +160,9 @@ const ProductDetail = () => {
         </div>
       </section>
 
+      {/* Tabs Section */}
+      <TabsSection />
+
       {/* Related Products */}
       {relatedProducts.length > 0 && (
         <section className="mx-auto max-w-7xl px-4 pb-16">
