@@ -18,11 +18,12 @@ const ImageGallery = ({ images, productName, discount }: ImageGalleryProps) => {
             {discount}% OFF
           </span>
         )}
-        <div className="flex aspect-square items-center justify-center p-8">
+        <div className="flex aspect-square items-center justify-center">
           <img
+            key={selectedIndex}
             src={images[selectedIndex]}
             alt={productName}
-            className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-105"
+            className="h-full w-full object-cover rounded-2xl transition-transform duration-500 group-hover:scale-105 animate-in fade-in duration-300"
           />
         </div>
       </div>
