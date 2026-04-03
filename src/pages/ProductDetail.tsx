@@ -1,6 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { useMemo, useState } from "react";
 import { ArrowLeft, Star, ShoppingCart } from "lucide-react";
+import { useCart } from "@/contexts/CartContext";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { bestSellers, combos } from "@/data/products";
@@ -18,6 +19,7 @@ const allProducts = [...bestSellers, ...combos];
 const ProductDetail = () => {
   const { id } = useParams<{ id: string }>();
   const [expanded, setExpanded] = useState(false);
+  const { addToCart } = useCart();
 
   const product = useMemo(() => allProducts.find((p) => p.id === Number(id)), [id]);
 
@@ -143,7 +145,10 @@ const ProductDetail = () => {
 
             {/* CTA Buttons */}
             <div className="flex flex-col gap-3">
-              <button className="w-full rounded-full border-2 border-primary py-3.5 font-body text-sm font-bold text-primary transition-colors hover:bg-primary/5">
+              <button
+                onClick={() => addToCart({ id: product.id, name: product.name, price: product.price, image: product.image })}
+                className="w-full rounded-full border-2 border-primary py-3.5 font-body text-sm font-bold text-primary transition-colors hover:bg-primary/5"
+              >
                 Add To Cart
               </button>
               <button className="w-full rounded-full bg-primary py-3.5 font-body text-sm font-bold text-primary-foreground transition-colors hover:bg-primary/90">
@@ -179,7 +184,10 @@ const ProductDetail = () => {
 
       {/* Mobile Sticky CTA */}
       <div className="fixed bottom-0 left-0 right-0 z-40 border-t border-border bg-card p-3 lg:hidden">
-        <button className="flex w-full items-center justify-center gap-2 rounded-full bg-primary py-3 font-body text-sm font-bold text-primary-foreground">
+        <button
+          onClick={() => addToCart({ id: product.id, name: product.name, price: product.price, image: product.image })}
+          className="flex w-full items-center justify-center gap-2 rounded-full bg-primary py-3 font-body text-sm font-bold text-primary-foreground"
+        >
           <ShoppingCart size={18} /> Add To Cart — ₹{product.price.toLocaleString("en-IN")}
         </button>
       </div>

@@ -5,6 +5,7 @@ import praanrootLogo from "@/assets/praanroot-logo.png";
 import SearchOverlay from "./SearchOverlay";
 import LoginModal from "./LoginModal";
 import CartDrawer from "./CartDrawer";
+import { useCart } from "@/contexts/CartContext";
 
 const navLinks = [
   { label: "Home", to: "/" },
@@ -29,7 +30,7 @@ const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
-  const [cartOpen, setCartOpen] = useState(false);
+  const { totalItems, setCartOpen } = useCart();
   const [shopOpen, setShopOpen] = useState(false);
   const [mobileShopOpen, setMobileShopOpen] = useState(false);
   const location = useLocation();
@@ -141,9 +142,11 @@ const Navbar = () => {
               aria-label="Cart"
             >
               <ShoppingCart size={20} />
-              <span className="absolute -right-0.5 -top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-accent text-[10px] font-bold text-accent-foreground">
-                2
-              </span>
+              {totalItems > 0 && (
+                <span className="absolute -right-0.5 -top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-accent text-[10px] font-bold text-accent-foreground">
+                  {totalItems}
+                </span>
+              )}
             </button>
 
             {/* Mobile hamburger */}
@@ -220,7 +223,7 @@ const Navbar = () => {
       {/* Overlays */}
       <SearchOverlay isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
       <LoginModal isOpen={loginOpen} onClose={() => setLoginOpen(false)} />
-      <CartDrawer isOpen={cartOpen} onClose={() => setCartOpen(false)} />
+      <CartDrawer />
     </>
   );
 };
