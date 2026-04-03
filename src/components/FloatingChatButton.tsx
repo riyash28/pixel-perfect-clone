@@ -37,7 +37,7 @@ const FloatingChatButton = () => {
         <defs>
           <path
             id="chatArcPath"
-            d="M 25,80 A 55,55 0 0,1 135,80"
+            d="M 30,80 A 50,50 0 0,1 130,80"
             fill="none"
           />
         </defs>
