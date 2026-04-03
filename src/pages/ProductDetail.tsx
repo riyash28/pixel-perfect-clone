@@ -1,6 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { useMemo, useState } from "react";
 import { ArrowLeft, Star, ShoppingCart } from "lucide-react";
+import { useCart } from "@/contexts/CartContext";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { bestSellers, combos } from "@/data/products";
