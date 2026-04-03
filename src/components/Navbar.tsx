@@ -40,9 +40,9 @@ const Navbar = () => {
       <header className="sticky top-0 z-50 bg-card shadow-sm">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 lg:px-8">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2">
+          <Link to="/" className="flex items-center gap-1">
             <img src={praanrootLogo} alt="Praanroot Logo" className="h-14 w-auto object-contain" />
-            <span className="font-display text-2xl font-bold tracking-tight text-primary -ml-1">
+            <span className="font-display text-2xl font-bold tracking-tight text-primary">
               PRAANROOT
             </span>
           </Link>
