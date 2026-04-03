@@ -19,6 +19,7 @@ const allProducts = [...bestSellers, ...combos];
 const ProductDetail = () => {
   const { id } = useParams<{ id: string }>();
   const [expanded, setExpanded] = useState(false);
+  const { addToCart } = useCart();
 
   const product = useMemo(() => allProducts.find((p) => p.id === Number(id)), [id]);
 
