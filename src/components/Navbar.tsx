@@ -5,6 +5,7 @@ import praanrootLogo from "@/assets/praanroot-logo.png";
 import SearchOverlay from "./SearchOverlay";
 import LoginModal from "./LoginModal";
 import CartDrawer from "./CartDrawer";
+import { useCart } from "@/contexts/CartContext";
 
 const navLinks = [
   { label: "Home", to: "/" },
