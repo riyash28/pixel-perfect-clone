@@ -145,7 +145,10 @@ const ProductDetail = () => {
 
             {/* CTA Buttons */}
             <div className="flex flex-col gap-3">
-              <button className="w-full rounded-full border-2 border-primary py-3.5 font-body text-sm font-bold text-primary transition-colors hover:bg-primary/5">
+              <button
+                onClick={() => addToCart({ id: product.id, name: product.name, price: product.price, image: product.image })}
+                className="w-full rounded-full border-2 border-primary py-3.5 font-body text-sm font-bold text-primary transition-colors hover:bg-primary/5"
+              >
                 Add To Cart
               </button>
               <button className="w-full rounded-full bg-primary py-3.5 font-body text-sm font-bold text-primary-foreground transition-colors hover:bg-primary/90">
