@@ -28,14 +28,9 @@ const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
             <img src={praanrootLogo} alt="Praanroot Logo" className="h-14 w-auto object-contain" />
-            <div className="flex items-baseline gap-1">
-              <span className="font-display text-2xl font-bold tracking-tight text-primary">
-                PRAANROOT
-              </span>
-              <span className="hidden text-[11px] font-body tracking-widest text-muted-foreground sm:block">
-                SCIENCES
-              </span>
-            </div>
+            <span className="font-display text-2xl font-bold tracking-tight text-primary -ml-1">
+              PRAANROOT
+            </span>
           </Link>
 
           {/* Desktop Nav */}
