@@ -37,7 +37,7 @@ const FloatingChatButton = () => {
         <defs>
           <path
             id="chatArcPath"
-            d="M 35,80 A 45,45 0 0,1 125,80"
+            d="M 25,80 A 55,55 0 0,1 135,80"
             fill="none"
           />
         </defs>
@@ -58,7 +58,7 @@ const FloatingChatButton = () => {
       <img
         src={chatLogo}
         alt="Chat with us"
-        className="relative w-[70px] h-[70px] sm:w-[105px] sm:h-[105px] object-contain drop-shadow-lg"
+        className="relative w-[85px] h-[85px] sm:w-[125px] sm:h-[125px] object-contain drop-shadow-lg"
         loading="lazy"
       />
     </a>
