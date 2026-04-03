@@ -184,7 +184,10 @@ const ProductDetail = () => {
 
       {/* Mobile Sticky CTA */}
       <div className="fixed bottom-0 left-0 right-0 z-40 border-t border-border bg-card p-3 lg:hidden">
-        <button className="flex w-full items-center justify-center gap-2 rounded-full bg-primary py-3 font-body text-sm font-bold text-primary-foreground">
+        <button
+          onClick={() => addToCart({ id: product.id, name: product.name, price: product.price, image: product.image })}
+          className="flex w-full items-center justify-center gap-2 rounded-full bg-primary py-3 font-body text-sm font-bold text-primary-foreground"
+        >
           <ShoppingCart size={18} /> Add To Cart — ₹{product.price.toLocaleString("en-IN")}
         </button>
       </div>
