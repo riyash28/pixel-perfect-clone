@@ -30,7 +30,7 @@ const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
-  const [cartOpen, setCartOpen] = useState(false);
+  const { totalItems, setCartOpen } = useCart();
   const [shopOpen, setShopOpen] = useState(false);
   const [mobileShopOpen, setMobileShopOpen] = useState(false);
   const location = useLocation();
