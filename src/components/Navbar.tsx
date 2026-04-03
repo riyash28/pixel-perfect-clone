@@ -142,9 +142,11 @@ const Navbar = () => {
               aria-label="Cart"
             >
               <ShoppingCart size={20} />
-              <span className="absolute -right-0.5 -top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-accent text-[10px] font-bold text-accent-foreground">
-                2
-              </span>
+              {totalItems > 0 && (
+                <span className="absolute -right-0.5 -top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-accent text-[10px] font-bold text-accent-foreground">
+                  {totalItems}
+                </span>
+              )}
             </button>
 
             {/* Mobile hamburger */}
