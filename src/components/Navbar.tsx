@@ -32,7 +32,6 @@ const Navbar = () => {
               PRAANROOT
             </span>
           </Link>
-          </Link>
 
           {/* Desktop Nav */}
           <nav className="hidden items-center gap-8 lg:flex">

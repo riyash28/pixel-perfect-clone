@@ -8,12 +8,14 @@ const Footer = () => {
       <div className="mx-auto max-w-7xl px-4 py-12 lg:py-16">
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
-           <div className="flex items-center gap-2">
+          <div>
+            <div className="flex items-center gap-2">
               <img src={praanrootLogo} alt="Praanroot Logo" className="h-14 w-auto object-contain brightness-0 invert" />
               <span className="font-display text-xl font-bold tracking-tight text-primary-foreground">
                 PRAANROOT
               </span>
             </div>
+            <p className="mt-3 font-body text-sm text-primary-foreground/70 leading-relaxed">
               Safeguarding humanity from harm through advanced nanotechnology and plant-based science.
             </p>
           </div>
