@@ -15,7 +15,6 @@ import TrackOrder from "./pages/TrackOrder";
 import NotFound from "./pages/NotFound";
 import ProductDetail from "./pages/ProductDetail";
 import FloatingChatButton from "./components/FloatingChatButton";
-import GlobalBackground from "./components/GlobalBackground";
 
 const queryClient = new QueryClient();
 
@@ -25,7 +24,6 @@ const App = () => (
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        <GlobalBackground />
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
