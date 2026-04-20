@@ -3,12 +3,21 @@ import chatLogo from "@/assets/chat-logo-clean.png";
 
 const FloatingChatButton = () => {
   const [rotation, setRotation] = useState(0);
+  const [overFooter, setOverFooter] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       setRotation(window.scrollY * 0.3);
+      const footer = document.querySelector("footer");
+      if (footer) {
+        const rect = footer.getBoundingClientRect();
+        // Button center is roughly at viewport bottom - 70px
+        const buttonY = window.innerHeight - 70;
+        setOverFooter(rect.top <= buttonY && rect.bottom >= buttonY);
+      }
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -38,14 +47,14 @@ const FloatingChatButton = () => {
           <path id="chatArcPath" d="M 40,80 A 40,40 0 0,1 120,80" fill="none" />
         </defs>
         <text
-          fill="#333333"
+          fill={overFooter ? "#ffffff" : "#333333"}
           fontSize="14"
           fontWeight="700"
           letterSpacing="2px"
           style={{ fontFamily: "'DM Sans', sans-serif" }}
         >
           <textPath href="#chatArcPath" startOffset="50%" textAnchor="middle">
-            CHAT US CHAT US
+            CHAT US • CHAT US
           </textPath>
         </text>
       </svg>
