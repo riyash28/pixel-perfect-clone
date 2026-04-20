@@ -1,42 +1,11 @@
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
 import heroImg from "@/assets/blog/blog-hero.jpg";
-import skincareImg from "@/assets/blog/blog-skincare.jpg";
-import ritualsImg from "@/assets/blog/blog-rituals.jpg";
-import glowingImg from "@/assets/blog/blog-glowing.jpg";
-
-const blogPosts = [
-  {
-    title: "The Power of Natural Ingredients in Skincare",
-    excerpt:
-      "Nature has always been the best skincare expert. Discover how Ayurvedic herbs and botanical extracts transform your skin from within.",
-    date: "November 28, 2025",
-    author: "Let's Advertise Work",
-    image: skincareImg,
-    tag: "Skincare",
-  },
-  {
-    title: "5 Simple Wellness Rituals to Transform Your Day",
-    excerpt:
-      "Wellness doesn't require big changes — just small, consistent rituals that nurture your body, mind, and spirit every single day.",
-    date: "November 28, 2025",
-    author: "Let's Advertise Work",
-    image: ritualsImg,
-    tag: "Wellness",
-  },
-  {
-    title: "The Secret to Glowing Skin: Simple Habits That Actually Work",
-    excerpt:
-      "Healthy, glowing skin is not a result of magic — it comes from mindful habits, natural ingredients, and timeless Ayurvedic wisdom.",
-    date: "November 28, 2025",
-    author: "Let's Advertise Work",
-    image: glowingImg,
-    tag: "Beauty",
-  },
-];
+import { blogPosts } from "@/data/blogPosts";
 
 const Blog = () => {
   const cardsRef = useRef<HTMLDivElement>(null);
@@ -138,8 +107,9 @@ const Blog = () => {
             className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-10 lg:grid-cols-3"
           >
             {blogPosts.map((post, idx) => (
-              <article
-                key={post.title}
+              <Link
+                to={`/blog/${post.slug}`}
+                key={post.slug}
                 data-card-index={idx}
                 style={{ transitionDelay: `${idx * 120}ms` }}
                 className={`group flex flex-col overflow-hidden rounded-2xl bg-card shadow-sm ring-1 ring-border/60 transition-all duration-500 ease-out hover:-translate-y-1 hover:shadow-xl ${
@@ -177,12 +147,12 @@ const Blog = () => {
                     {post.excerpt}
                   </p>
 
-                  <button className="mt-auto pt-5 text-left font-body text-sm font-semibold text-primary inline-flex items-center gap-1 transition-colors group-hover:text-accent">
+                  <span className="mt-auto pt-5 text-left font-body text-sm font-semibold text-primary inline-flex items-center gap-1 transition-colors group-hover:text-accent">
                     Read More
                     <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                  </button>
+                  </span>
                 </div>
-              </article>
+              </Link>
             ))}
           </div>
         </div>
