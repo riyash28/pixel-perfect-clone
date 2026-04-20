@@ -7,16 +7,26 @@ const About = () => {
       <Navbar />
       <section className="py-16 lg:py-24">
         <div className="mx-auto max-w-4xl px-4">
-          <h1 className="font-display text-4xl font-bold text-foreground lg:text-5xl">About ZeroHarm</h1>
+          <h1 className="font-display text-4xl font-bold text-foreground lg:text-5xl">About Praanroot</h1>
           <p className="mt-6 font-body text-lg leading-relaxed text-muted-foreground">
-            ZeroHarm Sciences is a pioneering health and wellness company dedicated to creating
-            plant-based supplements using advanced nanotechnology. Our mission is to safeguard
-            humanity from harm by delivering nutrients with precision and measurable effectiveness.
+            Praanroot – Ayurveda Rooted in You At Praanroot, we believe that every woman deserves a life of balance,
+            vitality, and confidence. Born from the deep roots of Ayurveda and driven by a passion to heal naturally,
+            our formulations are crafted to support women through every hormonal challenge—be it PCOD, PCOS, irregular
+            cycles, fertility struggles, or emotional imbalances.
           </p>
           <p className="mt-4 font-body text-lg leading-relaxed text-muted-foreground">
-            Founded by Sachin Darbarwar, ZeroHarm bridges the gap between traditional Ayurvedic
-            wisdom and modern science. Our patented nano-technology converts nutrients into ultra-small
-            particles for faster absorption and higher bioavailability.
+            Founded under the umbrella of Anushrita Herbal, a company committed to authentic, research-based herbal
+            medicine, Praanroot is not just a brand—it's a promise of purity, effectiveness, and care. Founded under
+            Anushrita Herbal, an Ayurvedic company established on 16 Apr 2025, Praanroot is not just a brand—it’s a
+            commitment to purity, potency, and purpose. Every product reflects the careful balance of ancient Ayurvedic
+            wisdom and modern patient needs.
+          </p>
+          <p className="mt-4 font-body text-lg leading-relaxed text-muted-foreground">
+            Our products like Ritucalm Capsules and Ritucalm Syrup are not just remedies—they are experiences. Blending
+            classical Ayurvedic wisdom with modern-day clinical understanding, we focus on fast, targeted, and
+            long-lasting relief without side effects. Every drop, every dose is carefully designed by experts—not in
+            labs alone, but in life itself. We understand what women go through. And we’re here to make sure you don’t
+            go through it alone. At Praanroot, your health is our mission—and Ayurveda is our method.
           </p>
           <div className="mt-10 grid gap-6 sm:grid-cols-3">
             {[
