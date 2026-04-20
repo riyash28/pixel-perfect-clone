@@ -14,7 +14,7 @@ const FloatingChatButton = () => {
 
   return (
     <a
-      href="https://wa.me/1234567890"
+      href="https://wa.me/9211514445"
       target="_blank"
       rel="noopener noreferrer"
       className="fixed bottom-5 right-5 z-[9999] cursor-pointer
@@ -35,11 +35,7 @@ const FloatingChatButton = () => {
         style={{ transform: `rotate(${rotation}deg)` }}
       >
         <defs>
-          <path
-            id="chatArcPath"
-            d="M 40,80 A 40,40 0 0,1 120,80"
-            fill="none"
-          />
+          <path id="chatArcPath" d="M 40,80 A 40,40 0 0,1 120,80" fill="none" />
         </defs>
         <text
           fill="#333333"
@@ -49,7 +45,7 @@ const FloatingChatButton = () => {
           style={{ fontFamily: "'DM Sans', sans-serif" }}
         >
           <textPath href="#chatArcPath" startOffset="50%" textAnchor="middle">
-            CHAT US
+            CHAT US CHAT US
           </textPath>
         </text>
       </svg>
