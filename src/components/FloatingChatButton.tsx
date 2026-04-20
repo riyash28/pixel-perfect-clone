@@ -48,9 +48,9 @@ const FloatingChatButton = () => {
         </defs>
         <text
           fill={overFooter ? "#ffffff" : "#333333"}
-          fontSize="14"
+          fontSize="11"
           fontWeight="700"
-          letterSpacing="2px"
+          letterSpacing="1.5px"
           style={{ fontFamily: "'DM Sans', sans-serif" }}
         >
           <textPath href="#chatArcPath" startOffset="0%">
