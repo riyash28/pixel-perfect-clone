@@ -1,12 +1,23 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import praanrootLogo from "@/assets/praanroot-logo.png";
 
 const About = () => {
   return (
     <div className="min-h-screen">
       <Navbar />
-      <section className="py-16 lg:py-24">
-        <div className="mx-auto max-w-4xl px-4">
+      <section className="relative overflow-hidden py-16 lg:py-24">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center"
+        >
+          <img
+            src={praanrootLogo}
+            alt=""
+            className="w-[420px] opacity-[0.05] blur-[2px] animate-float-logo sm:w-[600px] lg:w-[800px] lg:opacity-[0.07]"
+          />
+        </div>
+        <div className="relative z-10 mx-auto max-w-4xl px-4">
           <h1 className="font-display text-4xl font-bold text-foreground lg:text-5xl">About Praanroot</h1>
           <p className="mt-6 font-body text-lg leading-relaxed text-muted-foreground">
             Praanroot – Ayurveda Rooted in You At Praanroot, we believe that every woman deserves a life of balance,
