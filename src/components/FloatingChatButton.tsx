@@ -44,17 +44,17 @@ const FloatingChatButton = () => {
         style={{ transform: `rotate(${rotation}deg)` }}
       >
         <defs>
-          <path id="chatArcPath" d="M 40,80 A 40,40 0 0,1 120,80" fill="none" />
+          <path id="chatArcPath" d="M 80,80 m -60,0 a 60,60 0 1,1 120,0 a 60,60 0 1,1 -120,0" fill="none" />
         </defs>
         <text
           fill={overFooter ? "#ffffff" : "#333333"}
-          fontSize="14"
+          fontSize="13"
           fontWeight="700"
-          letterSpacing="2px"
+          letterSpacing="3px"
           style={{ fontFamily: "'DM Sans', sans-serif" }}
         >
-          <textPath href="#chatArcPath" startOffset="50%" textAnchor="middle">
-            CHAT US • CHAT US
+          <textPath href="#chatArcPath" startOffset="0%">
+            CHAT US • CHAT US •
           </textPath>
         </text>
       </svg>
