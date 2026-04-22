@@ -1,26 +1,34 @@
 import { useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
+import doctor1 from "@/assets/doctors/doctor-1.jpg";
+import doctor2 from "@/assets/doctors/doctor-2.jpg";
+import doctor3 from "@/assets/doctors/doctor-3.jpg";
+import doctor4 from "@/assets/doctors/doctor-4.jpg";
 
 const testimonials = [
   {
     quote: "ZeroHarm's comprehensive approach to holistic wellness is revolutionary. As an expert, I wholeheartedly endorse their dedication to nurturing health from within.",
     name: "Dr. Shalini Patodiya",
     title: "Dermatologist & Holistic Wellness Expert",
+    image: doctor1,
   },
   {
     quote: "I've seen remarkable transformations with ZeroHarm's holistic care. Their commitment to overall well-being and natural health solutions is exemplary.",
     name: "Dr. Bharat Patodiya",
     title: "Consultant Medical Oncologist",
+    image: doctor2,
   },
   {
     quote: "ZeroHarm's holistic vision reshapes health standards. I proudly support their integrative approach that empowers individuals towards sustained well-being.",
     name: "Dr. Sudhakar Darbawar",
     title: "45 Years of Experience in Medical Field",
+    image: doctor3,
   },
   {
     quote: "Having witnessed ZeroHarm's impact firsthand, I believe in their holistic methods for women's care. Their comprehensive approach fosters empowerment.",
     name: "Dr. Snehal R Pansare",
     title: "Obstetrician and Gynaecologist",
+    image: doctor4,
   },
 ];
 
@@ -102,10 +110,20 @@ const TestimonialsSection = () => {
           />
 
           <div key={animKey} className="animate-fade-in">
+            <div className="mx-auto mt-6 flex justify-center">
+              <div className="relative">
+                <div className="absolute inset-0 -m-1 rounded-full bg-gradient-to-tr from-primary/40 to-accent/40 blur-sm" />
+                <img
+                  src={t.image}
+                  alt={t.name}
+                  className="relative h-24 w-24 rounded-full border-4 border-card object-cover shadow-lg md:h-28 md:w-28"
+                />
+              </div>
+            </div>
             <p className="mx-auto mt-6 max-w-2xl font-body text-lg italic leading-relaxed text-muted-foreground md:text-xl">
               “{t.quote}”
             </p>
-            <h4 className="mt-8 font-display text-xl font-semibold text-foreground md:text-2xl">
+            <h4 className="mt-6 font-display text-xl font-semibold text-foreground md:text-2xl">
               {t.name}
             </h4>
             <p className="mt-1 font-body text-sm uppercase tracking-wider text-muted-foreground">
