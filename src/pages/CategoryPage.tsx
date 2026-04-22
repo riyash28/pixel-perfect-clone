@@ -43,7 +43,7 @@ const CategoryPage = () => {
             {category.name}
           </h1>
           <p className="mx-auto mt-3 max-w-lg font-body text-base text-muted-foreground">
-            {category.description}
+            Explore our {category.name} collection.
           </p>
         </div>
       </section>
