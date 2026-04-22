@@ -121,7 +121,7 @@ const TestimonialsSection = () => {
               </div>
             </div>
             <p className="mx-auto mt-6 max-w-2xl font-body text-lg italic leading-relaxed text-muted-foreground md:text-xl">
-              “{t.quote}”
+              {t.quote}
             </p>
             <h4 className="mt-6 font-display text-xl font-semibold text-foreground md:text-2xl">
               {t.name}
