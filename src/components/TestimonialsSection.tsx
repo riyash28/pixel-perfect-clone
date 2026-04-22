@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import doctor1 from "@/assets/doctors/doctor-1.jpg";
 import doctor2 from "@/assets/doctors/doctor-2.jpg";
 import doctor3 from "@/assets/doctors/doctor-3.jpg";
@@ -103,12 +103,6 @@ const TestimonialsSection = () => {
         <div className="mx-auto mt-4 h-px w-16 bg-primary/30" />
 
         <div className="relative mt-12 min-h-[260px]">
-          <Quote
-            size={56}
-            strokeWidth={1.25}
-            className="mx-auto text-primary/15"
-          />
-
           <div key={animKey} className="animate-fade-in">
             <div className="mx-auto mt-6 flex justify-center">
               <div className="relative">
