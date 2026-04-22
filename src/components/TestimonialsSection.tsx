@@ -197,6 +197,19 @@ const TestimonialsSection = () => {
             />
           ))}
         </div>
+
+        {/* Quote + name + title (below images) */}
+        <div key={current} className="mx-auto mt-10 max-w-3xl animate-fade-in px-4">
+          <p className="font-body text-base italic leading-relaxed text-muted-foreground md:text-lg">
+            "{testimonials[current].quote}"
+          </p>
+          <h4 className="mt-6 font-display text-xl font-semibold text-foreground md:text-2xl">
+            {testimonials[current].name}
+          </h4>
+          <p className="mt-1 font-body text-sm text-muted-foreground">
+            {testimonials[current].title}
+          </p>
+        </div>
       </div>
     </section>
   );
