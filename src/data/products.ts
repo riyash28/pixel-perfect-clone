@@ -10,11 +10,11 @@ import combo1 from "@/assets/products/combo-1.jpg";
 import combo2 from "@/assets/products/combo-2.jpg";
 import combo3 from "@/assets/products/combo-3.jpg";
 import combo4 from "@/assets/products/combo-4.jpg";
-const womenIcon = "👩";
-const menIcon = "👨";
-const digestiveIcon = "🌿";
-const hairIcon = "💇";
-const liverIcon = "🫀";
+const womenIcon = "/placeholder.svg";
+const menIcon = "/placeholder.svg";
+const digestiveIcon = "/placeholder.svg";
+const hairIcon = "/placeholder.svg";
+const liverIcon = "/placeholder.svg";
 
 export interface Product {
   id: number;
