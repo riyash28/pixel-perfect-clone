@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
 
 const testimonials = [
@@ -26,49 +26,116 @@ const testimonials = [
 
 const TestimonialsSection = () => {
   const [current, setCurrent] = useState(0);
+  const [animKey, setAnimKey] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const [visible, setVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement | null>(null);
+
+  const goTo = (i: number) => {
+    setCurrent(((i % testimonials.length) + testimonials.length) % testimonials.length);
+    setAnimKey((k) => k + 1);
+  };
+  const next = () => goTo(current + 1);
+  const prev = () => goTo(current - 1);
+
+  // Reveal on scroll
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => entry.isIntersecting && setVisible(true),
+      { threshold: 0.2 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  // Auto-slide
+  useEffect(() => {
+    if (paused) return;
+    const id = window.setInterval(() => {
+      setCurrent((c) => (c + 1) % testimonials.length);
+      setAnimKey((k) => k + 1);
+    }, 5000);
+    return () => window.clearInterval(id);
+  }, [paused]);
+
+  const t = testimonials[current];
 
   return (
-    <section className="bg-card py-16 lg:py-20">
-      <div className="mx-auto max-w-4xl px-4 text-center">
-        <h2 className="font-display text-3xl font-semibold text-foreground lg:text-4xl">
+    <section
+      ref={sectionRef}
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      className="relative overflow-hidden bg-card py-20 lg:py-28"
+    >
+      {/* Decorative background glow */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute left-1/2 top-1/2 h-[520px] w-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/5 blur-3xl"
+        style={{ animation: "pulse 6s ease-in-out infinite" }}
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -left-20 top-10 h-40 w-40 rounded-full bg-accent/10 blur-2xl"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -right-20 bottom-10 h-40 w-40 rounded-full bg-primary/10 blur-2xl"
+      />
+
+      <div
+        className={`relative mx-auto max-w-3xl px-4 text-center transition-all duration-700 ease-out ${
+          visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+        }`}
+      >
+        <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground md:text-4xl lg:text-5xl">
           What Leading Industry Experts Say
         </h2>
+        <div className="mx-auto mt-4 h-px w-16 bg-primary/30" />
 
-        <div className="relative mt-10">
-          <Quote size={40} className="mx-auto text-primary/20" />
-          <p className="mt-4 font-body text-lg leading-relaxed text-muted-foreground italic">
-            "{testimonials[current].quote}"
-          </p>
-          <h4 className="mt-6 font-display text-lg font-semibold text-foreground">
-            {testimonials[current].name}
-          </h4>
-          <p className="font-body text-sm text-muted-foreground">
-            {testimonials[current].title}
-          </p>
+        <div className="relative mt-12 min-h-[260px]">
+          <Quote
+            size={56}
+            strokeWidth={1.25}
+            className="mx-auto text-primary/15"
+          />
 
-          <div className="mt-8 flex items-center justify-center gap-4">
+          <div key={animKey} className="animate-fade-in">
+            <p className="mx-auto mt-6 max-w-2xl font-body text-lg italic leading-relaxed text-muted-foreground md:text-xl">
+              “{t.quote}”
+            </p>
+            <h4 className="mt-8 font-display text-xl font-semibold text-foreground md:text-2xl">
+              {t.name}
+            </h4>
+            <p className="mt-1 font-body text-sm uppercase tracking-wider text-muted-foreground">
+              {t.title}
+            </p>
+          </div>
+
+          <div className="mt-10 flex items-center justify-center gap-5">
             <button
-              onClick={() => setCurrent((c) => (c === 0 ? testimonials.length - 1 : c - 1))}
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-primary text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
+              onClick={prev}
+              className="group flex h-11 w-11 items-center justify-center rounded-full border border-primary/30 text-primary transition-all duration-300 hover:scale-110 hover:border-primary hover:bg-primary hover:text-primary-foreground"
               aria-label="Previous testimonial"
             >
               <ChevronLeft size={18} />
             </button>
-            <div className="flex gap-2">
+            <div className="flex items-center gap-2">
               {testimonials.map((_, i) => (
                 <button
                   key={i}
-                  onClick={() => setCurrent(i)}
-                  className={`h-2 rounded-full transition-all ${
-                    i === current ? "w-6 bg-primary" : "w-2 bg-muted"
+                  onClick={() => goTo(i)}
+                  className={`h-1.5 rounded-full transition-all duration-500 ease-out ${
+                    i === current ? "w-8 bg-primary" : "w-1.5 bg-primary/25 hover:bg-primary/50"
                   }`}
-                  aria-label={`Testimonial ${i + 1}`}
+                  aria-label={`Go to testimonial ${i + 1}`}
                 />
               ))}
             </div>
             <button
-              onClick={() => setCurrent((c) => (c === testimonials.length - 1 ? 0 : c + 1))}
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-primary text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
+              onClick={next}
+              className="group flex h-11 w-11 items-center justify-center rounded-full border border-primary/30 text-primary transition-all duration-300 hover:scale-110 hover:border-primary hover:bg-primary hover:text-primary-foreground"
               aria-label="Next testimonial"
             >
               <ChevronRight size={18} />
