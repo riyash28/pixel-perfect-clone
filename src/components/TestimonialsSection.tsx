@@ -10,21 +10,29 @@ const testimonials = [
     name: "Dr. Shalini Patodiya",
     title: "Dermatologist & Holistic Wellness Expert",
     image: doctor1,
+    quote:
+      "ZeroHarm's comprehensive approach to holistic wellness is revolutionary. As an expert, I wholeheartedly endorse their dedication to nurturing health from within.",
   },
   {
     name: "Dr. Bharat Patodiya",
     title: "Consultant Medical Oncologist",
     image: doctor2,
+    quote:
+      "I've seen remarkable transformations with ZeroHarm's holistic care. Their commitment to overall well-being and natural health solutions is exemplary.",
   },
   {
     name: "Dr. Sudhakar Darbawar",
     title: "45 Years of Experience in Medical Field",
     image: doctor3,
+    quote:
+      "ZeroHarm's holistic vision reshapes health standards. I proudly support their integrative approach that empowers individuals towards sustained well-being.",
   },
   {
     name: "Dr. Snehal R Pansare",
     title: "Advisor-Obstetrician and Gynaecologist",
     image: doctor4,
+    quote:
+      "Having witnessed ZeroHarm's impact firsthand, I believe in their holistic methods for women's care. Their comprehensive approach fosters empowerment.",
   },
 ];
 
