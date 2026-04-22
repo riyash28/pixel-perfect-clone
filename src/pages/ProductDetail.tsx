@@ -45,9 +45,7 @@ const ProductDetail = () => {
 
   const discount = Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100);
   const images = [product.image, product.image, product.image, product.image];
-
-  const description =
-    "Back To Teens tablet utilizes advanced nanotechnology and 100% natural, ayurvedic, plant-based ingredients like Horny Goat Weed, Maca Root, and Safed Musli to deliver exceptional benefits. Helps in managing premature ejaculation in men, boosts desire and enhances overall vitality for a more confident lifestyle.";
+  const description = product.description;
 
   return (
     <div className="min-h-screen bg-background">
@@ -111,9 +109,8 @@ const ProductDetail = () => {
                 className={`font-body text-sm leading-relaxed text-muted-foreground ${
                   !expanded ? "line-clamp-3" : ""
                 }`}
-              >
-                {description}
-              </p>
+                dangerouslySetInnerHTML={{ __html: description }}
+              />
               <button
                 onClick={() => setExpanded(!expanded)}
                 className="mt-1 font-body text-sm font-semibold text-primary hover:underline"
