@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Leaf } from "lucide-react";
 import doctor1 from "@/assets/doctors/doctor-1.jpg";
 import doctor2 from "@/assets/doctors/doctor-2.jpg";
 import doctor3 from "@/assets/doctors/doctor-3.jpg";
@@ -7,44 +7,37 @@ import doctor4 from "@/assets/doctors/doctor-4.jpg";
 
 const testimonials = [
   {
-    quote: "ZeroHarm's comprehensive approach to holistic wellness is revolutionary. As an expert, I wholeheartedly endorse their dedication to nurturing health from within.",
     name: "Dr. Shalini Patodiya",
     title: "Dermatologist & Holistic Wellness Expert",
     image: doctor1,
   },
   {
-    quote: "I've seen remarkable transformations with ZeroHarm's holistic care. Their commitment to overall well-being and natural health solutions is exemplary.",
     name: "Dr. Bharat Patodiya",
     title: "Consultant Medical Oncologist",
     image: doctor2,
   },
   {
-    quote: "ZeroHarm's holistic vision reshapes health standards. I proudly support their integrative approach that empowers individuals towards sustained well-being.",
     name: "Dr. Sudhakar Darbawar",
     title: "45 Years of Experience in Medical Field",
     image: doctor3,
   },
   {
-    quote: "Having witnessed ZeroHarm's impact firsthand, I believe in their holistic methods for women's care. Their comprehensive approach fosters empowerment.",
     name: "Dr. Snehal R Pansare",
-    title: "Obstetrician and Gynaecologist",
+    title: "Advisor-Obstetrician and Gynaecologist",
     image: doctor4,
   },
 ];
 
 const TestimonialsSection = () => {
   const [current, setCurrent] = useState(0);
-  const [animKey, setAnimKey] = useState(0);
   const [paused, setPaused] = useState(false);
   const [visible, setVisible] = useState(false);
   const sectionRef = useRef<HTMLElement | null>(null);
 
-  const goTo = (i: number) => {
-    setCurrent(((i % testimonials.length) + testimonials.length) % testimonials.length);
-    setAnimKey((k) => k + 1);
-  };
-  const next = () => goTo(current + 1);
-  const prev = () => goTo(current - 1);
+  const len = testimonials.length;
+  const mod = (n: number) => ((n % len) + len) % len;
+  const next = () => setCurrent((c) => mod(c + 1));
+  const prev = () => setCurrent((c) => mod(c - 1));
 
   // Reveal on scroll
   useEffect(() => {
@@ -62,13 +55,10 @@ const TestimonialsSection = () => {
   useEffect(() => {
     if (paused) return;
     const id = window.setInterval(() => {
-      setCurrent((c) => (c + 1) % testimonials.length);
-      setAnimKey((k) => k + 1);
-    }, 5000);
+      setCurrent((c) => mod(c + 1));
+    }, 4500);
     return () => window.clearInterval(id);
   }, [paused]);
-
-  const t = testimonials[current];
 
   return (
     <section
@@ -77,7 +67,6 @@ const TestimonialsSection = () => {
       onMouseLeave={() => setPaused(false)}
       className="relative overflow-hidden bg-card py-20 lg:py-28"
     >
-      {/* Decorative background glow */}
       <div
         aria-hidden
         className="pointer-events-none absolute left-1/2 top-1/2 h-[520px] w-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/5 blur-3xl"
@@ -93,7 +82,7 @@ const TestimonialsSection = () => {
       />
 
       <div
-        className={`relative mx-auto max-w-3xl px-4 text-center transition-all duration-700 ease-out ${
+        className={`relative mx-auto max-w-7xl px-4 text-center transition-all duration-700 ease-out ${
           visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
         }`}
       >
@@ -102,57 +91,103 @@ const TestimonialsSection = () => {
         </h2>
         <div className="mx-auto mt-4 h-px w-16 bg-primary/30" />
 
-        <div className="relative mt-12 min-h-[260px]">
-          <div key={animKey} className="animate-fade-in">
-            <div className="mx-auto mt-6 flex justify-center">
-              <div className="relative">
-                <div className="absolute inset-0 -m-1 rounded-full bg-gradient-to-tr from-primary/40 to-accent/40 blur-sm" />
-                <img
-                  src={t.image}
-                  alt={t.name}
-                  className="relative h-24 w-24 rounded-full border-4 border-card object-cover shadow-lg md:h-28 md:w-28"
-                />
-              </div>
-            </div>
-            <p className="mx-auto mt-6 max-w-2xl font-body text-lg italic leading-relaxed text-muted-foreground md:text-xl">
-              {t.quote}
-            </p>
-            <h4 className="mt-6 font-display text-xl font-semibold text-foreground md:text-2xl">
-              {t.name}
-            </h4>
-            <p className="mt-1 font-body text-sm uppercase tracking-wider text-muted-foreground">
-              {t.title}
-            </p>
+        {/* 3D-style center carousel */}
+        <div className="relative mt-14 h-[460px] md:h-[520px]">
+          <div className="absolute inset-0 flex items-center justify-center">
+            {testimonials.map((t, i) => {
+              // Relative position: -1 left, 0 center, 1 right; others hidden
+              let offset = i - current;
+              if (offset > len / 2) offset -= len;
+              if (offset < -len / 2) offset += len;
+
+              const isCenter = offset === 0;
+              const isSide = Math.abs(offset) === 1;
+              const visibleSlide = isCenter || isSide;
+
+              const translatePct = offset * 62; // % of container width
+              const scale = isCenter ? 1 : isSide ? 0.78 : 0.6;
+              const opacity = isCenter ? 1 : isSide ? 0.55 : 0;
+              const zIndex = isCenter ? 30 : isSide ? 20 : 10;
+
+              return (
+                <div
+                  key={i}
+                  aria-hidden={!isCenter}
+                  onClick={() => !isCenter && visibleSlide && setCurrent(i)}
+                  className={`absolute top-1/2 left-1/2 w-[78%] max-w-[420px] md:w-[36%] md:max-w-[440px] transition-all duration-700 ease-in-out ${
+                    !isCenter && visibleSlide ? "cursor-pointer" : ""
+                  }`}
+                  style={{
+                    transform: `translate(-50%, -50%) translateX(${translatePct}%) scale(${scale})`,
+                    opacity,
+                    zIndex,
+                    pointerEvents: visibleSlide ? "auto" : "none",
+                  }}
+                >
+                  <div className="group relative overflow-hidden rounded-3xl bg-background shadow-xl ring-1 ring-foreground/5 transition-all duration-500 hover:shadow-2xl">
+                    <div className="relative aspect-[4/5] w-full overflow-hidden">
+                      <img
+                        src={t.image}
+                        alt={t.name}
+                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                      {/* Subtle bottom gradient for legibility */}
+                      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/40 to-transparent" />
+                    </div>
+
+                    {/* Specialization pill */}
+                    <div className="absolute left-1/2 top-[58%] z-10 -translate-x-1/2">
+                      <span className="inline-block whitespace-nowrap rounded-full bg-accent px-4 py-1 font-body text-[11px] font-medium text-accent-foreground shadow-md md:text-xs">
+                        {t.title}
+                      </span>
+                    </div>
+
+                    {/* Name card */}
+                    <div className="absolute bottom-5 left-1/2 z-10 -translate-x-1/2">
+                      <div className="flex items-center gap-2 rounded-2xl bg-background px-5 py-3 shadow-lg ring-1 ring-foreground/5">
+                        <Leaf className="h-4 w-4 text-primary" />
+                        <span className="font-display text-base font-semibold text-foreground md:text-lg">
+                          {t.name}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
 
-          <div className="mt-10 flex items-center justify-center gap-5">
+          {/* Navigation buttons (bottom-right, like reference) */}
+          <div className="absolute bottom-2 right-4 z-40 flex items-center gap-3 md:right-8">
             <button
               onClick={prev}
-              className="group flex h-11 w-11 items-center justify-center rounded-full border border-primary/30 text-primary transition-all duration-300 hover:scale-110 hover:border-primary hover:bg-primary hover:text-primary-foreground"
-              aria-label="Previous testimonial"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-foreground/20 bg-background text-foreground transition-all duration-300 hover:scale-110 hover:border-primary hover:bg-primary hover:text-primary-foreground"
+              aria-label="Previous"
             >
               <ChevronLeft size={18} />
             </button>
-            <div className="flex items-center gap-2">
-              {testimonials.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => goTo(i)}
-                  className={`h-1.5 rounded-full transition-all duration-500 ease-out ${
-                    i === current ? "w-8 bg-primary" : "w-1.5 bg-primary/25 hover:bg-primary/50"
-                  }`}
-                  aria-label={`Go to testimonial ${i + 1}`}
-                />
-              ))}
-            </div>
             <button
               onClick={next}
-              className="group flex h-11 w-11 items-center justify-center rounded-full border border-primary/30 text-primary transition-all duration-300 hover:scale-110 hover:border-primary hover:bg-primary hover:text-primary-foreground"
-              aria-label="Next testimonial"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-foreground/20 bg-background text-foreground transition-all duration-300 hover:scale-110 hover:border-primary hover:bg-primary hover:text-primary-foreground"
+              aria-label="Next"
             >
               <ChevronRight size={18} />
             </button>
           </div>
+        </div>
+
+        {/* Dots */}
+        <div className="mt-6 flex items-center justify-center gap-2">
+          {testimonials.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrent(i)}
+              className={`h-1.5 rounded-full transition-all duration-500 ease-out ${
+                i === current ? "w-8 bg-primary" : "w-1.5 bg-primary/25 hover:bg-primary/50"
+              }`}
+              aria-label={`Go to slide ${i + 1}`}
+            />
+          ))}
         </div>
       </div>
     </section>
