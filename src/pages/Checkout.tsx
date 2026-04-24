@@ -62,11 +62,6 @@ const Checkout = () => {
             <section>
               <div className="mb-3 flex items-center justify-between">
                 <h2 className="font-display text-xl font-semibold text-foreground">Contact</h2>
-                {!userEmail && (
-                  <Link to="/login" className="text-sm text-muted-foreground underline">
-                    Log in
-                  </Link>
-                )}
               </div>
               {userEmail ? (
                 <div className="flex items-center gap-3 rounded-lg border border-[#c9cccf] bg-background px-3 py-2.5">
