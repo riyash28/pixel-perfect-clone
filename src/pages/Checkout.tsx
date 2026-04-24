@@ -223,31 +223,45 @@ const Checkout = () => {
           {/* CONTACT */}
           <h2 className="text-xl font-semibold mb-3">Contact</h2>
 
-          <div className="flex items-center gap-3 border rounded-lg p-3 mb-6">
-            <div className="w-9 h-9 bg-black text-white rounded-full flex items-center justify-center">
-              {userEmail?.charAt(0)}
-            </div>
-            <p className="flex-1">{userEmail}</p>
+          {userEmail ? (
+            <div className="flex items-center gap-3 border rounded-lg p-3 mb-6">
+              <div className="w-9 h-9 bg-black text-white rounded-full flex items-center justify-center">
+                {userEmail?.charAt(0)}
+              </div>
+              <p className="flex-1">{userEmail}</p>
 
-            <DropdownMenu>
-              <DropdownMenuTrigger>
-                <MoreHorizontal size={18} />
-              </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                <DropdownMenuItem onClick={handleSignOut}>
-                  <LogOut size={16} className="mr-2" />
-                  Sign out
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </div>
+              <DropdownMenu>
+                <DropdownMenuTrigger>
+                  <MoreHorizontal size={18} />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent>
+                  <DropdownMenuItem onClick={handleSignOut}>
+                    <LogOut size={16} className="mr-2" />
+                    Sign out
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
+          ) : (
+            <div className="mb-6">
+              <Input
+                ref={(el) => (fieldRefs.current.email = el)}
+                type="email"
+                placeholder="Email"
+                value={form.email}
+                onChange={setField("email")}
+                className={`${baseInputClass} ${errors.email ? errorInputClass : ""}`}
+              />
+              {errors.email && <p className="mt-1 text-xs text-red-500">{errors.email}</p>}
+            </div>
+          )}
 
           {/* DELIVERY */}
           <h2 className="text-xl font-semibold mb-3">Delivery</h2>
 
           <div className="space-y-3">
             <Select defaultValue="india">
-              <SelectTrigger className={inputClass}>
+              <SelectTrigger className={baseInputClass}>
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -256,20 +270,93 @@ const Checkout = () => {
             </Select>
 
             <div className="grid grid-cols-2 gap-3">
-              <Input className={inputClass} placeholder="First name" />
-              <Input className={inputClass} placeholder="Last name" />
+              <div>
+                <Input
+                  ref={(el) => (fieldRefs.current.firstName = el)}
+                  placeholder="First name"
+                  value={form.firstName}
+                  onChange={setField("firstName")}
+                  className={`${baseInputClass} ${errors.firstName ? errorInputClass : ""}`}
+                />
+                {errors.firstName && <p className="mt-1 text-xs text-red-500">{errors.firstName}</p>}
+              </div>
+              <div>
+                <Input
+                  ref={(el) => (fieldRefs.current.lastName = el)}
+                  placeholder="Last name"
+                  value={form.lastName}
+                  onChange={setField("lastName")}
+                  className={`${baseInputClass} ${errors.lastName ? errorInputClass : ""}`}
+                />
+                {errors.lastName && <p className="mt-1 text-xs text-red-500">{errors.lastName}</p>}
+              </div>
             </div>
 
-            <Input className={inputClass} placeholder="Address" />
-            <Input className={inputClass} placeholder="Apartment (optional)" />
+            <div>
+              <Input
+                ref={(el) => (fieldRefs.current.address = el)}
+                placeholder="Address"
+                value={form.address}
+                onChange={setField("address")}
+                className={`${baseInputClass} ${errors.address ? errorInputClass : ""}`}
+              />
+              {errors.address && <p className="mt-1 text-xs text-red-500">{errors.address}</p>}
+            </div>
+
+            <Input
+              placeholder="Apartment (optional)"
+              value={form.apartment}
+              onChange={setField("apartment")}
+              className={baseInputClass}
+            />
 
             <div className="grid grid-cols-3 gap-3">
-              <Input className={inputClass} placeholder="City" />
-              <Input className={inputClass} placeholder="State" />
-              <Input className={inputClass} placeholder="PIN code" />
+              <div>
+                <Input
+                  ref={(el) => (fieldRefs.current.city = el)}
+                  placeholder="City"
+                  value={form.city}
+                  onChange={setField("city")}
+                  className={`${baseInputClass} ${errors.city ? errorInputClass : ""}`}
+                />
+                {errors.city && <p className="mt-1 text-xs text-red-500">{errors.city}</p>}
+              </div>
+              <div>
+                <Input
+                  ref={(el) => (fieldRefs.current.state = el)}
+                  placeholder="State"
+                  value={form.state}
+                  onChange={setField("state")}
+                  className={`${baseInputClass} ${errors.state ? errorInputClass : ""}`}
+                />
+                {errors.state && <p className="mt-1 text-xs text-red-500">{errors.state}</p>}
+              </div>
+              <div>
+                <Input
+                  ref={(el) => (fieldRefs.current.pin = el)}
+                  placeholder="PIN code"
+                  inputMode="numeric"
+                  maxLength={6}
+                  value={form.pin}
+                  onChange={setField("pin")}
+                  className={`${baseInputClass} ${errors.pin ? errorInputClass : ""}`}
+                />
+                {errors.pin && <p className="mt-1 text-xs text-red-500">{errors.pin}</p>}
+              </div>
             </div>
 
-            <Input className={inputClass} placeholder="Phone" />
+            <div>
+              <Input
+                ref={(el) => (fieldRefs.current.phone = el)}
+                placeholder="Phone"
+                inputMode="tel"
+                maxLength={10}
+                value={form.phone}
+                onChange={setField("phone")}
+                className={`${baseInputClass} ${errors.phone ? errorInputClass : ""}`}
+              />
+              {errors.phone && <p className="mt-1 text-xs text-red-500">{errors.phone}</p>}
+            </div>
           </div>
 
           {/* SHIPPING */}
@@ -321,14 +408,7 @@ const Checkout = () => {
 
           {/* PAY BUTTON */}
           <Button
-            onClick={() => {
-              if (payment === "cod") {
-                alert("Order placed with COD ✅");
-                navigate("/success");
-              } else {
-                handlePayment();
-              }
-            }}
+            onClick={handleSubmit}
             className="w-full mt-6 h-14 bg-black text-white"
           >
             Pay now
