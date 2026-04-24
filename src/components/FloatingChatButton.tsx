@@ -63,7 +63,7 @@ const FloatingChatButton = () => {
             textLength="389"
             lengthAdjust="spacing"
           >
-            CHAT US • CHAT US •
+            {"CHAT US   •   CHAT US   •"}
           </textPath>
         </text>
       </svg>
