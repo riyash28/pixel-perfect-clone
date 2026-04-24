@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Search, MoreHorizontal, Lock, ShoppingBag, LogOut } from "lucide-react";
 import {
@@ -20,8 +20,24 @@ declare global {
   }
 }
 
-const inputClass =
-  "h-12 rounded-lg border-[#c9cccf] bg-background px-3 text-[15px] focus-visible:ring-2 focus-visible:ring-black focus-visible:border-black";
+const baseInputClass =
+  "h-12 rounded-lg border-[#c9cccf] bg-background px-3 text-[15px] focus-visible:ring-2 focus-visible:ring-black focus-visible:border-black transition-colors";
+const errorInputClass =
+  "border-red-500 bg-red-50 focus-visible:ring-red-500 focus-visible:border-red-500";
+
+type FormFields = {
+  email: string;
+  firstName: string;
+  lastName: string;
+  address: string;
+  apartment: string;
+  city: string;
+  state: string;
+  pin: string;
+  phone: string;
+};
+
+type FormErrors = Partial<Record<keyof FormFields, string>>;
 
 const Checkout = () => {
   const { items, subtotal } = useCart();
@@ -30,6 +46,74 @@ const Checkout = () => {
   const navigate = useNavigate();
 
   const [userEmail, setUserEmail] = useState<string | null>(() => localStorage.getItem("email"));
+
+  const [form, setForm] = useState<FormFields>({
+    email: localStorage.getItem("email") || "",
+    firstName: "",
+    lastName: "",
+    address: "",
+    apartment: "",
+    city: "",
+    state: "",
+    pin: "",
+    phone: "",
+  });
+  const [errors, setErrors] = useState<FormErrors>({});
+  const fieldRefs = useRef<Record<string, HTMLInputElement | null>>({});
+
+  const setField = (key: keyof FormFields) => (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setForm((prev) => ({ ...prev, [key]: value }));
+    setErrors((prev) => {
+      if (!prev[key]) return prev;
+      const next = { ...prev };
+      delete next[key];
+      return next;
+    });
+  };
+
+  const validate = (): FormErrors => {
+    const e: FormErrors = {};
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!form.email.trim()) e.email = "This field is required";
+    else if (!emailRegex.test(form.email.trim())) e.email = "Enter a valid email address";
+
+    if (!form.firstName.trim()) e.firstName = "This field is required";
+    if (!form.lastName.trim()) e.lastName = "This field is required";
+    if (!form.address.trim()) e.address = "This field is required";
+    if (!form.city.trim()) e.city = "This field is required";
+    if (!form.state.trim()) e.state = "This field is required";
+
+    if (!form.pin.trim()) e.pin = "This field is required";
+    else if (!/^\d{6}$/.test(form.pin.trim())) e.pin = "Enter a valid 6-digit PIN code";
+
+    if (!form.phone.trim()) e.phone = "This field is required";
+    else if (!/^\d{10}$/.test(form.phone.replace(/\s+/g, ""))) e.phone = "Enter a valid 10-digit phone number";
+
+    return e;
+  };
+
+  const fieldOrder: (keyof FormFields)[] = [
+    "email",
+    "firstName",
+    "lastName",
+    "address",
+    "city",
+    "state",
+    "pin",
+    "phone",
+  ];
+
+  const scrollToFirstError = (errs: FormErrors) => {
+    const firstKey = fieldOrder.find((k) => errs[k]);
+    if (!firstKey) return;
+    const el = fieldRefs.current[firstKey];
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "center" });
+      setTimeout(() => el.focus(), 300);
+    }
+  };
 
   const handleSignOut = () => {
     localStorage.removeItem("email");
@@ -102,6 +186,22 @@ const Checkout = () => {
     } catch (err) {
       console.log(err);
       alert("Something went wrong ❌");
+    }
+  };
+
+  const handleSubmit = () => {
+    const errs = validate();
+    if (Object.keys(errs).length > 0) {
+      setErrors(errs);
+      scrollToFirstError(errs);
+      return;
+    }
+    setErrors({});
+    if (payment === "cod") {
+      alert("Order placed with COD ✅");
+      navigate("/success");
+    } else {
+      handlePayment();
     }
   };
 
