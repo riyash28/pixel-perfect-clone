@@ -37,24 +37,33 @@ const FloatingChatButton = () => {
       {/* Subtle glow */}
       <span className="absolute inset-0 rounded-full bg-green-500/15 animate-[chatPulse_2s_ease-in-out_infinite]" />
 
-      {/* Curved "CHAT US" text — semi-circle arc on top, scroll-rotated */}
+      {/* Circular "CHAT US • CHAT US •" — CHAT US at top & bottom, dots at east/west */}
       <svg
         className="absolute inset-0 w-full h-full"
         viewBox="0 0 160 160"
         style={{ transform: `rotate(${rotation}deg)` }}
       >
         <defs>
-          <path id="chatArcPath" d="M 80,80 m -45,0 a 45,45 0 1,1 90,0 a 45,45 0 1,1 -90,0" fill="none" />
+          <path
+            id="chatCirclePath"
+            d="M 80,80 m 0,-62 a 62,62 0 1,1 -0.01,0 z"
+            fill="none"
+          />
         </defs>
         <text
           fill={overFooter ? "#ffffff" : "#333333"}
           fontSize="13"
           fontWeight="700"
-          letterSpacing="3px"
+          letterSpacing="3"
           style={{ fontFamily: "'DM Sans', sans-serif" }}
         >
-          <textPath href="#chatArcPath" startOffset="0%">
-            CHAT US • CHAT US
+          <textPath
+            href="#chatCirclePath"
+            startOffset="0%"
+            textLength="389"
+            lengthAdjust="spacing"
+          >
+            CHAT US • CHAT US •
           </textPath>
         </text>
       </svg>
