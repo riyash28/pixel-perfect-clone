@@ -1,4 +1,5 @@
 import { Minus, Plus, Trash2 } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/contexts/CartContext";
@@ -52,7 +53,9 @@ const CartDrawer = () => {
                 <span className="text-sm text-muted-foreground">Subtotal</span>
                 <span className="text-lg font-bold text-foreground">₹{subtotal.toLocaleString("en-IN")}</span>
               </div>
-              <Button className="mb-2 w-full rounded-full py-5 font-body text-base font-semibold">Checkout</Button>
+              <Button asChild className="mb-2 w-full rounded-full py-5 font-body text-base font-semibold">
+                <Link to="/checkout" onClick={() => setCartOpen(false)}>Checkout</Link>
+              </Button>
               <Button variant="outline" className="w-full rounded-full py-5 font-body text-base font-semibold">View Cart</Button>
             </div>
           </>
