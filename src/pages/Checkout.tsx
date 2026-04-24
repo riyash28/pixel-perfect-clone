@@ -1,6 +1,12 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { Search, MoreHorizontal, ChevronDown, Lock, ShoppingBag } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
+import { Search, MoreHorizontal, Lock, ShoppingBag, LogOut } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
@@ -21,6 +27,15 @@ const Checkout = () => {
   const { items, subtotal } = useCart();
   const [payment, setPayment] = useState("razorpay");
   const [billing, setBilling] = useState("same");
+  const navigate = useNavigate();
+  const [userEmail, setUserEmail] = useState<string | null>(
+    () => localStorage.getItem("mockUserEmail") || "priya@example.com",
+  );
+
+  const handleSignOut = () => {
+    localStorage.removeItem("mockUserEmail");
+    setUserEmail(null);
+  };
 
   const taxes = Math.round(subtotal * 0.05);
   const total = subtotal;
@@ -47,21 +62,44 @@ const Checkout = () => {
             <section>
               <div className="mb-3 flex items-center justify-between">
                 <h2 className="font-display text-xl font-semibold text-foreground">Contact</h2>
-                <Link to="#" className="text-sm text-muted-foreground underline">
-                  Log in
-                </Link>
+                {!userEmail && (
+                  <Link to="/login" className="text-sm text-muted-foreground underline">
+                    Log in
+                  </Link>
+                )}
               </div>
-              <div className="flex items-center gap-3 rounded-lg border border-[#c9cccf] bg-background px-3 py-2.5">
-                <div className="flex h-9 w-9 items-center justify-center rounded-full bg-primary text-sm font-semibold text-primary-foreground">
-                  P
+              {userEmail ? (
+                <div className="flex items-center gap-3 rounded-lg border border-[#c9cccf] bg-background px-3 py-2.5">
+                  <div className="flex h-9 w-9 items-center justify-center rounded-full bg-primary text-sm font-semibold text-primary-foreground">
+                    {userEmail.charAt(0).toUpperCase()}
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-[15px] text-foreground">{userEmail}</p>
+                  </div>
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <button
+                        aria-label="Account options"
+                        className="rounded p-1 text-muted-foreground hover:bg-muted hover:text-foreground"
+                      >
+                        <MoreHorizontal size={18} />
+                      </button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end" className="w-44">
+                      <DropdownMenuItem onClick={handleSignOut} className="cursor-pointer">
+                        <LogOut size={16} className="mr-2" />
+                        Sign out
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
                 </div>
-                <div className="flex-1">
-                  <p className="text-[15px] text-foreground">priya@example.com</p>
-                </div>
-                <button className="text-muted-foreground hover:text-foreground">
-                  <MoreHorizontal size={18} />
-                </button>
-              </div>
+              ) : (
+                <Input
+                  className={inputClass}
+                  placeholder="Email"
+                  type="email"
+                />
+              )}
             </section>
 
             {/* Delivery */}
