@@ -154,6 +154,11 @@
   50% { transform: scale(1.15); opacity: 0; }
 }
 
+@keyframes chatSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
 @keyframes floatLogo {
   0%, 100% { transform: scale(1) translateY(0px); }
   50% { transform: scale(1.05) translateY(-10px); }
