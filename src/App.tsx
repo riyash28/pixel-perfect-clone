@@ -15,6 +15,7 @@ import Consult from "./pages/Consult";
 import TrackOrder from "./pages/TrackOrder";
 import NotFound from "./pages/NotFound";
 import ProductDetail from "./pages/ProductDetail";
+import Checkout from "./pages/Checkout";
 import FloatingChatButton from "./components/FloatingChatButton";
 
 const queryClient = new QueryClient();
@@ -38,6 +39,7 @@ const App = () => (
             <Route path="/contact" element={<Contact />} />
             <Route path="/consult" element={<Consult />} />
             <Route path="/track-order" element={<TrackOrder />} />
+            <Route path="/checkout" element={<Checkout />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           <FloatingChatButton />
