@@ -117,88 +117,89 @@ const WhyWeAreDifferent = () => {
 
         {/* DESKTOP SNAKE FLOW */}
         <div className="hidden lg:block">
-          {/* Row 1: Before → Step1 → Step2 (left to right) */}
-          <div className="flex items-center justify-between gap-2">
+          {/* Row 1 (L→R): Before, S1, S2, S3, S4 */}
+          <div className="flex items-stretch justify-between gap-2">
             <div
-              className="flex flex-col items-center"
+              className="flex flex-col items-center justify-center"
               style={{
                 opacity: isVisible ? 1 : 0,
                 transform: isVisible ? "translateX(0)" : "translateX(-60px)",
                 transition: "all 0.7s ease-out 0s",
               }}
             >
-              <span className="mb-2 inline-block rounded-full bg-destructive/10 px-4 py-1 font-body text-[10px] font-bold uppercase tracking-widest text-destructive">
+              <span className="mb-2 inline-block rounded-full bg-destructive/10 px-3 py-1 font-body text-[10px] font-bold uppercase tracking-widest text-destructive">
                 Before
               </span>
-              <div className="relative flex h-[225px] w-[225px] items-start justify-center">
+              <div className="relative flex h-[200px] w-[200px] items-center justify-center">
                 <div className="absolute inset-0 m-auto h-[80%] w-[70%] rounded-full bg-destructive/5 blur-2xl" />
-                <img src={beforeImg} alt="Before" className="relative h-[225px] object-contain origin-top" />
+                <img src={beforeImg} alt="Before" className="relative h-[200px] object-contain" />
               </div>
             </div>
 
             <div className="flex-1 px-2" />
-            <StepCard step={steps[0]} visible={isVisible} delay={0.3} direction="left" />
-            <ArrowH dir="right" delay={0.4} />
-            <StepCard step={steps[1]} visible={isVisible} delay={0.5} direction="left" />
+            <div className="flex items-center"><StepCard step={steps[0]} visible={isVisible} delay={0.2} direction="left" /></div>
+            <ArrowH dir="right" delay={0.3} />
+            <div className="flex items-center"><StepCard step={steps[1]} visible={isVisible} delay={0.4} direction="left" /></div>
+            <ArrowH dir="right" delay={0.5} />
+            <div className="flex items-center"><StepCard step={steps[2]} visible={isVisible} delay={0.6} direction="left" /></div>
+            <ArrowH dir="right" delay={0.7} />
+            <div className="flex items-center"><StepCard step={steps[3]} visible={isVisible} delay={0.8} direction="left" /></div>
           </div>
 
-          {/* Vertical connector right side: Step2 ↓ Step3 - actually goes down on right */}
-          <ArrowV align="right" delay={0.6} />
+          {/* Vertical connector right side: Row1 ↓ Row2 */}
+          <ArrowV align="right" delay={0.85} />
 
-          {/* Row 2: Step3 ← Step4 ← Step5 (visually right→left, but render: Step5, Step4, Step3 to keep flow visible) */}
-          {/* User flow: Step3 ← Step4 ← Step5 means Step5 is rightmost. So render left→right: Step3, Step4, Step5 with leftward arrows */}
-          <div className="flex items-center justify-between gap-2">
-            <StepCard step={steps[2]} visible={isVisible} delay={0.9} direction="right" />
-            <ArrowH dir="left" delay={0.85} />
-            <StepCard step={steps[3]} visible={isVisible} delay={0.8} direction="right" />
-            <ArrowH dir="left" delay={0.75} />
-            <StepCard step={steps[4]} visible={isVisible} delay={0.7} direction="right" />
-          </div>
-
-          {/* Vertical connector left side: Step3 (leftmost) ↓ Step6 */}
-          <ArrowV align="left" delay={1.0} />
-
-          {/* Row 3: Step6 → Outcome → After (left to right) */}
-          <div className="flex items-center justify-between gap-2">
-            <StepCard step={steps[5]} visible={isVisible} delay={1.1} direction="down" />
-            <ArrowH dir="right" delay={1.2} />
+          {/* Row 2 (R→L): S5, S6, Outcome, After. DOM left→right: After, Outcome, S6, S5 */}
+          <div className="flex items-stretch justify-between gap-2">
             <div
-              className="flex w-full max-w-[280px] items-center gap-3 rounded-2xl border-2 border-primary/30 bg-gradient-to-br from-primary/5 to-accent/10 px-5 py-5 shadow-md"
+              className="flex flex-col items-center justify-center"
+              style={{
+                opacity: isVisible ? 1 : 0,
+                transform: isVisible ? "translateX(0)" : "translateX(-60px)",
+                transition: "all 0.7s ease-out 1.5s",
+              }}
+            >
+              <span className="mb-2 inline-block rounded-full bg-primary/10 px-3 py-1 font-body text-[10px] font-bold uppercase tracking-widest text-primary">
+                After
+              </span>
+              <div className="relative flex h-[210px] w-[210px] items-center justify-center">
+                <div className="absolute inset-0 m-auto h-[85%] w-[75%] rounded-full bg-primary/10 blur-2xl" />
+                <img src={afterImg} alt="After" className="relative h-[210px] object-contain drop-shadow-lg" />
+              </div>
+            </div>
+            <ArrowH dir="left" delay={1.4} />
+            <div
+              className="flex items-center"
               style={{
                 opacity: isVisible ? 1 : 0,
                 transform: isVisible ? "scale(1)" : "scale(0.85)",
                 transition: "all 0.7s ease-out 1.3s",
               }}
             >
-              <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-accent shadow-sm">
-                <Sparkles size={20} className="text-accent-foreground" />
-              </div>
-              <div>
-                <span className="font-body text-[10px] font-bold uppercase tracking-widest text-accent">
-                  Outcome
-                </span>
-                <h4 className="font-display text-base font-semibold text-primary lg:text-lg">
-                  Holistic Healing
-                </h4>
-              </div>
-            </div>
-            <div className="flex-1 px-2" />
-            <div
-              className="flex flex-col items-center"
+              <div
+                className="flex w-full max-w-[220px] items-center gap-3 rounded-2xl border-2 border-primary/30 bg-gradient-to-br from-primary/5 to-accent/10 px-4 py-4 shadow-md"
               style={{
                 opacity: isVisible ? 1 : 0,
-                transform: isVisible ? "translateX(0)" : "translateX(60px)",
-                transition: "all 0.7s ease-out 1.5s",
+                transition: `opacity 0.7s ease-out 1.3s`,
               }}
-            >
-              <span className="mb-2 inline-block rounded-full bg-primary/10 px-4 py-1 font-body text-[10px] font-bold uppercase tracking-widest text-primary">
-                After
-              </span>
-              <div className="relative flex h-[230px] w-[230px] items-start justify-center">
-                <div className="absolute inset-0 m-auto h-[85%] w-[75%] rounded-full bg-primary/10 blur-2xl" />
-                <img src={afterImg} alt="After" className="relative h-[230px] object-contain origin-top drop-shadow-lg" />
+              >
+                <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full bg-accent shadow-sm">
+                  <Sparkles size={18} className="text-accent-foreground" />
+                </div>
+                <div>
+                  <span className="font-body text-[10px] font-bold uppercase tracking-widest text-accent">
+                    Outcome
+                  </span>
+                  <h4 className="font-display text-base font-semibold text-primary">
+                    Holistic Healing
+                  </h4>
+                </div>
               </div>
             </div>
+            <ArrowH dir="left" delay={1.2} />
+            <div className="flex items-center"><StepCard step={steps[5]} visible={isVisible} delay={1.1} direction="right" /></div>
+            <ArrowH dir="left" delay={1.0} />
+            <div className="flex items-center"><StepCard step={steps[4]} visible={isVisible} delay={0.95} direction="right" /></div>
           </div>
         </div>
 
