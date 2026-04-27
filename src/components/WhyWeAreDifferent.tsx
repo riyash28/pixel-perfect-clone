@@ -162,12 +162,12 @@ const WhyWeAreDifferent = () => {
               <span className="mb-2 inline-block rounded-full bg-primary/10 px-3 py-1 font-body text-[10px] font-bold uppercase tracking-widest text-primary">
                 After
               </span>
-              <div className="relative flex h-[210px] w-[210px] items-center justify-center">
+              <div className="relative flex h-[260px] w-[260px] items-center justify-center">
                 <div className="absolute inset-0 m-auto h-[85%] w-[75%] rounded-full bg-primary/10 blur-2xl" />
-                <img src={afterImg} alt="After" className="relative h-[210px] object-contain drop-shadow-lg" />
+                <img src={afterImg} alt="After" className="relative h-[260px] object-contain drop-shadow-lg" />
               </div>
             </div>
-            <ArrowH dir="left" delay={1.4} />
+            <div className="flex-1 px-2" />
             <div
               className="flex items-center"
               style={{
