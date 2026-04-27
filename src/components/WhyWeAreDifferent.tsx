@@ -130,9 +130,9 @@ const WhyWeAreDifferent = () => {
               <span className="mb-2 inline-block rounded-full bg-destructive/10 px-3 py-1 font-body text-[10px] font-bold uppercase tracking-widest text-destructive">
                 Before
               </span>
-              <div className="relative flex h-[200px] w-[200px] items-center justify-center">
+              <div className="relative flex h-[260px] w-[260px] items-center justify-center">
                 <div className="absolute inset-0 m-auto h-[80%] w-[70%] rounded-full bg-destructive/5 blur-2xl" />
-                <img src={beforeImg} alt="Before" className="relative h-[200px] object-contain" />
+                <img src={beforeImg} alt="Before" className="relative h-[260px] object-contain" />
               </div>
             </div>
 
