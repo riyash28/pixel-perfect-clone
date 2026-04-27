@@ -166,8 +166,3 @@
 .animate-float-logo {
   animation: floatLogo 8s ease-in-out infinite;
 }
-
-@keyframes floatStep {
-  0%, 100% { transform: translate(-50%, 0); }
-  50% { transform: translate(-50%, -6px); }
-}
