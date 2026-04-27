@@ -83,13 +83,9 @@ const WhyWeAreDifferent = () => {
       }}
     >
       <div className="relative flex w-full items-center">
+        {dir === "left" && <ArrowLeft size={18} className="mr-1 text-primary/70" />}
         <div className="h-px flex-1 border-t border-dashed border-primary/40" />
-        {dir === "right" ? (
-          <ArrowRight size={18} className="ml-1 text-primary/70" />
-        ) : (
-          <ArrowLeft size={18} className="mr-1 text-primary/70 order-first" />
-        )}
-        {dir === "left" && <div className="h-px flex-1 border-t border-dashed border-primary/40" />}
+        {dir === "right" && <ArrowRight size={18} className="ml-1 text-primary/70" />}
       </div>
     </div>
   );
