@@ -92,14 +92,14 @@ const WhyWeAreDifferent = () => {
 
   const ArrowV = ({ align, delay }: { align: "left" | "right"; delay: number }) => (
     <div
-      className={`flex ${align === "left" ? "justify-start pl-[130px]" : "justify-end pr-[130px]"} my-1`}
+      className={`flex ${align === "left" ? "justify-start pl-[130px]" : "justify-end pr-[130px]"} -my-2`}
       style={{
         opacity: isVisible ? 1 : 0,
         transition: `opacity 0.5s ease-out ${delay}s`,
       }}
     >
       <div className="flex flex-col items-center">
-        <div className="h-6 w-px border-l border-dashed border-primary/40" />
+        <div className="h-3 w-px border-l border-dashed border-primary/40" />
         <ArrowDown size={18} className="-mt-1 text-primary/70" />
       </div>
     </div>
