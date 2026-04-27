@@ -176,13 +176,7 @@ const WhyWeAreDifferent = () => {
                 transition: "all 0.7s ease-out 1.3s",
               }}
             >
-              <div
-                className="flex w-full max-w-[220px] items-center gap-3 rounded-2xl border-2 border-primary/30 bg-gradient-to-br from-primary/5 to-accent/10 px-4 py-4 shadow-md"
-              style={{
-                opacity: isVisible ? 1 : 0,
-                transition: `opacity 0.7s ease-out 1.3s`,
-              }}
-              >
+              <div className="flex w-full max-w-[220px] items-center gap-3 rounded-2xl border-2 border-primary/30 bg-gradient-to-br from-primary/5 to-accent/10 px-4 py-4 shadow-md">
                 <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full bg-accent shadow-sm">
                   <Sparkles size={18} className="text-accent-foreground" />
                 </div>
