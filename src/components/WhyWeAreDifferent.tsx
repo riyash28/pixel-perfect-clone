@@ -19,22 +19,40 @@ const WhyWeAreDifferent = () => {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
+        setIsVisible(entry.isIntersecting);
       },
-      { threshold: 0.1 }
+      { threshold: 0.3 },
     );
+
     if (sectionRef.current) observer.observe(sectionRef.current);
+
     return () => observer.disconnect();
   }, []);
 
   return (
-    <section ref={sectionRef} className="overflow-hidden bg-card py-20 lg:py-28">
+    <section ref={sectionRef} className="overflow-hidden bg-white py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-4">
-        <h2 className="mb-4 text-center font-display text-3xl font-semibold text-foreground lg:text-4xl">
-          Why We Are Different
+        <h2 className="mb-4 text-center font-display text-3xl font-semibold text-foreground lg:text-4xl overflow-hidden">
+          <span
+            className="inline-block"
+            style={{
+              transform: isVisible ? "translateX(0)" : "translateX(-100px)",
+              opacity: isVisible ? 1 : 0,
+              transition: "all 0.8s ease",
+            }}
+          >
+            Why We
+          </span>{" "}
+          <span
+            className="inline-block"
+            style={{
+              transform: isVisible ? "translateX(0)" : "translateX(100px)",
+              opacity: isVisible ? 1 : 0,
+              transition: "all 0.8s ease",
+            }}
+          >
+            Are Different
+          </span>
         </h2>
         <p className="mx-auto mb-14 max-w-xl text-center font-body text-base text-muted-foreground lg:mb-20">
           A meticulous 6-step journey from nature to your wellness
@@ -53,17 +71,10 @@ const WhyWeAreDifferent = () => {
             <span className="mb-4 inline-block rounded-full bg-destructive/10 px-5 py-1.5 font-body text-xs font-bold uppercase tracking-widest text-destructive">
               Before
             </span>
-            <div className="relative">
+            <div className="relative flex items-end justify-center h-[500px] overflow-visible">
               {/* Soft glow behind subject */}
               <div className="absolute inset-0 mx-auto my-auto h-[80%] w-[70%] rounded-full bg-destructive/5 blur-3xl" />
-              <img
-                src={beforeImg}
-                alt="Before — unhealthy lifestyle"
-                loading="lazy"
-                width={340}
-                height={450}
-                className="relative z-10 h-auto max-h-[420px] w-auto object-contain drop-shadow-lg transition-transform duration-300 hover:scale-[1.03] lg:max-h-[480px]"
-              />
+              <img src={beforeImg} alt="Before" className="relative h-[600px] origin-bottom" />
             </div>
           </div>
 
@@ -98,9 +109,7 @@ const WhyWeAreDifferent = () => {
                         <h4 className="mt-0.5 font-body text-sm font-semibold text-foreground lg:text-base">
                           {item.title}
                         </h4>
-                        <p className="mt-0.5 font-body text-xs text-muted-foreground lg:text-sm">
-                          {item.desc}
-                        </p>
+                        <p className="mt-0.5 font-body text-xs text-muted-foreground lg:text-sm">{item.desc}</p>
                       </div>
                     </div>
                   </div>
@@ -124,9 +133,7 @@ const WhyWeAreDifferent = () => {
                     <span className="font-body text-[10px] font-bold uppercase tracking-widest text-accent">
                       Outcome
                     </span>
-                    <h4 className="font-display text-base font-semibold text-primary lg:text-lg">
-                      Holistic Healing
-                    </h4>
+                    <h4 className="font-display text-base font-semibold text-primary lg:text-lg">Holistic Healing</h4>
                   </div>
                 </div>
               </div>
@@ -145,17 +152,10 @@ const WhyWeAreDifferent = () => {
             <span className="mb-4 inline-block rounded-full bg-primary/10 px-5 py-1.5 font-body text-xs font-bold uppercase tracking-widest text-primary">
               After
             </span>
-            <div className="relative">
+            <div className="relative flex items-end justify-center h-[500px] overflow-visible">
               {/* Soft glow behind subject */}
               <div className="absolute inset-0 mx-auto my-auto h-[80%] w-[70%] rounded-full bg-primary/5 blur-3xl" />
-              <img
-                src={afterImg}
-                alt="After — healthy lifestyle"
-                loading="lazy"
-                width={340}
-                height={450}
-                className="relative z-10 h-auto max-h-[420px] w-auto object-contain drop-shadow-lg transition-transform duration-300 hover:scale-[1.03] lg:max-h-[480px]"
-              />
+              <img src={afterImg} alt="After" className="relative h-[600px] origin-bottom" />
             </div>
           </div>
         </div>
