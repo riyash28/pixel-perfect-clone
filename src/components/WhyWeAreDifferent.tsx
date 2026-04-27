@@ -106,12 +106,12 @@ const WhyWeAreDifferent = () => {
   );
 
   return (
-    <section ref={sectionRef} className="overflow-hidden bg-white py-20 lg:py-28">
+    <section ref={sectionRef} className="overflow-hidden bg-white py-12 lg:py-16">
       <div className="mx-auto max-w-7xl px-4">
-        <h2 className="mb-4 text-center font-display text-3xl font-semibold text-foreground lg:text-4xl">
+        <h2 className="mb-3 text-center font-display text-3xl font-semibold text-foreground lg:text-4xl">
           Why We Are Different
         </h2>
-        <p className="mx-auto mb-14 max-w-xl text-center font-body text-base text-muted-foreground">
+        <p className="mx-auto mb-8 max-w-xl text-center font-body text-base text-muted-foreground">
           A meticulous 6-step journey from nature to your wellness
         </p>
 
@@ -130,16 +130,16 @@ const WhyWeAreDifferent = () => {
               <span className="mb-2 inline-block rounded-full bg-destructive/10 px-4 py-1 font-body text-[10px] font-bold uppercase tracking-widest text-destructive">
                 Before
               </span>
-              <div className="relative flex h-[180px] w-[180px] items-start justify-center">
+              <div className="relative flex h-[225px] w-[225px] items-start justify-center">
                 <div className="absolute inset-0 m-auto h-[80%] w-[70%] rounded-full bg-destructive/5 blur-2xl" />
-                <img src={beforeImg} alt="Before" className="relative h-[180px] object-contain origin-top" />
+                <img src={beforeImg} alt="Before" className="relative h-[225px] object-contain origin-top" />
               </div>
             </div>
 
-            <ArrowH dir="right" delay={0.2} />
-            <StepCard step={steps[0]} visible={isVisible} delay={0.3} direction="right" />
+            <div className="flex-1 px-2" />
+            <StepCard step={steps[0]} visible={isVisible} delay={0.3} direction="left" />
             <ArrowH dir="right" delay={0.4} />
-            <StepCard step={steps[1]} visible={isVisible} delay={0.5} direction="right" />
+            <StepCard step={steps[1]} visible={isVisible} delay={0.5} direction="left" />
           </div>
 
           {/* Vertical connector right side: Step2 ↓ Step3 - actually goes down on right */}
@@ -148,11 +148,11 @@ const WhyWeAreDifferent = () => {
           {/* Row 2: Step3 ← Step4 ← Step5 (visually right→left, but render: Step5, Step4, Step3 to keep flow visible) */}
           {/* User flow: Step3 ← Step4 ← Step5 means Step5 is rightmost. So render left→right: Step3, Step4, Step5 with leftward arrows */}
           <div className="flex items-center justify-between gap-2">
-            <StepCard step={steps[2]} visible={isVisible} delay={0.9} direction="left" />
+            <StepCard step={steps[2]} visible={isVisible} delay={0.9} direction="right" />
             <ArrowH dir="left" delay={0.85} />
-            <StepCard step={steps[3]} visible={isVisible} delay={0.8} direction="left" />
+            <StepCard step={steps[3]} visible={isVisible} delay={0.8} direction="right" />
             <ArrowH dir="left" delay={0.75} />
-            <StepCard step={steps[4]} visible={isVisible} delay={0.7} direction="left" />
+            <StepCard step={steps[4]} visible={isVisible} delay={0.7} direction="right" />
           </div>
 
           {/* Vertical connector left side: Step3 (leftmost) ↓ Step6 */}
@@ -160,13 +160,13 @@ const WhyWeAreDifferent = () => {
 
           {/* Row 3: Step6 → Outcome → After (left to right) */}
           <div className="flex items-center justify-between gap-2">
-            <StepCard step={steps[5]} visible={isVisible} delay={1.1} direction="right" />
+            <StepCard step={steps[5]} visible={isVisible} delay={1.1} direction="down" />
             <ArrowH dir="right" delay={1.2} />
             <div
               className="flex w-full max-w-[280px] items-center gap-3 rounded-2xl border-2 border-primary/30 bg-gradient-to-br from-primary/5 to-accent/10 px-5 py-5 shadow-md"
               style={{
                 opacity: isVisible ? 1 : 0,
-                transform: isVisible ? "translateX(0) scale(1)" : "translateX(-30px) scale(0.95)",
+                transform: isVisible ? "scale(1)" : "scale(0.85)",
                 transition: "all 0.7s ease-out 1.3s",
               }}
             >
@@ -182,7 +182,7 @@ const WhyWeAreDifferent = () => {
                 </h4>
               </div>
             </div>
-            <ArrowH dir="right" delay={1.4} />
+            <div className="flex-1 px-2" />
             <div
               className="flex flex-col items-center"
               style={{
@@ -194,9 +194,9 @@ const WhyWeAreDifferent = () => {
               <span className="mb-2 inline-block rounded-full bg-primary/10 px-4 py-1 font-body text-[10px] font-bold uppercase tracking-widest text-primary">
                 After
               </span>
-              <div className="relative flex h-[180px] w-[180px] items-start justify-center">
-                <div className="absolute inset-0 m-auto h-[80%] w-[70%] rounded-full bg-primary/5 blur-2xl" />
-                <img src={afterImg} alt="After" className="relative h-[180px] object-contain origin-top" />
+              <div className="relative flex h-[230px] w-[230px] items-start justify-center">
+                <div className="absolute inset-0 m-auto h-[85%] w-[75%] rounded-full bg-primary/10 blur-2xl" />
+                <img src={afterImg} alt="After" className="relative h-[230px] object-contain origin-top drop-shadow-lg" />
               </div>
             </div>
           </div>
