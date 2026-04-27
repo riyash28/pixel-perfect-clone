@@ -157,11 +157,7 @@ const WhyWeAreDifferent = () => {
             <div className="flex-1 px-2" />
             <div
               className="flex items-center"
-              style={{
-                opacity: isVisible ? 1 : 0,
-                transform: isVisible ? "scale(1)" : "scale(0.85)",
-                transition: "all 0.7s ease-out 1.3s",
-              }}
+              style={getAnimationStyle("fadeScale", isVisible, 1.3, 0.7)}
             >
               <div className="flex w-full max-w-[220px] items-center gap-3 rounded-2xl border-2 border-primary/30 bg-gradient-to-br from-primary/5 to-accent/10 px-4 py-4 shadow-md">
                 <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full bg-accent shadow-sm">
