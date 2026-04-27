@@ -17,10 +17,9 @@ export function useInViewAnimation<T extends HTMLElement = HTMLDivElement>(
     const node = ref.current;
     if (!node) return;
     const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        setIsVisible(true);
-        observer.disconnect();
-      }
+      // Toggle on every enter/leave so animations replay each time the
+      // element scrolls back into view.
+      setIsVisible(entry.isIntersecting);
     }, options);
     observer.observe(node);
     return () => observer.disconnect();
