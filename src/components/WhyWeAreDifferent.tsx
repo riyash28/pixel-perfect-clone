@@ -40,7 +40,7 @@ const StepCard = ({ step, visible, delay, direction }: StepCardProps) => {
         : "translateY(-30px)";
   return (
     <div
-      className="group flex w-full max-w-[260px] flex-col items-start gap-2 rounded-2xl border border-border/60 bg-card px-5 py-4 shadow-sm transition-all duration-300 hover:border-primary/30 hover:shadow-md"
+      className="group flex w-full max-w-[200px] flex-col items-start gap-2 rounded-2xl border border-border/60 bg-card px-4 py-3 shadow-sm transition-all duration-300 hover:border-primary/30 hover:shadow-md"
       style={{
         opacity: visible ? 1 : 0,
         transform: visible ? "translate(0,0)" : offset,
@@ -48,14 +48,14 @@ const StepCard = ({ step, visible, delay, direction }: StepCardProps) => {
       }}
     >
       <div className="flex items-center gap-3">
-        <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-primary shadow-sm">
+        <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-primary shadow-sm">
           <Icon size={16} className="text-primary-foreground" />
         </div>
         <span className="font-body text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
           Step {step.step}
         </span>
       </div>
-      <h4 className="font-body text-sm font-semibold text-foreground">{step.title}</h4>
+      <h4 className="font-body text-[13px] font-semibold leading-tight text-foreground">{step.title}</h4>
       <p className="font-body text-xs text-muted-foreground">{step.desc}</p>
     </div>
   );
