@@ -1,4 +1,3 @@
-import { useEffect, useRef, useState } from "react";
 import beforeImg from "@/assets/before-health.png";
 import afterImg from "@/assets/after-health.png";
 import {
@@ -13,6 +12,8 @@ import {
   ArrowLeft,
   ArrowDown,
 } from "lucide-react";
+import { useInViewAnimation } from "@/hooks/useInViewAnimation";
+import { getAnimationStyle, type AnimationVariant } from "@/lib/animationVariants";
 
 const steps = [
   { step: 1, title: "Prakriti Assessment", desc: "Understanding your unique body constitution", icon: ClipboardList },
@@ -32,20 +33,16 @@ type StepCardProps = {
 
 const StepCard = ({ step, visible, delay, direction }: StepCardProps) => {
   const Icon = step.icon;
-  const offset =
+  const variant: AnimationVariant =
     direction === "right"
-      ? "translateX(-30px)"
+      ? "slideFromLeft"
       : direction === "left"
-        ? "translateX(30px)"
-        : "translateY(-30px)";
+        ? "slideFromRight"
+        : "slideFromTop";
   return (
     <div
       className="group flex w-full max-w-[200px] flex-col items-start gap-2 rounded-2xl border border-border/60 bg-card px-4 py-3 shadow-sm transition-all duration-300 hover:border-primary/30 hover:shadow-md"
-      style={{
-        opacity: visible ? 1 : 0,
-        transform: visible ? "translate(0,0)" : offset,
-        transition: `all 0.6s ease-out ${delay}s`,
-      }}
+      style={getAnimationStyle(variant, visible, delay)}
     >
       <div className="flex items-center gap-3">
         <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-primary shadow-sm">
@@ -62,22 +59,7 @@ const StepCard = ({ step, visible, delay, direction }: StepCardProps) => {
 };
 
 const WhyWeAreDifferent = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.05, rootMargin: "0px 0px -10% 0px" },
-    );
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
+  const { ref: sectionRef, isVisible } = useInViewAnimation<HTMLElement>();
 
   const ArrowH = ({ dir, delay }: { dir: "right" | "left"; delay: number }) => (
     <div
@@ -175,11 +157,7 @@ const WhyWeAreDifferent = () => {
             <div className="flex-1 px-2" />
             <div
               className="flex items-center"
-              style={{
-                opacity: isVisible ? 1 : 0,
-                transform: isVisible ? "scale(1)" : "scale(0.85)",
-                transition: "all 0.7s ease-out 1.3s",
-              }}
+              style={getAnimationStyle("fadeScale", isVisible, 1.3, 0.7)}
             >
               <div className="flex w-full max-w-[220px] items-center gap-3 rounded-2xl border-2 border-primary/30 bg-gradient-to-br from-primary/5 to-accent/10 px-4 py-4 shadow-md">
                 <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full bg-accent shadow-sm">
