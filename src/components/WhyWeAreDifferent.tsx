@@ -79,7 +79,7 @@ const WhyWeAreDifferent = () => {
               </linearGradient>
             </defs>
             <path
-              d="M 85,150 C 170,150 170,70 258,70 S 345,150 431,150 S 518,70 604,70 S 691,150 777,150 S 864,70 950,70 S 1037,150 1123,150"
+              d="M 60,150 C 145,150 145,70 230,70 S 315,150 400,150 S 485,70 570,70 S 655,150 740,150 S 825,70 910,70 S 995,150 1080,150"
               fill="none"
               stroke="url(#chainGrad)"
               strokeWidth="2.5"
@@ -97,7 +97,8 @@ const WhyWeAreDifferent = () => {
             {chainNodes.map((n, i) => {
               const Icon = n.Icon;
               // 7 nodes across — match SVG x positions in %
-              const xPercents = [7.08, 21.5, 35.92, 50.33, 64.75, 79.17, 93.58];
+              // Match SVG x coords (60,230,400,570,740,910,1080) ÷ 1200 → %
+              const xPercents = [5, 19.17, 33.33, 47.5, 61.67, 75.83, 90];
               const left = `${xPercents[i]}%`;
               const isDown = i % 2 === 0; // i=0 → down (y=150), i=1 → up (y=70)
               // top of circle = svg y center − circle radius (44)
