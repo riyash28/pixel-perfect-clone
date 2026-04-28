@@ -8,12 +8,10 @@ import {
   Sparkles,
   ClipboardList,
   TreePine,
-  ArrowRight,
-  ArrowLeft,
   ArrowDown,
 } from "lucide-react";
 import { useInViewAnimation } from "@/hooks/useInViewAnimation";
-import { getAnimationStyle, type AnimationVariant } from "@/lib/animationVariants";
+import { getAnimationStyle } from "@/lib/animationVariants";
 
 const steps = [
   { step: 1, title: "Prakriti Assessment", desc: "Understanding your unique body constitution", icon: ClipboardList },
@@ -24,73 +22,15 @@ const steps = [
   { step: 6, title: "Doctor Recommendation", desc: "Endorsed by leading medical experts", icon: Stethoscope },
 ];
 
-type StepCardProps = {
-  step: (typeof steps)[number];
-  visible: boolean;
-  delay: number;
-  direction: "right" | "left" | "down";
-};
-
-const StepCard = ({ step, visible, delay, direction }: StepCardProps) => {
-  const Icon = step.icon;
-  const variant: AnimationVariant =
-    direction === "right"
-      ? "slideFromLeft"
-      : direction === "left"
-        ? "slideFromRight"
-        : "slideFromTop";
-  return (
-    <div
-      className="group flex w-full max-w-[200px] flex-col items-start gap-2 rounded-2xl border border-border/60 bg-card px-4 py-3 shadow-sm transition-all duration-300 hover:border-primary/30 hover:shadow-md"
-      style={getAnimationStyle(variant, visible, delay)}
-    >
-      <div className="flex items-center gap-3">
-        <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-primary shadow-sm">
-          <Icon size={16} className="text-primary-foreground" />
-        </div>
-        <span className="font-body text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
-          Step {step.step}
-        </span>
-      </div>
-      <h4 className="font-body text-[13px] font-semibold leading-tight text-foreground">{step.title}</h4>
-      <p className="font-body text-xs text-muted-foreground">{step.desc}</p>
-    </div>
-  );
-};
-
 const WhyWeAreDifferent = () => {
   const { ref: sectionRef, isVisible } = useInViewAnimation<HTMLElement>();
 
-  const ArrowH = ({ dir, delay }: { dir: "right" | "left"; delay: number }) => (
-    <div
-      className="flex flex-1 items-center justify-center px-2"
-      style={{
-        opacity: isVisible ? 1 : 0,
-        transition: `opacity 0.5s ease-out ${delay}s`,
-      }}
-    >
-      <div className="relative flex w-full items-center">
-        {dir === "left" && <ArrowLeft size={18} className="mr-1 text-primary/70" />}
-        <div className="h-px flex-1 border-t border-dashed border-primary/40" />
-        {dir === "right" && <ArrowRight size={18} className="ml-1 text-primary/70" />}
-      </div>
-    </div>
-  );
-
-  const ArrowV = ({ align, delay }: { align: "left" | "right"; delay: number }) => (
-    <div
-      className={`flex ${align === "left" ? "justify-start pl-[130px]" : "justify-end pr-[130px]"} -my-2`}
-      style={{
-        opacity: isVisible ? 1 : 0,
-        transition: `opacity 0.5s ease-out ${delay}s`,
-      }}
-    >
-      <div className="flex flex-col items-center">
-        <div className="h-3 w-px border-l border-dashed border-primary/40" />
-        <ArrowDown size={18} className="-mt-1 text-primary/70" />
-      </div>
-    </div>
-  );
+  // Stagger order: Before(0) → S1..S6(1..6) → Outcome(7) → After(8)
+  const baseDelay = 0.15;
+  const stepDelay = 0.18;
+  const getDelay = (i: number) => baseDelay + i * stepDelay;
+  // Total visible nodes = 9; line draw matched to last node reveal
+  const lineDuration = 1.6;
 
   return (
     <section ref={sectionRef} className="overflow-hidden bg-white py-12 lg:py-16">
@@ -102,81 +42,108 @@ const WhyWeAreDifferent = () => {
           A meticulous 6-step journey from nature to your wellness
         </p>
 
-        {/* DESKTOP SNAKE FLOW */}
-        <div className="hidden lg:block">
-          {/* Row 1 (L→R): Before, S1, S2, S3, S4 */}
-          <div className="flex items-stretch justify-between gap-2">
-            <div
-              className="flex flex-col items-center justify-center"
+        {/* DESKTOP HORIZONTAL CHAIN FLOW */}
+        <div className="relative hidden lg:block">
+          {/* Wavy connecting line behind nodes */}
+          <svg
+            className="pointer-events-none absolute left-0 right-0 top-[58px] z-0 h-[60px] w-full"
+            viewBox="0 0 1200 60"
+            preserveAspectRatio="none"
+            aria-hidden="true"
+          >
+            <defs>
+              <linearGradient id="chainGrad" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stopColor="hsl(var(--destructive))" stopOpacity="0.5" />
+                <stop offset="50%" stopColor="hsl(var(--primary))" stopOpacity="0.7" />
+                <stop offset="100%" stopColor="hsl(var(--accent))" stopOpacity="0.7" />
+              </linearGradient>
+            </defs>
+            <path
+              d="M 20,30 C 90,0 160,60 230,30 S 370,0 440,30 S 580,60 650,30 S 790,0 860,30 S 1000,60 1070,30 S 1180,0 1190,30"
+              fill="none"
+              stroke="url(#chainGrad)"
+              strokeWidth="2.5"
+              strokeDasharray="2000"
+              strokeDashoffset={isVisible ? 0 : 2000}
               style={{
-                opacity: isVisible ? 1 : 0,
-                transform: isVisible ? "translateX(0)" : "translateX(-60px)",
-                transition: "all 0.7s ease-out 0s",
+                transition: `stroke-dashoffset ${lineDuration}s ease-in-out ${baseDelay}s`,
               }}
+            />
+          </svg>
+
+          <div className="relative z-10 flex items-start justify-between gap-1">
+            {/* Before */}
+            <div
+              className="flex flex-shrink-0 flex-col items-center"
+              style={getAnimationStyle("slideFromLeft", isVisible, getDelay(0))}
             >
               <span className="mb-2 inline-block rounded-full bg-destructive/10 px-3 py-1 font-body text-[10px] font-bold uppercase tracking-widest text-destructive">
                 Before
               </span>
-              <div className="relative flex h-[260px] w-[260px] items-center justify-center">
-                <div className="absolute inset-0 m-auto h-[80%] w-[70%] rounded-full bg-destructive/5 blur-2xl" />
-                <img src={beforeImg} alt="Before" className="relative h-[260px] object-contain" />
+              <div className="relative flex h-[140px] w-[140px] items-center justify-center">
+                <div className="absolute inset-0 m-auto h-[80%] w-[80%] rounded-full bg-destructive/5 blur-2xl" />
+                <img src={beforeImg} alt="Before" className="relative h-[140px] object-contain" />
               </div>
             </div>
 
-            <div className="flex-1 px-2" />
-            <div className="flex items-center"><StepCard step={steps[0]} visible={isVisible} delay={0.2} direction="left" /></div>
-            <ArrowH dir="right" delay={0.3} />
-            <div className="flex items-center"><StepCard step={steps[1]} visible={isVisible} delay={0.4} direction="left" /></div>
-            <ArrowH dir="right" delay={0.5} />
-            <div className="flex items-center"><StepCard step={steps[2]} visible={isVisible} delay={0.6} direction="left" /></div>
-            <ArrowH dir="right" delay={0.7} />
-            <div className="flex items-center"><StepCard step={steps[3]} visible={isVisible} delay={0.8} direction="left" /></div>
-          </div>
+            {/* Steps */}
+            {steps.map((s, i) => {
+              const Icon = s.icon;
+              return (
+                <div
+                  key={s.step}
+                  className="flex w-[120px] flex-shrink-0 flex-col items-center text-center"
+                  style={getAnimationStyle("slideFromBottom", isVisible, getDelay(i + 1))}
+                >
+                  <div className="relative flex h-[88px] w-[88px] items-center justify-center rounded-full border-[3px] border-primary/30 bg-white shadow-md transition-all duration-300 hover:border-primary hover:shadow-lg">
+                    <div className="flex h-[64px] w-[64px] items-center justify-center rounded-full bg-gradient-to-br from-primary to-primary/80 shadow-inner">
+                      <Icon size={26} className="text-primary-foreground" />
+                    </div>
+                  </div>
+                  <span className="mt-3 font-body text-[9px] font-bold uppercase tracking-widest text-muted-foreground">
+                    Step {s.step}
+                  </span>
+                  <h4 className="mt-1 font-body text-[12px] font-semibold leading-tight text-foreground">
+                    {s.title}
+                  </h4>
+                  <p className="mt-1 font-body text-[10px] leading-snug text-muted-foreground">
+                    {s.desc}
+                  </p>
+                </div>
+              );
+            })}
 
-          {/* Vertical connector right side: Row1 ↓ Row2 */}
-          <ArrowV align="right" delay={0.85} />
-
-          {/* Row 2 (R→L): S5, S6, Outcome, After. DOM left→right: After, Outcome, S6, S5 */}
-          <div className="flex items-stretch justify-between gap-2">
+            {/* Outcome (compact circular node) */}
             <div
-              className="flex flex-col items-center justify-center"
-              style={{
-                opacity: isVisible ? 1 : 0,
-                transform: isVisible ? "translateX(0)" : "translateX(-60px)",
-                transition: "all 0.7s ease-out 1.5s",
-              }}
+              className="flex w-[120px] flex-shrink-0 flex-col items-center text-center"
+              style={getAnimationStyle("fadeScale", isVisible, getDelay(7), 0.7)}
+            >
+              <div className="relative flex h-[88px] w-[88px] items-center justify-center rounded-full border-[3px] border-accent/40 bg-white shadow-md">
+                <div className="flex h-[64px] w-[64px] items-center justify-center rounded-full bg-gradient-to-br from-accent to-accent/80 shadow-inner">
+                  <Sparkles size={26} className="text-accent-foreground" />
+                </div>
+              </div>
+              <span className="mt-3 font-body text-[9px] font-bold uppercase tracking-widest text-accent">
+                Outcome
+              </span>
+              <h4 className="mt-1 font-display text-[13px] font-semibold leading-tight text-primary">
+                Holistic Healing
+              </h4>
+            </div>
+
+            {/* After */}
+            <div
+              className="flex flex-shrink-0 flex-col items-center"
+              style={getAnimationStyle("slideFromRight", isVisible, getDelay(8))}
             >
               <span className="mb-2 inline-block rounded-full bg-primary/10 px-3 py-1 font-body text-[10px] font-bold uppercase tracking-widest text-primary">
                 After
               </span>
-              <div className="relative flex h-[260px] w-[260px] items-center justify-center">
-                <div className="absolute inset-0 m-auto h-[85%] w-[75%] rounded-full bg-primary/10 blur-2xl" />
-                <img src={afterImg} alt="After" className="relative h-[260px] object-contain drop-shadow-lg" />
+              <div className="relative flex h-[140px] w-[140px] items-center justify-center">
+                <div className="absolute inset-0 m-auto h-[85%] w-[85%] rounded-full bg-primary/10 blur-2xl" />
+                <img src={afterImg} alt="After" className="relative h-[140px] object-contain drop-shadow-lg" />
               </div>
             </div>
-            <div className="flex-1 px-2" />
-            <div
-              className="flex items-center"
-              style={getAnimationStyle("fadeScale", isVisible, 1.3, 0.7)}
-            >
-              <div className="flex w-full max-w-[220px] items-center gap-3 rounded-2xl border-2 border-primary/30 bg-gradient-to-br from-primary/5 to-accent/10 px-4 py-4 shadow-md">
-                <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full bg-accent shadow-sm">
-                  <Sparkles size={18} className="text-accent-foreground" />
-                </div>
-                <div>
-                  <span className="font-body text-[10px] font-bold uppercase tracking-widest text-accent">
-                    Outcome
-                  </span>
-                  <h4 className="font-display text-base font-semibold text-primary">
-                    Holistic Healing
-                  </h4>
-                </div>
-              </div>
-            </div>
-            <ArrowH dir="left" delay={1.2} />
-            <div className="flex items-center"><StepCard step={steps[5]} visible={isVisible} delay={1.1} direction="right" /></div>
-            <ArrowH dir="left" delay={1.0} />
-            <div className="flex items-center"><StepCard step={steps[4]} visible={isVisible} delay={0.95} direction="right" /></div>
           </div>
         </div>
 
@@ -189,12 +156,30 @@ const WhyWeAreDifferent = () => {
             <img src={beforeImg} alt="Before" className="h-48" />
           </div>
           <ArrowDown size={20} className="text-primary/60" />
-          {steps.map((s, i) => (
-            <div key={s.step} className="flex flex-col items-center gap-3">
-              <StepCard step={s} visible={isVisible} delay={i * 0.05} direction="down" />
-              <ArrowDown size={20} className="text-primary/60" />
-            </div>
-          ))}
+          {steps.map((s, i) => {
+            const Icon = s.icon;
+            return (
+              <div
+                key={s.step}
+                className="flex flex-col items-center gap-2"
+                style={getAnimationStyle("slideFromBottom", isVisible, i * 0.08)}
+              >
+                <div className="relative flex h-[80px] w-[80px] items-center justify-center rounded-full border-[3px] border-primary/30 bg-white shadow-md">
+                  <div className="flex h-[58px] w-[58px] items-center justify-center rounded-full bg-gradient-to-br from-primary to-primary/80">
+                    <Icon size={24} className="text-primary-foreground" />
+                  </div>
+                </div>
+                <span className="font-body text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
+                  Step {s.step}
+                </span>
+                <h4 className="font-body text-sm font-semibold text-foreground">{s.title}</h4>
+                <p className="max-w-[260px] text-center font-body text-xs text-muted-foreground">
+                  {s.desc}
+                </p>
+                <ArrowDown size={20} className="text-primary/60" />
+              </div>
+            );
+          })}
           <div className="flex w-full max-w-[280px] items-center gap-3 rounded-2xl border-2 border-primary/30 bg-gradient-to-br from-primary/5 to-accent/10 px-5 py-5 shadow-md">
             <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-accent shadow-sm">
               <Sparkles size={20} className="text-accent-foreground" />
