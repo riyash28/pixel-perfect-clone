@@ -1,5 +1,3 @@
-import beforeImg from "@/assets/before-health.png";
-import afterImg from "@/assets/after-health.png";
 import {
   Leaf,
   FlaskConical,
@@ -25,12 +23,31 @@ const steps = [
 const WhyWeAreDifferent = () => {
   const { ref: sectionRef, isVisible } = useInViewAnimation<HTMLElement>();
 
-  // Stagger order: Before(0) → S1..S6(1..6) → Outcome(7) → After(8)
+  // Stagger order: S1..S6 (0..5) → Outcome (6)
   const baseDelay = 0.15;
   const stepDelay = 0.18;
   const getDelay = (i: number) => baseDelay + i * stepDelay;
-  // Total visible nodes = 9; line draw matched to last node reveal
   const lineDuration = 1.6;
+
+  // Build chain nodes: 6 steps + outcome
+  const chainNodes = [
+    ...steps.map((s) => ({
+      key: `step-${s.step}`,
+      label: `Step ${s.step}`,
+      title: s.title,
+      desc: s.desc,
+      Icon: s.icon,
+      accent: false,
+    })),
+    {
+      key: "outcome",
+      label: "Outcome",
+      title: "Holistic Healing",
+      desc: "Balanced wellness from root to result",
+      Icon: Sparkles,
+      accent: true,
+    },
+  ];
 
   return (
     <section ref={sectionRef} className="overflow-hidden bg-white py-12 lg:py-16">
@@ -42,120 +59,110 @@ const WhyWeAreDifferent = () => {
           A meticulous 6-step journey from nature to your wellness
         </p>
 
-        {/* DESKTOP HORIZONTAL CHAIN FLOW */}
-        <div className="relative hidden lg:block">
-          {/* Wavy connecting line behind nodes */}
+        {/* DESKTOP HORIZONTAL ZIG-ZAG CHAIN FLOW */}
+        <div className="relative mx-auto hidden lg:block">
+          {/* Curved zig-zag connecting line behind nodes.
+              7 nodes evenly spaced; node centers alternate down/up.
+              viewBox width 1200, x positions: ~85, 258, 431, 604, 777, 950, 1123 (≈ every 173)
+              y centers alternate: 150 (down), 70 (up) → circle vertical center sits on the wave */}
           <svg
-            className="pointer-events-none absolute left-0 right-0 top-[58px] z-0 h-[60px] w-full"
-            viewBox="0 0 1200 60"
+            className="pointer-events-none absolute inset-x-0 top-0 z-0 h-[220px] w-full"
+            viewBox="0 0 1200 220"
             preserveAspectRatio="none"
             aria-hidden="true"
           >
             <defs>
               <linearGradient id="chainGrad" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%" stopColor="hsl(var(--destructive))" stopOpacity="0.5" />
-                <stop offset="50%" stopColor="hsl(var(--primary))" stopOpacity="0.7" />
-                <stop offset="100%" stopColor="hsl(var(--accent))" stopOpacity="0.7" />
+                <stop offset="0%" stopColor="hsl(var(--primary))" stopOpacity="0.55" />
+                <stop offset="60%" stopColor="hsl(var(--primary))" stopOpacity="0.75" />
+                <stop offset="100%" stopColor="hsl(var(--accent))" stopOpacity="0.85" />
               </linearGradient>
             </defs>
             <path
-              d="M 20,30 C 90,0 160,60 230,30 S 370,0 440,30 S 580,60 650,30 S 790,0 860,30 S 1000,60 1070,30 S 1180,0 1190,30"
+              d="M 85,150 C 170,150 170,70 258,70 S 345,150 431,150 S 518,70 604,70 S 691,150 777,150 S 864,70 950,70 S 1037,150 1123,150"
               fill="none"
               stroke="url(#chainGrad)"
               strokeWidth="2.5"
-              strokeDasharray="2000"
-              strokeDashoffset={isVisible ? 0 : 2000}
+              strokeLinecap="round"
+              strokeDasharray="2400"
+              strokeDashoffset={isVisible ? 0 : 2400}
               style={{
                 transition: `stroke-dashoffset ${lineDuration}s ease-in-out ${baseDelay}s`,
               }}
             />
           </svg>
 
-          <div className="relative z-10 flex items-start justify-between gap-1">
-            {/* Before */}
-            <div
-              className="flex flex-shrink-0 flex-col items-center"
-              style={getAnimationStyle("slideFromLeft", isVisible, getDelay(0))}
-            >
-              <span className="mb-2 inline-block rounded-full bg-destructive/10 px-3 py-1 font-body text-[10px] font-bold uppercase tracking-widest text-destructive">
-                Before
-              </span>
-              <div className="relative flex h-[140px] w-[140px] items-center justify-center">
-                <div className="absolute inset-0 m-auto h-[80%] w-[80%] rounded-full bg-destructive/5 blur-2xl" />
-                <img src={beforeImg} alt="Before" className="relative h-[140px] object-contain" />
-              </div>
-            </div>
+          {/* Nodes container — height matches svg viewBox */}
+          <div className="relative z-10 h-[220px] w-full">
+            {chainNodes.map((n, i) => {
+              const Icon = n.Icon;
+              // 7 nodes across — match SVG x positions in %
+              const xPercents = [7.08, 21.5, 35.92, 50.33, 64.75, 79.17, 93.58];
+              const left = `${xPercents[i]}%`;
+              const isDown = i % 2 === 0; // i=0 → down (y=150), i=1 → up (y=70)
+              // top of circle = svg y center − circle radius (44)
+              const top = isDown ? 150 - 44 : 70 - 44;
 
-            {/* Steps */}
-            {steps.map((s, i) => {
-              const Icon = s.icon;
               return (
                 <div
-                  key={s.step}
-                  className="flex w-[120px] flex-shrink-0 flex-col items-center text-center"
-                  style={getAnimationStyle("slideFromBottom", isVisible, getDelay(i + 1))}
+                  key={n.key}
+                  className="absolute flex w-[140px] -translate-x-1/2 flex-col items-center text-center"
+                  style={{
+                    left,
+                    top,
+                    ...getAnimationStyle(
+                      n.accent ? "fadeScale" : "slideFromBottom",
+                      isVisible,
+                      getDelay(i),
+                      n.accent ? 0.7 : 0.6,
+                    ),
+                  }}
                 >
-                  <div className="relative flex h-[88px] w-[88px] items-center justify-center rounded-full border-[3px] border-primary/30 bg-white shadow-md transition-all duration-300 hover:border-primary hover:shadow-lg">
-                    <div className="flex h-[64px] w-[64px] items-center justify-center rounded-full bg-gradient-to-br from-primary to-primary/80 shadow-inner">
-                      <Icon size={26} className="text-primary-foreground" />
+                  <div
+                    className={`relative flex h-[88px] w-[88px] items-center justify-center rounded-full border-[3px] bg-white shadow-md transition-all duration-300 ${
+                      n.accent
+                        ? "border-accent/40 hover:border-accent hover:shadow-lg"
+                        : "border-primary/30 hover:border-primary hover:shadow-lg"
+                    }`}
+                  >
+                    <div
+                      className={`flex h-[64px] w-[64px] items-center justify-center rounded-full shadow-inner ${
+                        n.accent
+                          ? "bg-gradient-to-br from-accent to-accent/80"
+                          : "bg-gradient-to-br from-primary to-primary/80"
+                      }`}
+                    >
+                      <Icon
+                        size={26}
+                        className={n.accent ? "text-accent-foreground" : "text-primary-foreground"}
+                      />
                     </div>
                   </div>
-                  <span className="mt-3 font-body text-[9px] font-bold uppercase tracking-widest text-muted-foreground">
-                    Step {s.step}
+                  <span
+                    className={`mt-2 font-body text-[9px] font-bold uppercase tracking-widest ${
+                      n.accent ? "text-accent" : "text-muted-foreground"
+                    }`}
+                  >
+                    {n.label}
                   </span>
-                  <h4 className="mt-1 font-body text-[12px] font-semibold leading-tight text-foreground">
-                    {s.title}
+                  <h4
+                    className={`mt-1 font-body text-[12px] font-semibold leading-tight ${
+                      n.accent ? "text-primary font-display text-[13px]" : "text-foreground"
+                    }`}
+                  >
+                    {n.title}
                   </h4>
                   <p className="mt-1 font-body text-[10px] leading-snug text-muted-foreground">
-                    {s.desc}
+                    {n.desc}
                   </p>
                 </div>
               );
             })}
-
-            {/* Outcome (compact circular node) */}
-            <div
-              className="flex w-[120px] flex-shrink-0 flex-col items-center text-center"
-              style={getAnimationStyle("fadeScale", isVisible, getDelay(7), 0.7)}
-            >
-              <div className="relative flex h-[88px] w-[88px] items-center justify-center rounded-full border-[3px] border-accent/40 bg-white shadow-md">
-                <div className="flex h-[64px] w-[64px] items-center justify-center rounded-full bg-gradient-to-br from-accent to-accent/80 shadow-inner">
-                  <Sparkles size={26} className="text-accent-foreground" />
-                </div>
-              </div>
-              <span className="mt-3 font-body text-[9px] font-bold uppercase tracking-widest text-accent">
-                Outcome
-              </span>
-              <h4 className="mt-1 font-display text-[13px] font-semibold leading-tight text-primary">
-                Holistic Healing
-              </h4>
-            </div>
-
-            {/* After */}
-            <div
-              className="flex flex-shrink-0 flex-col items-center"
-              style={getAnimationStyle("slideFromRight", isVisible, getDelay(8))}
-            >
-              <span className="mb-2 inline-block rounded-full bg-primary/10 px-3 py-1 font-body text-[10px] font-bold uppercase tracking-widest text-primary">
-                After
-              </span>
-              <div className="relative flex h-[140px] w-[140px] items-center justify-center">
-                <div className="absolute inset-0 m-auto h-[85%] w-[85%] rounded-full bg-primary/10 blur-2xl" />
-                <img src={afterImg} alt="After" className="relative h-[140px] object-contain drop-shadow-lg" />
-              </div>
-            </div>
           </div>
         </div>
 
-        {/* MOBILE: vertical flow */}
+        {/* MOBILE: vertical timeline */}
         <div className="flex flex-col items-center gap-4 lg:hidden">
-          <div className="flex flex-col items-center">
-            <span className="mb-2 inline-block rounded-full bg-destructive/10 px-4 py-1 font-body text-[10px] font-bold uppercase tracking-widest text-destructive">
-              Before
-            </span>
-            <img src={beforeImg} alt="Before" className="h-48" />
-          </div>
-          <ArrowDown size={20} className="text-primary/60" />
           {steps.map((s, i) => {
             const Icon = s.icon;
             return (
@@ -190,13 +197,6 @@ const WhyWeAreDifferent = () => {
               </span>
               <h4 className="font-display text-base font-semibold text-primary">Holistic Healing</h4>
             </div>
-          </div>
-          <ArrowDown size={20} className="text-primary/60" />
-          <div className="flex flex-col items-center">
-            <span className="mb-2 inline-block rounded-full bg-primary/10 px-4 py-1 font-body text-[10px] font-bold uppercase tracking-widest text-primary">
-              After
-            </span>
-            <img src={afterImg} alt="After" className="h-48" />
           </div>
         </div>
       </div>
