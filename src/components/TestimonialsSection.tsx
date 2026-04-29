@@ -1,4 +1,3 @@
-import { useState } from "react";
 import doctor1 from "@/assets/doctors/doctor-1.jpg";
 import doctor2 from "@/assets/doctors/doctor-2.jpg";
 import doctor3 from "@/assets/doctors/doctor-3.jpg";
@@ -53,8 +52,6 @@ const experts = [
 const loop = [...experts, ...experts];
 
 const TestimonialsSection = () => {
-  const [hovered, setHovered] = useState<number | null>(null);
-
   return (
     <section className="relative overflow-hidden bg-card py-20 lg:py-24">
       <div className="mx-auto max-w-7xl px-4 text-center">
@@ -67,28 +64,20 @@ const TestimonialsSection = () => {
       </div>
 
       {/* Marquee */}
-      <div
-        className="group relative mt-14 overflow-hidden"
-        onMouseLeave={() => setHovered(null)}
-      >
+      <div className="group/marquee relative mt-14 overflow-hidden">
         {/* Edge fades */}
         <div className="pointer-events-none absolute inset-y-0 left-0 z-20 w-24 bg-gradient-to-r from-card to-transparent" />
         <div className="pointer-events-none absolute inset-y-0 right-0 z-20 w-24 bg-gradient-to-l from-card to-transparent" />
 
-        <div
-          className="flex w-max gap-6 px-6 [animation:marquee_45s_linear_infinite] group-hover:[animation-play-state:paused]"
-        >
-          {loop.map((e, i) => {
-            const isHovered = hovered === i;
-            return (
-              <div
-                key={i}
-                onMouseEnter={() => setHovered(i)}
-                className="relative flex-shrink-0"
-                style={{ zIndex: isHovered ? 30 : 1 }}
-              >
-                {/* Card */}
-                <div className="relative h-[340px] w-[240px] overflow-hidden rounded-2xl bg-background shadow-lg ring-1 ring-foreground/5 transition-transform duration-500 hover:-translate-y-1 hover:shadow-2xl">
+        <div className="flex w-max gap-6 px-6 [animation:marquee_45s_linear_infinite] group-hover/marquee:[animation-play-state:paused]">
+          {loop.map((e, i) => (
+            <div
+              key={i}
+              className="group/card relative h-[340px] w-[240px] flex-shrink-0 [perspective:1200px]"
+            >
+              <div className="relative h-full w-full transition-transform duration-700 ease-out [transform-style:preserve-3d] group-hover/card:[transform:rotateY(180deg)]">
+                {/* FRONT — doctor image */}
+                <div className="absolute inset-0 overflow-hidden rounded-2xl bg-background shadow-lg ring-1 ring-foreground/5 [backface-visibility:hidden]">
                   <img
                     src={e.image}
                     alt={e.name}
@@ -103,27 +92,26 @@ const TestimonialsSection = () => {
                   </div>
                 </div>
 
-                {/* Hover sticky-note testimonial */}
-                <div
-                  className={`pointer-events-none absolute left-full top-1/2 ml-4 w-64 origin-left -translate-y-1/2 transition-all duration-500 ease-out ${
-                    isHovered
-                      ? "scale-100 rotate-[6deg] opacity-100"
-                      : "scale-90 rotate-[14deg] opacity-0"
-                  }`}
-                >
-                  <div className="relative rounded-md border border-foreground/10 bg-[hsl(var(--background))] p-5 shadow-xl">
-                    <span className="absolute left-3 top-2 h-1.5 w-12 rounded-full bg-accent/70" />
-                    <p className="mt-3 font-body text-sm italic leading-relaxed text-foreground/80">
+                {/* BACK — sticky-note style testimonial */}
+                <div className="absolute inset-0 overflow-hidden rounded-2xl border border-foreground/10 bg-background p-5 text-left shadow-xl [backface-visibility:hidden] [transform:rotateY(180deg)]">
+                  <span className="absolute left-4 top-3 h-1.5 w-14 rounded-full bg-accent/70" />
+                  <div className="flex h-full flex-col justify-between pt-6">
+                    <p className="font-body text-[13px] italic leading-relaxed text-foreground/80">
                       "{e.quote}"
                     </p>
-                    <p className="mt-3 text-right font-display text-xs font-semibold text-primary">
-                      — {e.name}
-                    </p>
+                    <div className="mt-4 border-t border-foreground/10 pt-3">
+                      <p className="font-display text-sm font-semibold text-primary">
+                        {e.name}
+                      </p>
+                      <p className="font-body text-[11px] text-muted-foreground">
+                        {e.title}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
       </div>
 
