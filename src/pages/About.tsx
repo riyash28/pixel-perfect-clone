@@ -1,7 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import praanrootLogo from "@/assets/praanroot-logo.png";
-import aboutHeroBg from "@/assets/about-hero-bg.jpg";
 import { useInViewAnimation } from "@/hooks/useInViewAnimation";
 import { getAnimationStyle, getDelay } from "@/lib/animationVariants";
 import { Leaf, Users } from "lucide-react";
@@ -15,17 +14,17 @@ const About = () => {
     <div className="min-h-screen">
       <Navbar />
 
-      {/* Hero banner with background image */}
+      {/* Hero banner — logo as the visual */}
       <section className="relative overflow-hidden">
-        <div className="relative h-[420px] w-full sm:h-[480px] lg:h-[560px]">
+        <div className="relative h-[420px] w-full bg-zh-beige sm:h-[480px] lg:h-[560px]">
+          {/* Logo as banner visual */}
           <img
-            src={aboutHeroBg}
-            alt="Ayurvedic herbs and dropper bottles"
-            width={1920}
-            height={1080}
-            className="absolute inset-0 h-full w-full object-cover"
+            src={praanrootLogo}
+            alt="Praanroot logo background"
+            aria-hidden="true"
+            className="absolute inset-0 h-full w-full object-contain object-center opacity-90"
           />
-          {/* Soft overlay to keep the logo readable */}
+          {/* Soft overlay for readability of foreground content */}
           <div className="absolute inset-0 bg-gradient-to-r from-zh-beige/85 via-zh-beige/55 to-transparent" />
 
           <div
