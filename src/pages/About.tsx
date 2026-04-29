@@ -1,16 +1,12 @@
-import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import FounderSection from "@/components/FounderSection";
 import praanrootLogo from "@/assets/praanroot-logo.png";
 import { useInViewAnimation } from "@/hooks/useInViewAnimation";
 import { getAnimationStyle, getDelay } from "@/lib/animationVariants";
 import { Leaf, Users } from "lucide-react";
-
-type ActiveView = "about" | "founder";
+import { Link } from "react-router-dom";
 
 const About = () => {
-  const [active, setActive] = useState<ActiveView>("about");
   const banner = useInViewAnimation<HTMLDivElement>();
   const cards = useInViewAnimation<HTMLDivElement>();
 
@@ -42,15 +38,10 @@ const About = () => {
         <div ref={cards.ref} className="mx-auto max-w-4xl px-4">
           <div className="grid gap-6 sm:grid-cols-2">
             {/* LEFT — About */}
-            <button
-              type="button"
-              onClick={() => setActive("about")}
+            <Link
+              to="/about/praanroot"
               style={getAnimationStyle("slideFromLeft", cards.isVisible, getDelay(0))}
-              className={`group rounded-xl border bg-card p-8 text-center transition-all duration-300 hover:shadow-md ${
-                active === "about"
-                  ? "scale-[1.03] border-primary/40 shadow-lg ring-2 ring-primary/20"
-                  : "scale-100"
-              }`}
+              className="group block rounded-xl border bg-card p-8 text-center transition-all duration-300 hover:scale-[1.03] hover:border-primary/40 hover:shadow-lg"
             >
               <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 transition-transform group-hover:scale-110">
                 <Leaf className="h-7 w-7 text-primary" />
@@ -62,18 +53,13 @@ const About = () => {
               <span className="mt-6 inline-block rounded-full bg-primary px-6 py-2.5 font-body text-sm font-semibold text-primary-foreground transition-colors hover:bg-zh-green-light">
                 Know More
               </span>
-            </button>
+            </Link>
 
             {/* RIGHT — Founder */}
-            <button
-              type="button"
-              onClick={() => setActive("founder")}
+            <Link
+              to="/about/founders"
               style={getAnimationStyle("slideFromRight", cards.isVisible, getDelay(1))}
-              className={`group rounded-xl border bg-card p-8 text-center transition-all duration-300 hover:shadow-md ${
-                active === "founder"
-                  ? "scale-[1.03] border-accent/40 shadow-lg ring-2 ring-accent/30"
-                  : "scale-100"
-              }`}
+              className="group block rounded-xl border bg-card p-8 text-center transition-all duration-300 hover:scale-[1.03] hover:border-accent/40 hover:shadow-lg"
             >
               <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-accent/10 transition-transform group-hover:scale-110">
                 <Users className="h-7 w-7 text-accent" />
@@ -85,55 +71,10 @@ const About = () => {
               <span className="mt-6 inline-block rounded-full bg-accent px-6 py-2.5 font-body text-sm font-semibold text-accent-foreground transition-colors hover:bg-zh-orange-dark">
                 Explore
               </span>
-            </button>
+            </Link>
           </div>
         </div>
       </section>
-
-      {/* Dynamic content section */}
-      <div key={active} className="animate-fade-in">
-        {active === "about" ? (
-          <section className="relative overflow-hidden pb-16 lg:pb-24">
-            <div className="relative z-10 mx-auto max-w-4xl px-4">
-              <h1 className="font-display text-4xl font-bold text-foreground lg:text-5xl">About Praanroot</h1>
-              <p className="mt-6 font-body text-lg leading-relaxed text-muted-foreground">
-                Praanroot – Ayurveda Rooted in You At Praanroot, we believe that every woman deserves a life of balance,
-                vitality, and confidence. Born from the deep roots of Ayurveda and driven by a passion to heal naturally,
-                our formulations are crafted to support women through every hormonal challenge—be it PCOD, PCOS, irregular
-                cycles, fertility struggles, or emotional imbalances.
-              </p>
-              <p className="mt-4 font-body text-lg leading-relaxed text-muted-foreground">
-                Founded under the umbrella of Anushrita Herbal, a company committed to authentic, research-based herbal
-                medicine, Praanroot is not just a brand—it's a promise of purity, effectiveness, and care. Founded under
-                Anushrita Herbal, an Ayurvedic company established on 16 Apr 2025, Praanroot is not just a brand—it’s a
-                commitment to purity, potency, and purpose. Every product reflects the careful balance of ancient Ayurvedic
-                wisdom and modern patient needs.
-              </p>
-              <p className="mt-4 font-body text-lg leading-relaxed text-muted-foreground">
-                Our products like Ritucalm Capsules and Ritucalm Syrup are not just remedies—they are experiences. Blending
-                classical Ayurvedic wisdom with modern-day clinical understanding, we focus on fast, targeted, and
-                long-lasting relief without side effects. Every drop, every dose is carefully designed by experts—not in
-                labs alone, but in life itself. We understand what women go through. And we’re here to make sure you don’t
-                go through it alone. At Praanroot, your health is our mission—and Ayurveda is our method.
-              </p>
-              <div className="mt-10 grid gap-6 sm:grid-cols-3">
-                {[
-                  { value: "50+", label: "Products" },
-                  { value: "1M+", label: "Happy Customers" },
-                  { value: "100%", label: "Plant Based" },
-                ].map((stat) => (
-                  <div key={stat.label} className="rounded-xl bg-zh-beige p-6 text-center">
-                    <h3 className="font-display text-3xl font-bold text-primary">{stat.value}</h3>
-                    <p className="mt-1 font-body text-sm text-muted-foreground">{stat.label}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-        ) : (
-          <FounderSection />
-        )}
-      </div>
 
       <Footer />
     </div>
