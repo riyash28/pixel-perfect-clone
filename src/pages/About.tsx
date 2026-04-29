@@ -5,35 +5,44 @@ import FounderSection from "@/components/FounderSection";
 import praanrootLogo from "@/assets/praanroot-logo.png";
 import { useInViewAnimation } from "@/hooks/useInViewAnimation";
 import { getAnimationStyle, getDelay } from "@/lib/animationVariants";
-import { Leaf, Users } from "lucide-react";
+import { Leaf, Users, Sparkles } from "lucide-react";
 
 type ActiveView = "about" | "founder";
 
 const About = () => {
   const [active, setActive] = useState<ActiveView>("about");
-  const banner = useInViewAnimation<HTMLDivElement>();
   const cards = useInViewAnimation<HTMLDivElement>();
 
   return (
     <div className="min-h-screen">
       <Navbar />
 
-      {/* Top banner */}
-      <section className="relative overflow-hidden bg-zh-beige/40 py-14 lg:py-20">
-        <div ref={banner.ref} className="relative z-10 mx-auto max-w-4xl px-4 text-center">
-          <div style={getAnimationStyle("fadeScale", banner.isVisible, 0)} className="flex justify-center">
-            <img
-              src={praanrootLogo}
-              alt="Praanroot - Ayurveda Rooted in You"
-              className="h-40 w-auto sm:h-48 lg:h-56"
-            />
+      {/* HERO BANNER — Blog-style, with Praanroot logo + tagline */}
+      <section className="relative w-full overflow-hidden bg-zh-beige">
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/70 to-background/20 md:from-background/90 md:via-background/50 md:to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
+        </div>
+
+        <div className="relative mx-auto flex min-h-[480px] max-w-7xl flex-col items-center justify-center px-4 py-20 text-center sm:px-6 md:min-h-[560px] md:py-24">
+          <div className="animate-fade-up">
+            <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-card/80 px-4 py-1.5 font-body text-xs font-medium text-primary backdrop-blur-sm">
+              <Sparkles className="h-3.5 w-3.5" />
+              About Us
+            </span>
+
+            <div className="mt-6 flex justify-center">
+              <img
+                src={praanrootLogo}
+                alt="Praanroot - Ayurveda Rooted in You"
+                className="h-40 w-auto sm:h-48 lg:h-56"
+              />
+            </div>
+
+            <p className="mx-auto mt-4 max-w-2xl font-display text-xl italic leading-snug text-foreground sm:text-2xl lg:text-3xl">
+              Ayurveda Rooted in You — <span className="text-primary">purity, potency, and purpose.</span>
+            </p>
           </div>
-          <p
-            style={getAnimationStyle("slideFromBottom", banner.isVisible, 0.2)}
-            className="mx-auto mt-4 max-w-xl font-body text-base italic text-muted-foreground lg:text-lg"
-          >
-            Ayurveda Rooted in You — purity, potency, and purpose.
-          </p>
         </div>
       </section>
 
