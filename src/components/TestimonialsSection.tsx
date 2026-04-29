@@ -98,6 +98,9 @@ const TestimonialsSection = () => {
           What Leading Industry Experts Say
         </h2>
         <div className="mx-auto mt-4 h-px w-16 bg-primary/30" />
+        <p className="mx-auto mt-4 max-w-2xl font-body text-sm text-muted-foreground md:text-base">
+          Trusted by renowned doctors and wellness specialists across India.
+        </p>
 
         {/* 3D-style center carousel */}
         <div className="relative mt-14 h-[460px] md:h-[520px]">
@@ -113,8 +116,8 @@ const TestimonialsSection = () => {
               const visibleSlide = isCenter || isSide;
 
               const translatePct = offset * 62; // % of container width
-              const scale = isCenter ? 1 : isSide ? 0.78 : 0.6;
-              const opacity = isCenter ? 1 : isSide ? 0.55 : 0;
+              const scale = isCenter ? 1.05 : isSide ? 0.82 : 0.6;
+              const opacity = isCenter ? 1 : isSide ? 0.6 : 0;
               const zIndex = isCenter ? 30 : isSide ? 20 : 10;
 
               return (
@@ -122,7 +125,7 @@ const TestimonialsSection = () => {
                   key={i}
                   aria-hidden={!isCenter}
                   onClick={() => !isCenter && visibleSlide && setCurrent(i)}
-                  className={`absolute top-1/2 left-1/2 w-[78%] max-w-[420px] md:w-[36%] md:max-w-[440px] transition-all duration-700 ease-in-out ${
+                  className={`absolute top-1/2 left-1/2 w-[78%] max-w-[420px] md:w-[36%] md:max-w-[440px] transition-all duration-[800ms] ${
                     !isCenter && visibleSlide ? "cursor-pointer" : ""
                   }`}
                   style={{
@@ -130,9 +133,10 @@ const TestimonialsSection = () => {
                     opacity,
                     zIndex,
                     pointerEvents: visibleSlide ? "auto" : "none",
+                    transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)",
                   }}
                 >
-                  <div className="group relative overflow-hidden rounded-3xl bg-background shadow-xl ring-1 ring-foreground/5 transition-all duration-500 hover:shadow-2xl">
+                  <div className="group relative overflow-hidden rounded-3xl bg-background shadow-xl ring-1 ring-foreground/5 transition-all duration-500 hover:shadow-2xl hover:-translate-y-1">
                     <div className="relative aspect-[4/5] w-full overflow-hidden">
                       <img
                         src={t.image}
