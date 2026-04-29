@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import FounderSection from "@/components/FounderSection";
 import praanrootLogo from "@/assets/praanroot-logo.png";
 
 const About = () => {
@@ -53,6 +54,7 @@ const About = () => {
           </div>
         </div>
       </section>
+      <FounderSection />
       <Footer />
     </div>
   );
