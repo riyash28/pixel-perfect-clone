@@ -4,7 +4,6 @@ import TickerBar from "@/components/TickerBar";
 import CategorySection from "@/components/CategorySection";
 import InTheSpotlight from "@/components/InTheSpotlight";
 import WhyWeAreDifferent from "@/components/WhyWeAreDifferent";
-import FounderSection from "@/components/FounderSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import ImpactSection from "@/components/ImpactSection";
 import ReelSection from "@/components/reels/ReelSection";
@@ -21,7 +20,6 @@ const Index = () => {
       <CategorySection />
       <InTheSpotlight />
       <WhyWeAreDifferent />
-      <FounderSection />
       <TestimonialsSection />
       <ReelSection />
       <CertificationSection />
