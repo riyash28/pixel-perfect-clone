@@ -14,50 +14,75 @@ const About = () => {
     <div className="min-h-screen">
       <Navbar />
 
-      {/* Hero banner — logo as the visual */}
-      <section className="relative overflow-hidden">
-        <div className="relative h-[420px] w-full bg-zh-beige sm:h-[480px] lg:h-[560px]">
-          {/* Logo as banner visual */}
-          <img
-            src={praanrootLogo}
-            alt="Praanroot logo background"
-            aria-hidden="true"
-            className="absolute inset-0 h-full w-full object-contain object-center opacity-90"
-          />
-          {/* Soft overlay for readability of foreground content */}
-          <div className="absolute inset-0 bg-gradient-to-r from-zh-beige/85 via-zh-beige/55 to-transparent" />
+      {/* Hero banner — single centered logo with decorative background */}
+      <section className="relative overflow-hidden bg-zh-beige">
+        {/* Decorative background layers */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,hsl(var(--primary)/0.10),transparent_55%),radial-gradient(circle_at_bottom_right,hsl(var(--accent)/0.12),transparent_55%)]"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 opacity-[0.07] [background-image:linear-gradient(hsl(var(--primary))_1px,transparent_1px),linear-gradient(90deg,hsl(var(--primary))_1px,transparent_1px)] [background-size:42px_42px]"
+        />
+        {/* Soft floating blobs */}
+        <div
+          aria-hidden="true"
+          className="absolute -left-24 top-10 h-72 w-72 rounded-full bg-primary/15 blur-3xl"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute -right-24 bottom-0 h-80 w-80 rounded-full bg-accent/15 blur-3xl"
+        />
 
+        <div
+          ref={banner.ref}
+          className="relative z-10 mx-auto flex min-h-[440px] max-w-4xl flex-col items-center justify-center px-6 py-16 text-center sm:min-h-[500px] lg:min-h-[560px] lg:py-20"
+        >
+          {/* Pill badge */}
           <div
-            ref={banner.ref}
-            className="relative z-10 mx-auto flex h-full max-w-6xl flex-col items-start justify-center px-6 lg:px-10"
+            style={getAnimationStyle("fadeScale", banner.isVisible, 0)}
+            className="inline-flex items-center gap-2 rounded-full border border-primary/15 bg-white/80 px-4 py-1.5 shadow-sm backdrop-blur"
           >
-            <div
-              style={getAnimationStyle("fadeScale", banner.isVisible, 0)}
-              className="inline-flex items-center gap-2 rounded-full bg-white/80 px-4 py-1.5 backdrop-blur"
-            >
-              <span className="h-2 w-2 rounded-full bg-accent" />
-              <span className="font-body text-xs font-semibold uppercase tracking-widest text-primary">
-                Our Brand
-              </span>
-            </div>
+            <span className="h-2 w-2 rounded-full bg-accent" />
+            <span className="font-body text-xs font-semibold uppercase tracking-widest text-primary">
+              About Us
+            </span>
+          </div>
 
+          {/* Single centered logo */}
+          <div
+            style={getAnimationStyle("fadeScale", banner.isVisible, 0.15)}
+            className="relative mt-8"
+          >
+            {/* Glow ring behind logo */}
             <div
-              style={getAnimationStyle("fadeScale", banner.isVisible, 0.15)}
-              className="mt-6"
-            >
-              <img
-                src={praanrootLogo}
-                alt="Praanroot - Ayurveda Rooted in You"
-                className="h-32 w-auto drop-shadow-md sm:h-40 lg:h-48"
-              />
-            </div>
+              aria-hidden="true"
+              className="absolute inset-0 -z-10 mx-auto h-full w-full rounded-full bg-gradient-to-br from-primary/20 via-transparent to-accent/20 blur-2xl"
+            />
+            <img
+              src={praanrootLogo}
+              alt="Praanroot - Ayurveda Rooted in You"
+              className="h-40 w-auto drop-shadow-xl sm:h-48 lg:h-56"
+            />
+          </div>
 
-            <p
-              style={getAnimationStyle("slideFromBottom", banner.isVisible, 0.3)}
-              className="mt-5 max-w-xl font-display text-xl italic text-foreground/90 sm:text-2xl lg:text-3xl"
-            >
-              Ayurveda Rooted in You — purity, potency, and purpose.
-            </p>
+          {/* Tagline */}
+          <p
+            style={getAnimationStyle("slideFromBottom", banner.isVisible, 0.3)}
+            className="mt-6 max-w-2xl font-display text-xl italic text-foreground/85 sm:text-2xl lg:text-3xl"
+          >
+            Ayurveda Rooted in You — purity, potency, and purpose.
+          </p>
+
+          {/* Subtle ornamental divider */}
+          <div
+            style={getAnimationStyle("fadeScale", banner.isVisible, 0.45)}
+            className="mt-6 flex items-center gap-3"
+          >
+            <span className="h-px w-10 bg-primary/40" />
+            <span className="h-1.5 w-1.5 rotate-45 bg-accent" />
+            <span className="h-px w-10 bg-primary/40" />
           </div>
         </div>
       </section>
