@@ -70,7 +70,7 @@ const About = () => {
           {/* Tagline */}
           <p
             style={getAnimationStyle("slideFromBottom", banner.isVisible, 0.3)}
-            className="mt-6 max-w-2xl font-display text-xl italic text-foreground/85 sm:text-2xl lg:text-3xl"
+            className="mt-3 max-w-2xl font-display text-xl italic text-foreground/85 sm:text-2xl lg:text-3xl"
           >
             Ayurveda Rooted in You — purity, potency, and purpose.
           </p>
