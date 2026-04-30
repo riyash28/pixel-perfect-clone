@@ -7,8 +7,9 @@ import p2 from "@/assets/shop-banner/new2.png";
 import p3 from "@/assets/shop-banner/new3.png";
 import p4 from "@/assets/shop-banner/new4.png";
 import p5 from "@/assets/shop-banner/new5.png";
+import p6 from "@/assets/shop-banner/new6.png";
 
-const bannerProducts = [p1, p2, p3, p4, p5];
+const bannerProducts = [p1, p2, p3, p4, p5, p6];
 
 const Shop = () => {
   return (
