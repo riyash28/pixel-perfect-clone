@@ -2,14 +2,13 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ProductCard from "@/components/ProductCard";
 import { bestSellers, combos } from "@/data/products";
-import p1 from "@/assets/shop-banner/p1.jpeg";
-import p2 from "@/assets/shop-banner/p2.jpeg";
-import p3 from "@/assets/shop-banner/p3.jpeg";
-import p4 from "@/assets/shop-banner/p4.jpeg";
-import p5 from "@/assets/shop-banner/p5.jpeg";
-import p6 from "@/assets/shop-banner/p6.jpeg";
+import p1 from "@/assets/shop-banner/new1.png";
+import p2 from "@/assets/shop-banner/new2.png";
+import p3 from "@/assets/shop-banner/new3.png";
+import p4 from "@/assets/shop-banner/new4.png";
+import p5 from "@/assets/shop-banner/new5.png";
 
-const bannerProducts = [p1, p2, p3, p4, p5, p6];
+const bannerProducts = [p1, p2, p3, p4, p5];
 
 const Shop = () => {
   return (
@@ -31,14 +30,14 @@ const Shop = () => {
           </div>
 
           {/* Product line-up */}
-          <div className="relative flex h-full w-full items-end justify-center gap-1 sm:gap-2 md:gap-3">
+          <div className="relative flex h-full w-full items-end justify-center gap-2 sm:gap-4 md:gap-6">
             {bannerProducts.map((src, i) => (
               <img
                 key={i}
                 src={src}
                 alt={`Praanroot product ${i + 1}`}
                 loading="lazy"
-                className="h-[85%] w-auto max-w-[16%] object-contain drop-shadow-[0_15px_20px_rgba(0,0,0,0.25)] transition-transform duration-500 hover:-translate-y-2 sm:max-w-[15%]"
+                className="h-[90%] w-auto max-w-[18%] object-contain drop-shadow-[0_15px_20px_rgba(0,0,0,0.3)] transition-transform duration-500 hover:-translate-y-2"
               />
             ))}
           </div>
