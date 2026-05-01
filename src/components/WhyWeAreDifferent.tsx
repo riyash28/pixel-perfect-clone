@@ -79,10 +79,10 @@ const WhyWeAreDifferent = () => {
               </linearGradient>
             </defs>
             <path
-              d="M 60,150 C 145,150 145,70 230,70 S 315,150 400,150 S 485,70 570,70 S 655,150 740,150 S 825,70 910,70 S 995,150 1080,150"
+              d="M 60,150 C 145,150 145,70 230,70 S 315,150 400,150 S 485,70 570,70 S 655,150 740,150 S 825,70 910,70 S 995,150 1140,150"
               fill="none"
               stroke="url(#chainGrad)"
-              strokeWidth="3"
+              strokeWidth="3.5"
               strokeLinecap="round"
               strokeDasharray="2400"
               strokeDashoffset={isVisible ? 0 : 2400}
