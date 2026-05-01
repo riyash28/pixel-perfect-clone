@@ -141,14 +141,14 @@ const WhyWeAreDifferent = () => {
                   </div>
                   <span
                     className={`mt-2 font-body text-[9px] font-bold uppercase tracking-widest ${
-                      n.accent ? "text-accent" : "text-muted-foreground"
+                      n.accent ? "text-foreground" : "text-muted-foreground"
                     }`}
                   >
                     {n.label}
                   </span>
                   <h4
-                    className={`mt-1 font-body text-[12px] font-semibold leading-tight ${
-                      n.accent ? "text-primary font-display text-[13px]" : "text-foreground"
+                    className={`mt-2 font-body text-[12px] font-bold leading-tight ${
+                      n.accent ? "text-primary font-display text-[13px] font-bold" : "text-foreground"
                     }`}
                   >
                     {n.title}
