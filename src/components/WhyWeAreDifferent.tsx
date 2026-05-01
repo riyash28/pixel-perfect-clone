@@ -74,15 +74,15 @@ const WhyWeAreDifferent = () => {
             <defs>
               <linearGradient id="chainGrad" x1="0" y1="0" x2="1" y2="0">
                 <stop offset="0%" stopColor="hsl(var(--primary))" stopOpacity="0.55" />
-                <stop offset="60%" stopColor="hsl(var(--primary))" stopOpacity="0.75" />
-                <stop offset="100%" stopColor="hsl(var(--accent))" stopOpacity="0.85" />
+                <stop offset="60%" stopColor="hsl(var(--primary))" stopOpacity="0.85" />
+                <stop offset="100%" stopColor="hsl(var(--accent))" stopOpacity="1" />
               </linearGradient>
             </defs>
             <path
               d="M 60,150 C 145,150 145,70 230,70 S 315,150 400,150 S 485,70 570,70 S 655,150 740,150 S 825,70 910,70 S 995,150 1080,150"
               fill="none"
               stroke="url(#chainGrad)"
-              strokeWidth="2.5"
+              strokeWidth="3"
               strokeLinecap="round"
               strokeDasharray="2400"
               strokeDashoffset={isVisible ? 0 : 2400}
