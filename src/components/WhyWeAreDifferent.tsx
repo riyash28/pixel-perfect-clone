@@ -107,7 +107,7 @@ const WhyWeAreDifferent = () => {
               return (
                 <div
                   key={n.key}
-                  className="absolute flex w-[140px] -translate-x-1/2 flex-col items-center text-center"
+                  className="group absolute flex w-[140px] -translate-x-1/2 cursor-pointer flex-col items-center text-center transition-transform duration-300 hover:z-20 hover:scale-110"
                   style={{
                     left,
                     top,
@@ -120,14 +120,14 @@ const WhyWeAreDifferent = () => {
                   }}
                 >
                   <div
-                    className={`relative flex h-[88px] w-[88px] items-center justify-center rounded-full border-[3px] bg-white shadow-md transition-all duration-300 ${
+                    className={`relative flex h-[88px] w-[88px] items-center justify-center rounded-full border-[3px] bg-white shadow-md transition-all duration-300 group-hover:shadow-2xl ${
                       n.accent
-                        ? "border-accent/40 hover:border-accent hover:shadow-lg"
-                        : "border-primary/30 hover:border-primary hover:shadow-lg"
+                        ? "border-accent/40 group-hover:border-accent"
+                        : "border-primary/30 group-hover:border-primary"
                     }`}
                   >
                     <div
-                      className={`flex h-[64px] w-[64px] items-center justify-center rounded-full shadow-inner ${
+                      className={`flex h-[64px] w-[64px] items-center justify-center rounded-full shadow-inner transition-transform duration-300 group-hover:scale-110 ${
                         n.accent
                           ? "bg-gradient-to-br from-accent to-accent/80"
                           : "bg-gradient-to-br from-primary to-primary/80"
@@ -140,20 +140,20 @@ const WhyWeAreDifferent = () => {
                     </div>
                   </div>
                   <span
-                    className={`mt-2 font-body text-[9px] font-bold uppercase tracking-widest ${
+                    className={`mt-4 font-body text-[10px] font-bold uppercase tracking-widest transition-colors group-hover:text-foreground ${
                       n.accent ? "text-foreground" : "text-muted-foreground"
                     }`}
                   >
                     {n.label}
                   </span>
                   <h4
-                    className={`mt-2 font-body text-[12px] font-semibold leading-tight ${
-                      n.accent ? "text-primary font-display text-[13px] font-semibold" : "text-foreground"
+                    className={`mt-1.5 font-body text-[12px] font-semibold leading-tight ${
+                      n.accent ? "font-display text-[13px] font-bold text-primary" : "text-foreground"
                     }`}
                   >
                     {n.title}
                   </h4>
-                  <p className="mt-1 font-body text-[10px] font-bold leading-snug text-muted-foreground">
+                  <p className="mt-1.5 font-body text-[10.5px] font-bold leading-snug text-foreground/75">
                     {n.desc}
                   </p>
                 </div>
