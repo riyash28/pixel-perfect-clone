@@ -147,13 +147,13 @@ const WhyWeAreDifferent = () => {
                     {n.label}
                   </span>
                   <h4
-                    className={`mt-2 font-body text-[12px] font-bold leading-tight ${
-                      n.accent ? "text-primary font-display text-[13px] font-bold" : "text-foreground"
+                    className={`mt-2 font-body text-[12px] font-semibold leading-tight ${
+                      n.accent ? "text-primary font-display text-[13px] font-semibold" : "text-foreground"
                     }`}
                   >
                     {n.title}
                   </h4>
-                  <p className="mt-1 font-body text-[10px] leading-snug text-muted-foreground">
+                  <p className="mt-1 font-body text-[10px] font-bold leading-snug text-muted-foreground">
                     {n.desc}
                   </p>
                 </div>
