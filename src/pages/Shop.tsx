@@ -9,7 +9,8 @@ import p4 from "@/assets/shop-banner/new4.png";
 import p5 from "@/assets/shop-banner/new5.png";
 import p6 from "@/assets/shop-banner/new6.png";
 
-const bannerProducts = [p1, p2, p3, p6, p4, p5];
+// Order: keep Play High (p6) right after Yakripure (p5)
+const bannerProducts = [p1, p2, p3, p4, p5, p6];
 
 const Shop = () => {
   return (
@@ -38,9 +39,7 @@ const Shop = () => {
                 src={src}
                 alt={`Praanroot product ${i + 1}`}
                 loading="lazy"
-                className={`h-[90%] w-auto max-w-[15%] object-contain drop-shadow-[0_15px_20px_rgba(0,0,0,0.3)] transition-transform duration-500 hover:-translate-y-2 ${
-                  i === Math.floor(bannerProducts.length / 2) ? "scale-105" : ""
-                }`}
+                className="h-[85%] w-auto max-w-[14%] object-contain drop-shadow-[0_15px_20px_rgba(0,0,0,0.3)] transition-transform duration-500 hover:-translate-y-2"
               />
             ))}
           </div>
