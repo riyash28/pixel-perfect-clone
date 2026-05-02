@@ -31,7 +31,7 @@ const Shop = () => {
             </svg>
           </div>
 
-          {/* Product line-up — uniform height across all bottles */}
+          {/* Product line-up */}
           <div className="relative flex h-full w-full items-end justify-center gap-1 sm:gap-2 md:gap-3">
             {bannerProducts.map((src, i) => (
               <img
@@ -39,7 +39,7 @@ const Shop = () => {
                 src={src}
                 alt={`Praanroot product ${i + 1}`}
                 loading="lazy"
-                className="h-[160px] w-auto object-contain drop-shadow-[0_15px_20px_rgba(0,0,0,0.3)] transition-transform duration-500 hover:-translate-y-2 sm:h-[210px] md:h-[270px] lg:h-[320px]"
+                className="h-[85%] w-auto max-w-[14%] object-contain drop-shadow-[0_15px_20px_rgba(0,0,0,0.3)] transition-transform duration-500 hover:-translate-y-2"
               />
             ))}
           </div>
