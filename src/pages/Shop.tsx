@@ -7,8 +7,9 @@ import p2 from "@/assets/shop-banner/new2.png";
 import p3 from "@/assets/shop-banner/new3.png";
 import p4 from "@/assets/shop-banner/new4.png";
 import p5 from "@/assets/shop-banner/new5.png";
+import p6 from "@/assets/shop-banner/new6.png";
 
-const bannerProducts = [p1, p2, p3, p4, p5];
+const bannerProducts = [p1, p2, p3, p6, p4, p5];
 
 const Shop = () => {
   return (
@@ -30,14 +31,16 @@ const Shop = () => {
           </div>
 
           {/* Product line-up */}
-          <div className="relative flex h-full w-full items-end justify-center gap-2 sm:gap-4 md:gap-6">
+          <div className="relative flex h-full w-full items-end justify-center gap-1 sm:gap-2 md:gap-3">
             {bannerProducts.map((src, i) => (
               <img
                 key={i}
                 src={src}
                 alt={`Praanroot product ${i + 1}`}
                 loading="lazy"
-                className="h-[90%] w-auto max-w-[18%] object-contain drop-shadow-[0_15px_20px_rgba(0,0,0,0.3)] transition-transform duration-500 hover:-translate-y-2"
+                className={`h-[90%] w-auto max-w-[15%] object-contain drop-shadow-[0_15px_20px_rgba(0,0,0,0.3)] transition-transform duration-500 hover:-translate-y-2 ${
+                  i === Math.floor(bannerProducts.length / 2) ? "scale-105" : ""
+                }`}
               />
             ))}
           </div>
@@ -45,10 +48,7 @@ const Shop = () => {
           {/* Dark overlay + centered title */}
           <div className="absolute inset-0 flex items-center justify-center bg-black/55">
             <div className="text-center">
-              <p className="font-body text-xs uppercase tracking-[0.4em] text-white/70 md:text-sm">
-                Praanroot
-              </p>
-              <h1 className="mt-2 font-display text-4xl font-bold text-white drop-shadow-lg sm:text-5xl md:text-6xl lg:text-7xl">
+              <h1 className="font-display text-4xl font-bold text-white drop-shadow-lg sm:text-5xl md:text-6xl lg:text-7xl">
                 Shop By Solutions
               </h1>
               <div className="mx-auto mt-4 h-[2px] w-24 bg-accent md:w-32" />
