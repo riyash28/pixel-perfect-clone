@@ -31,16 +31,20 @@ const Shop = () => {
             </svg>
           </div>
 
-          {/* Product line-up */}
-          <div className="relative flex h-full w-full items-end justify-center gap-1 sm:gap-2 md:gap-3">
+          {/* Product line-up — equal slots, uniform gap, bottom aligned */}
+          <div className="relative flex h-full w-full items-end justify-between gap-2 px-4 sm:gap-3 md:gap-4 md:px-8 lg:px-12">
             {bannerProducts.map((src, i) => (
-              <img
+              <div
                 key={i}
-                src={src}
-                alt={`Praanroot product ${i + 1}`}
-                loading="lazy"
-                className="h-[85%] w-auto max-w-[14%] object-contain drop-shadow-[0_15px_20px_rgba(0,0,0,0.3)] transition-transform duration-500 hover:-translate-y-2"
-              />
+                className="flex h-full flex-1 items-end justify-center"
+              >
+                <img
+                  src={src}
+                  alt={`Praanroot product ${i + 1}`}
+                  loading="lazy"
+                  className="h-[88%] w-auto max-w-full object-contain drop-shadow-[0_15px_20px_rgba(0,0,0,0.3)] transition-transform duration-500 hover:-translate-y-2"
+                />
+              </div>
             ))}
           </div>
 
