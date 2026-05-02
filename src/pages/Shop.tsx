@@ -12,49 +12,62 @@ import p6 from "@/assets/shop-banner/new6.png";
 // Order: keep Play High (p6) right after Yakripure (p5)
 const bannerProducts = [p1, p2, p3, p4, p5, p6];
 
+// Depth-curve scaling: center products larger, edges smaller
+const getDepthScale = (i: number, total: number) => {
+  const center = (total - 1) / 2;
+  const distance = Math.abs(i - center);
+  const maxDistance = center;
+  // Scale from 1.0 (center) down to 0.8 (edge)
+  return 1 - (distance / maxDistance) * 0.2;
+};
+
 const Shop = () => {
   return (
     <div className="min-h-screen">
       <Navbar />
       {/* Shop Banner — product line-up with centered title */}
       <section className="relative w-full overflow-hidden bg-gradient-to-b from-[#f3efe6] to-[#e8e1d2]">
-        <div className="relative mx-auto flex h-[260px] max-w-[1600px] items-end justify-center px-2 sm:h-[320px] md:h-[380px] lg:h-[420px]">
-          {/* Decorative leaves */}
-          <div className="pointer-events-none absolute left-0 top-0 h-32 w-32 -translate-x-6 -translate-y-2 opacity-30 md:h-48 md:w-48">
+        <div className="relative h-[280px] w-full sm:h-[340px] md:h-[400px] lg:h-[460px]">
+          {/* Decorative leaves (very subtle) */}
+          <div className="pointer-events-none absolute left-0 top-0 h-32 w-32 -translate-x-6 -translate-y-2 opacity-20 md:h-48 md:w-48">
             <svg viewBox="0 0 200 200" fill="none" className="h-full w-full text-primary">
               <path d="M20 180 Q 60 120 50 60 Q 90 100 130 70 Q 110 130 60 160 Z" fill="currentColor" />
             </svg>
           </div>
-          <div className="pointer-events-none absolute right-0 top-0 h-32 w-32 translate-x-6 -translate-y-2 rotate-90 opacity-30 md:h-48 md:w-48">
+          <div className="pointer-events-none absolute right-0 top-0 h-32 w-32 translate-x-6 -translate-y-2 rotate-90 opacity-20 md:h-48 md:w-48">
             <svg viewBox="0 0 200 200" fill="none" className="h-full w-full text-primary">
               <path d="M20 180 Q 60 120 50 60 Q 90 100 130 70 Q 110 130 60 160 Z" fill="currentColor" />
             </svg>
           </div>
 
-          {/* Product line-up — equal slots, uniform gap, bottom aligned */}
-          <div className="relative flex h-full w-full items-end justify-between gap-2 px-4 sm:gap-3 md:gap-4 md:px-8 lg:px-12">
-            {bannerProducts.map((src, i) => (
-              <div
-                key={i}
-                className="flex h-full flex-1 items-end justify-center"
-              >
+          {/* Product strip — full-width, tightly overlapping, depth scaled */}
+          <div className="absolute inset-0 flex items-end justify-between [filter:blur(0.4px)]">
+            {bannerProducts.map((src, i) => {
+              const scale = getDepthScale(i, bannerProducts.length);
+              return (
                 <img
+                  key={i}
                   src={src}
                   alt={`Praanroot product ${i + 1}`}
                   loading="lazy"
-                  className="h-[88%] w-auto max-w-full object-contain drop-shadow-[0_15px_20px_rgba(0,0,0,0.3)] transition-transform duration-500 hover:-translate-y-2"
+                  style={{
+                    transform: `scale(${scale})`,
+                    transformOrigin: "bottom center",
+                    animationDelay: `${i * 80}ms`,
+                  }}
+                  className="h-[92%] w-[20%] -mx-[2%] object-contain object-bottom drop-shadow-[0_18px_22px_rgba(0,0,0,0.45)] animate-fade-in"
                 />
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           {/* Dark overlay + centered title */}
-          <div className="absolute inset-0 flex items-center justify-center bg-black/55">
-            <div className="text-center">
-              <h1 className="font-display text-4xl font-bold text-white drop-shadow-lg sm:text-5xl md:text-6xl lg:text-7xl">
+          <div className="absolute inset-0 flex items-center justify-center bg-black/40">
+            <div className="animate-scale-in text-center">
+              <h1 className="font-display text-4xl font-bold tracking-wide text-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.6)] sm:text-5xl md:text-6xl lg:text-7xl">
                 Shop By Solutions
               </h1>
-              <div className="mx-auto mt-4 h-[2px] w-24 bg-accent md:w-32" />
+              <div className="mx-auto mt-4 h-[3px] w-24 rounded-full bg-accent md:w-32" />
             </div>
           </div>
         </div>
