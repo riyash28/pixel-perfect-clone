@@ -64,10 +64,10 @@ const Shop = () => {
           {/* Dark overlay + centered title */}
           <div className="absolute inset-0 flex items-center justify-center bg-black/40">
             <div className="animate-scale-in text-center">
-              <h1 className="font-display text-4xl font-bold tracking-wide text-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.6)] sm:text-5xl md:text-6xl lg:text-7xl">
+              <h1 className="font-display text-2xl font-bold tracking-wide text-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.6)] sm:text-3xl md:text-4xl">
                 Shop By Solutions
               </h1>
-              <div className="mx-auto mt-4 h-[3px] w-24 rounded-full bg-accent md:w-32" />
+              <div className="mx-auto mt-2 h-[3px] w-16 rounded-full bg-accent sm:w-20 md:w-24" />
             </div>
           </div>
         </div>
