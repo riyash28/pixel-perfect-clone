@@ -27,14 +27,14 @@ const Shop = () => {
       <Navbar />
       {/* Shop Banner — product line-up with centered title */}
       <section className="relative w-full overflow-hidden bg-gradient-to-b from-[#f3efe6] to-[#e8e1d2]">
-        <div className="relative h-[280px] w-full sm:h-[340px] md:h-[400px] lg:h-[460px]">
+        <div className="relative h-[200px] w-full">
           {/* Decorative leaves (very subtle) */}
-          <div className="pointer-events-none absolute left-0 top-0 h-32 w-32 -translate-x-6 -translate-y-2 opacity-20 md:h-48 md:w-48">
+          <div className="pointer-events-none absolute left-0 top-0 h-16 w-16 -translate-x-3 -translate-y-1 opacity-20">
             <svg viewBox="0 0 200 200" fill="none" className="h-full w-full text-primary">
               <path d="M20 180 Q 60 120 50 60 Q 90 100 130 70 Q 110 130 60 160 Z" fill="currentColor" />
             </svg>
           </div>
-          <div className="pointer-events-none absolute right-0 top-0 h-32 w-32 translate-x-6 -translate-y-2 rotate-90 opacity-20 md:h-48 md:w-48">
+          <div className="pointer-events-none absolute right-0 top-0 h-16 w-16 translate-x-3 -translate-y-1 rotate-90 opacity-20">
             <svg viewBox="0 0 200 200" fill="none" className="h-full w-full text-primary">
               <path d="M20 180 Q 60 120 50 60 Q 90 100 130 70 Q 110 130 60 160 Z" fill="currentColor" />
             </svg>
