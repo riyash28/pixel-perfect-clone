@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import ProductCard from "@/components/ProductCard";
 import { categoryProducts, categories } from "@/data/products";
 import { ChevronRight } from "lucide-react";
+import WomensHealthBanner from "@/components/WomensHealthBanner";
 
 const CategoryPage = () => {
   const { categoryName } = useParams<{ categoryName: string }>();
@@ -37,16 +38,20 @@ const CategoryPage = () => {
       </div>
 
       {/* Header */}
-      <section className="bg-zh-beige py-12 lg:py-16">
-        <div className="mx-auto max-w-7xl px-4 text-center">
-          <h1 className="font-display text-3xl font-bold text-foreground lg:text-4xl">
-            {category.name}
-          </h1>
-          <p className="mx-auto mt-3 max-w-lg font-body text-base text-muted-foreground">
-            Explore our {category.name} collection.
-          </p>
-        </div>
-      </section>
+      {category.slug === "womens-health" ? (
+        <WomensHealthBanner />
+      ) : (
+        <section className="bg-zh-beige py-12 lg:py-16">
+          <div className="mx-auto max-w-7xl px-4 text-center">
+            <h1 className="font-display text-3xl font-bold text-foreground lg:text-4xl">
+              {category.name}
+            </h1>
+            <p className="mx-auto mt-3 max-w-lg font-body text-base text-muted-foreground">
+              Explore our {category.name} collection.
+            </p>
+          </div>
+        </section>
+      )}
 
       {/* Products Grid */}
       <section className="py-12 lg:py-16">
