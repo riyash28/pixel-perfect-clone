@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import ProductCard from "@/components/ProductCard";
 import { categoryProducts, categories } from "@/data/products";
 import { ChevronRight } from "lucide-react";
+import womensHealthBanner from "@/assets/womens-health-banner.png";
 
 const CategoryPage = () => {
   const { categoryName } = useParams<{ categoryName: string }>();
@@ -36,8 +37,20 @@ const CategoryPage = () => {
         </div>
       </div>
 
+      {/* Women's Health Hero Banner */}
+      {categoryName === "womens-health" && (
+        <section className="w-full">
+          <img
+            src={womensHealthBanner}
+            alt="Rooted in Ayurveda. Made for Her Wellness."
+            className="w-full h-auto object-cover"
+            loading="eager"
+          />
+        </section>
+      )}
+
       {/* Header */}
-      <section className="bg-zh-beige py-12 lg:py-16">
+      <section className={`bg-zh-beige py-12 lg:py-16 ${categoryName === "womens-health" ? "hidden" : ""}`}>
         <div className="mx-auto max-w-7xl px-4 text-center">
           <h1 className="font-display text-3xl font-bold text-foreground lg:text-4xl">
             {category.name}
