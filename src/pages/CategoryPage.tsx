@@ -39,11 +39,11 @@ const CategoryPage = () => {
 
       {/* Women's Health Hero Banner */}
       {categoryName === "womens-health" && (
-        <section className="w-full">
+        <section className="w-full h-[200px]">
           <img
             src={womensHealthBanner}
             alt="Rooted in Ayurveda. Made for Her Wellness."
-            className="w-full h-auto object-cover"
+            className="h-full w-full object-cover"
             loading="eager"
           />
         </section>
