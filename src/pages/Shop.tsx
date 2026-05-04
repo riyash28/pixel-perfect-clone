@@ -27,14 +27,14 @@ const Shop = () => {
       <Navbar />
       {/* Shop Banner — product line-up with centered title */}
       <section className="relative w-full overflow-hidden bg-gradient-to-b from-[#f3efe6] to-[#e8e1d2]">
-        <div className="relative h-[280px] w-full sm:h-[340px] md:h-[400px] lg:h-[460px]">
+        <div className="relative h-[200px] w-full">
           {/* Decorative leaves (very subtle) */}
-          <div className="pointer-events-none absolute left-0 top-0 h-32 w-32 -translate-x-6 -translate-y-2 opacity-20 md:h-48 md:w-48">
+          <div className="pointer-events-none absolute left-0 top-0 h-16 w-16 -translate-x-3 -translate-y-1 opacity-20">
             <svg viewBox="0 0 200 200" fill="none" className="h-full w-full text-primary">
               <path d="M20 180 Q 60 120 50 60 Q 90 100 130 70 Q 110 130 60 160 Z" fill="currentColor" />
             </svg>
           </div>
-          <div className="pointer-events-none absolute right-0 top-0 h-32 w-32 translate-x-6 -translate-y-2 rotate-90 opacity-20 md:h-48 md:w-48">
+          <div className="pointer-events-none absolute right-0 top-0 h-16 w-16 translate-x-3 -translate-y-1 rotate-90 opacity-20">
             <svg viewBox="0 0 200 200" fill="none" className="h-full w-full text-primary">
               <path d="M20 180 Q 60 120 50 60 Q 90 100 130 70 Q 110 130 60 160 Z" fill="currentColor" />
             </svg>
@@ -64,10 +64,10 @@ const Shop = () => {
           {/* Dark overlay + centered title */}
           <div className="absolute inset-0 flex items-center justify-center bg-black/40">
             <div className="animate-scale-in text-center">
-              <h1 className="font-display text-4xl font-bold tracking-wide text-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.6)] sm:text-5xl md:text-6xl lg:text-7xl">
+              <h1 className="font-display text-2xl font-bold tracking-wide text-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.6)] sm:text-3xl md:text-4xl">
                 Shop By Solutions
               </h1>
-              <div className="mx-auto mt-4 h-[3px] w-24 rounded-full bg-accent md:w-32" />
+              <div className="mx-auto mt-2 h-[3px] w-16 rounded-full bg-accent sm:w-20 md:w-24" />
             </div>
           </div>
         </div>
