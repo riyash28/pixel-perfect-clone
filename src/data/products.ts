@@ -10,6 +10,62 @@ import combo1 from "@/assets/products/combo-1.jpg";
 import combo2 from "@/assets/products/combo-2.jpg";
 import combo3 from "@/assets/products/combo-3.jpg";
 import combo4 from "@/assets/products/combo-4.jpg";
+
+import ritucalmSyrup2 from "@/assets/products/ritucalm-syrup-1.jpeg";
+import ritucalmSyrup3 from "@/assets/products/ritucalm-syrup-2.png";
+import ritucalmSyrup4 from "@/assets/products/ritucalm-syrup-3.jpeg";
+import ritucalmSyrup5 from "@/assets/products/ritucalm-syrup-4.png";
+
+import playHigh2 from "@/assets/products/play-high-2.jpg";
+import playHigh3 from "@/assets/products/play-high-3.jpg";
+import playHigh4 from "@/assets/products/play-high-4.jpg";
+import playHigh5 from "@/assets/products/play-high-5.jpg";
+
+import ritucalmKit2 from "@/assets/products/ritucalm-kit-2.jpg";
+import ritucalmKit3 from "@/assets/products/ritucalm-kit-3.jpg";
+import ritucalmKit4 from "@/assets/products/ritucalm-kit-4.jpg";
+import ritucalmKit5 from "@/assets/products/ritucalm-kit-5.jpg";
+
+import ritucalmTablet2 from "@/assets/products/ritucalm-tablet-2.jpg";
+import ritucalmTablet3 from "@/assets/products/ritucalm-tablet-3.jpg";
+import ritucalmTablet4 from "@/assets/products/ritucalm-tablet-4.jpg";
+import ritucalmTablet5 from "@/assets/products/ritucalm-tablet-5.jpg";
+
+import tripleVitality2 from "@/assets/products/triple-vitality-2.jpg";
+import tripleVitality3 from "@/assets/products/triple-vitality-3.jpg";
+import tripleVitality4 from "@/assets/products/triple-vitality-4.jpg";
+import tripleVitality5 from "@/assets/products/triple-vitality-5.jpg";
+
+import keshnitra2 from "@/assets/products/keshnitra-2.jpg";
+import keshnitra3 from "@/assets/products/keshnitra-3.jpg";
+import keshnitra4 from "@/assets/products/keshnitra-4.jpg";
+import keshnitra5 from "@/assets/products/keshnitra-5.jpg";
+
+import yakripure2 from "@/assets/products/yakripure-2.jpg";
+import yakripure3 from "@/assets/products/yakripure-3.jpg";
+import yakripure4 from "@/assets/products/yakripure-4.jpg";
+import yakripure5 from "@/assets/products/yakripure-5.jpg";
+
+import detoxHarmony2 from "@/assets/products/detox-harmony-2.jpg";
+import detoxHarmony3 from "@/assets/products/detox-harmony-3.jpg";
+import detoxHarmony4 from "@/assets/products/detox-harmony-4.jpg";
+import detoxHarmony5 from "@/assets/products/detox-harmony-5.jpg";
+
+import liverHormoneKit2 from "@/assets/products/liver-hormone-kit-2.jpg";
+import liverHormoneKit3 from "@/assets/products/liver-hormone-kit-3.jpg";
+import liverHormoneKit4 from "@/assets/products/liver-hormone-kit-4.jpg";
+import liverHormoneKit5 from "@/assets/products/liver-hormone-kit-5.jpg";
+
+import menVitalityKit2 from "@/assets/products/men-vitality-kit-2.jpg";
+import menVitalityKit3 from "@/assets/products/men-vitality-kit-3.jpg";
+import menVitalityKit4 from "@/assets/products/men-vitality-kit-4.jpg";
+import menVitalityKit5 from "@/assets/products/men-vitality-kit-5.jpg";
+
+import pcosCareKit2 from "@/assets/products/pcos-care-kit-2.jpg";
+import pcosCareKit3 from "@/assets/products/pcos-care-kit-3.jpg";
+import pcosCareKit4 from "@/assets/products/pcos-care-kit-4.jpg";
+import pcosCareKit5 from "@/assets/products/pcos-care-kit-5.jpg";
+
 const womenIcon = "/placeholder.svg";
 const menIcon = "/placeholder.svg";
 const digestiveIcon = "/placeholder.svg";
@@ -20,6 +76,7 @@ export interface Product {
   id: number;
   name: string;
   image: string;
+  gallery: string[];
   description: string;
   price: number;
   originalPrice: number;
@@ -34,6 +91,7 @@ export const bestSellers: Product[] = [
     id: 1,
     name: "Ritucalm Syrup",
     image: product3,
+    gallery: [product3, ritucalmSyrup2, ritucalmSyrup3, ritucalmSyrup4, ritucalmSyrup5],
     description:
       "Ritucalm Syrup is a premium Ayurvedic formulation designed to support women’s reproductive health and hormonal balance. Crafted with time-tested herbs, it helps regulate menstrual cycles, ease discomfort, and promote overall well-being. Ideal for women experiencing PCOS/PCOD symptoms, irregular periods, and emotional stress related to hormonal fluctuations, Ritucalm Syrup offers a holistic approach to feminine care.",
     price: 699.0,
@@ -47,6 +105,7 @@ export const bestSellers: Product[] = [
     id: 2,
     name: "Play High",
     image: product7,
+    gallery: [product7, playHigh2, playHigh3, playHigh4, playHigh5],
     description:
       "Play High Oil is a unique Ayurvedic formulation specially designed to enhance stamina, strength, and confidence.Enriched with powerful herbs and natural oils, it improves blood circulation, nourishes the body, and helps in reducing weakness and fatigue. Regular massage with Play High Oil revitalizes the nerves and muscles, supporting overall vitality and performance.",
     price: 499.0,
@@ -60,6 +119,7 @@ export const bestSellers: Product[] = [
     id: 3,
     name: "Ritucalm Kit",
     image: product2,
+    gallery: [product2, ritucalmKit2, ritucalmKit3, ritucalmKit4, ritucalmKit5],
     description:
       "The Ritucalm Kit is a complete Ayurvedic formulation designed to support women’s hormonal health, menstrual regularity, and liver detoxification. It combines the power of Ritucalm Capsules and Yakripure Syrup to bring your body back into balance naturally. Ritucalm helps regulate menstrual cycles, manage PCOD/PCOS symptoms, reduce cramps, and balance hormones. Yakripure Syrup supports the liver’s detox function, which plays a crucial role in maintaining hormonal health and metabolism. Together, they promote a healthier, more balanced body from within.",
     price: 1500.0,
@@ -73,6 +133,7 @@ export const bestSellers: Product[] = [
     id: 4,
     name: "RITUCALM TABLET",
     image: product1,
+    gallery: [product1, ritucalmTablet2, ritucalmTablet3, ritucalmTablet4, ritucalmTablet5],
     description:
       "Crafted with care by the Ayurvedic experts at Praanroot,&nbsp;Ritucalm Tablets are a concentrated blend of 12 time-tested herbs that gently restore hormonal harmony from within. Whether you're struggling with irregular cycles, painful periods, ovarian cysts, or fertility issues, these capsules work at the root cause. Each capsule is powered by potent herbs like Ashoka, Lodhra, Shatavari, Kanchanar Guggulu, Shilajit, and Safed Musli, combined in perfect synergy. Together, they support hormonal rhythm, reduce cyst size, enhance ovulation, and balance emotional stress—without disturbing your body’s natural cycle. Ritucalm Tablets are ideal for women who want a steady, side-effect-free, and deeply healing journey toward balance and wellbeing.",
     price: 899.0,
@@ -86,6 +147,7 @@ export const bestSellers: Product[] = [
     id: 5,
     name: "Triple Vitality",
     image: product5,
+    gallery: [product5, tripleVitality2, tripleVitality3, tripleVitality4, tripleVitality5],
     description:
       "Triple Vitality is a premium Ayurvedic formulation that delivers threefold benefits – Energy, Immunity, and Vitality.Made with potent herbs, it not only fights fatigue and boosts overall stamina but also supports male reproductive health by improving sperm count, motility, and strength. A complete wellness tonic for those seeking long-lasting energy, immunity, and reproductive balance.",
     price: 1499.0,
@@ -99,6 +161,7 @@ export const bestSellers: Product[] = [
     id: 6,
     name: "Keshnitra Hair Oil",
     image: product6,
+    gallery: [product6, keshnitra2, keshnitra3, keshnitra4, keshnitra5],
     description:
       "Kesh Nitra Hair Oil is a powerful Ayurvedic formulation enriched with natural herbs and nourishing oils that not only prevent hair fall but also&nbsp;stimulate new hair regrowth. It deeply nourishes the scalp, strengthens roots, and restores hair health while reducing dandruff, premature greying, and dryness. Its cooling and calming effect also helps relieve stress and promote peaceful sleep.",
     price: 550.0,
@@ -108,22 +171,11 @@ export const bestSellers: Product[] = [
     tag: "Sale",
     category: "Hair-care",
   },
-  // {
-  //   id: 7,
-  //   name: "Liver Detox Tablets",
-  //   image: product8,
-  //   description: "Milk Thistle based liver cleansing formula",
-  //   price: 999,
-  //   originalPrice: 1299,
-  //   rating: 4.72,
-  //   reviews: 289,
-  //   tag: "Sale",
-  //   category: "digestive-health",
-  // },
   {
     id: 8,
     name: "Yakripure",
     image: product4,
+    gallery: [product4, yakripure2, yakripure3, yakripure4, yakripure5],
     description:
       "Yakripure Syrup is a powerful Ayurvedic liver tonic formulated with time-tested herbs that protect, repair, and rejuvenate the liver. It helps in natural detoxification, improves digestion, and restores energy levels by enhancing liver function. With its hepatoprotective properties, Yakripure is effective in managing common as well as chronic liver conditions.",
     price: 450.0,
@@ -140,6 +192,7 @@ export const combos: Product[] = [
     id: 101,
     name: "Detox Harmony Kit",
     image: combo3,
+    gallery: [combo3, detoxHarmony2, detoxHarmony3, detoxHarmony4, detoxHarmony5],
     description:
       "This kit helps manage irregular periods, PCOS symptoms, and menstrual cramps, while simultaneously detoxifying and rejuvenating the liver to restore vitality and natural glow from within.",
     price: 999.0,
@@ -153,6 +206,7 @@ export const combos: Product[] = [
     id: 102,
     name: "Liver Hormone Balance Kit",
     image: combo2,
+    gallery: [combo2, liverHormoneKit2, liverHormoneKit3, liverHormoneKit4, liverHormoneKit5],
     description:
       "The Liver Hormones Balance Kit is a holistic Ayurvedic combination of Ritucalm Syrup, Ritucalm Capsules, and Yakripure Syrup, specially formulated to support women’s hormonal balance, menstrual health, and liver wellness.",
     price: 1699.0,
@@ -166,6 +220,7 @@ export const combos: Product[] = [
     id: 103,
     name: "Men Vitality Kit",
     image: combo4,
+    gallery: [combo4, menVitalityKit2, menVitalityKit3, menVitalityKit4, menVitalityKit5],
     description:
       "Rediscover your strength, stamina, and confidence with the Men’s Vitality Kit, a powerful Ayurvedic duo designed to enhance men’s overall energy, performance, and vitality. This kit combines the internal nourishment of Triple Vitality Capsules with the external rejuvenation of Play High Oil, creating a complete solution for restoring vigor and confidence — naturally.",
     price: 1800.0,
@@ -179,6 +234,7 @@ export const combos: Product[] = [
     id: 104,
     name: "PCOS Care Kit",
     image: combo1,
+    gallery: [combo1, pcosCareKit2, pcosCareKit3, pcosCareKit4, pcosCareKit5],
     description:
       "Ritucalm Kit is a complete Ayurvedic solution crafted to support women’s hormonal balance, menstrual health, and overall well-being. Made with time-tested herbs, it helps regulate menstrual cycles, reduce period cramps, and manage symptoms of PCOS and hormonal imbalance.",
     price: 1500.0,
@@ -192,21 +248,12 @@ export const combos: Product[] = [
 
 export const categoryProducts: Record<string, Product[]> = {
   "womens-health": [
-    // bestSellers[1],
-    // bestSellers[4],
     { ...bestSellers[2], id: 201, name: "Ritucalm Kit", category: "womens-health" },
     { ...bestSellers[6], id: 202, name: "Yakripure", category: "womens-health" },
     { ...bestSellers[0], id: 203, name: "Ritucalm Syrup", category: "womens-health" },
     { ...bestSellers[3], id: 204, name: "RITUCALM TABLET", category: "womens-health" },
   ],
   "Mens Health": [
-    // bestSellers[7],
-    // bestSellers[1],
-    // bestSellers[4],
-    // { ...bestSellers[2], id: 301, name: "Carb Cutter", category: "Mens Health" },
-    // { ...bestSellers[6], id: 302, name: "Apple Cider Vinegar", category: "Mens Health" },
-    // { ...bestSellers[4], id: 303, name: "Green Tea Extract", category: "Mens Health" },
-    // { ...bestSellers[0], id: 304, name: "Metabolism Booster", category: "Mens Health" },
     { ...bestSellers[2], id: 301, name: "Ritucalm Kit", category: "womens-health" },
     { ...bestSellers[6], id: 302, name: "Yakripure", category: "womens-health" },
     { ...bestSellers[0], id: 303, name: "Ritucalm Syrup", category: "womens-health" },
@@ -222,7 +269,7 @@ export const categoryProducts: Record<string, Product[]> = {
   "Hair Care": [
     bestSellers[0],
     bestSellers[3],
-    { ...bestSellers[7], id: 501, name: "Testosterone Booster", category: "Hair Care" },
+    { ...bestSellers[6], id: 501, name: "Testosterone Booster", category: "Hair Care" },
     { ...bestSellers[1], id: 502, name: "Stamina Plus", category: "Hair Care" },
     { ...bestSellers[5], id: 503, name: "Vigor Max Tablets", category: "Hair Care" },
   ],
