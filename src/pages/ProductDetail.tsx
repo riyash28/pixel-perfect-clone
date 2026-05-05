@@ -44,7 +44,7 @@ const ProductDetail = () => {
   }
 
   const discount = Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100);
-  const images = [product.image, product.image, product.image, product.image];
+  const images = product.gallery;
   const description = product.description;
 
   return (
