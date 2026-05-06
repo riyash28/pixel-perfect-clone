@@ -59,7 +59,7 @@ const Navbar = () => {
                 >
                   <Link
                     to={link.to}
-                    className={`relative flex items-center gap-1 font-body text-sm font-medium transition-colors hover:text-primary ${
+                    className={`relative flex items-center gap-1 font-body text-sm font-medium transition-colors hover:text-accent ${
                       location.pathname === link.to || location.pathname.startsWith("/category")
                         ? "text-primary after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-full after:bg-primary"
                         : "text-foreground"
@@ -88,7 +88,7 @@ const Navbar = () => {
                           key={cat.slug}
                           to={`/category/${cat.slug}`}
                           onClick={() => setShopOpen(false)}
-                          className="rounded-lg px-3 py-2.5 font-body text-sm text-foreground transition-colors hover:bg-secondary hover:text-primary"
+                          className="rounded-lg px-3 py-2.5 font-body text-sm text-foreground transition-colors hover:bg-secondary hover:text-accent"
                         >
                           {cat.label}
                         </Link>
@@ -100,7 +100,7 @@ const Navbar = () => {
                 <Link
                   key={link.to}
                   to={link.to}
-                  className={`relative font-body text-sm font-medium transition-colors hover:text-primary ${
+                  className={`relative font-body text-sm font-medium transition-colors hover:text-accent ${
                     location.pathname === link.to
                       ? "text-primary after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-full after:bg-primary"
                       : "text-foreground"
@@ -186,7 +186,7 @@ const Navbar = () => {
                             key={cat.slug}
                             to={`/category/${cat.slug}`}
                             onClick={() => { setMobileOpen(false); setMobileShopOpen(false); }}
-                            className="rounded-lg px-3 py-2 font-body text-sm text-muted-foreground transition-colors hover:text-primary"
+                            className="rounded-lg px-3 py-2 font-body text-sm text-muted-foreground transition-colors hover:text-accent"
                           >
                             {cat.label}
                           </Link>
@@ -199,7 +199,7 @@ const Navbar = () => {
                     key={link.to}
                     to={link.to}
                     onClick={() => setMobileOpen(false)}
-                    className={`font-body text-base font-medium transition-colors ${
+                    className={`font-body text-base font-medium transition-colors hover:text-accent ${
                       location.pathname === link.to ? "text-primary" : "text-foreground"
                     }`}
                   >
