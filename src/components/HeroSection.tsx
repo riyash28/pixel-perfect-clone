@@ -32,7 +32,8 @@ const HeroSection = () => {
 
   return (
     <section
-      className="relative w-full overflow-hidden h-[400px] md:h-[500px] lg:h-[650px]"
+      className="relative w-full overflow-hidden"
+      style={{ aspectRatio: "2172 / 724" }}
       aria-roledescription="carousel"
     >
       {slides.map((slide, i) => {
