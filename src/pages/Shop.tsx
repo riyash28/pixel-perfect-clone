@@ -1,3 +1,4 @@
+import { useState, useMemo } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ProductCard from "@/components/ProductCard";
@@ -21,7 +22,53 @@ const getDepthScale = (i: number, total: number) => {
   return 1 - (distance / maxDistance) * 0.2;
 };
 
+const filterCategories = [
+  { key: "recommendations", label: "Our Recommendations" },
+  { key: "female", label: "Female Care" },
+  { key: "hair", label: "Hair Care" },
+  { key: "liver", label: "Liver Care" },
+  { key: "mens", label: "Mens Care" },
+  { key: "pcos", label: "PCOS/PCOD" },
+  { key: "kit", label: "Purchase By Kit" },
+];
+
+const matchName = (name: string, list: string[]) =>
+  list.some((n) => name.toLowerCase().includes(n.toLowerCase()));
+
 const Shop = () => {
+  const [selectedCategory, setSelectedCategory] = useState("recommendations");
+  const allProducts = useMemo(() => [...bestSellers, ...combos], []);
+
+  const filteredProducts = useMemo(() => {
+    switch (selectedCategory) {
+      case "female":
+        return allProducts.filter((p) =>
+          matchName(p.name, ["Ritucalm", "PCOS Care Kit"])
+        );
+      case "hair":
+        return allProducts.filter((p) => matchName(p.name, ["Keshnitra"]));
+      case "liver":
+        return allProducts.filter(
+          (p) =>
+            matchName(p.name, ["Yakripure"]) ||
+            (p.tag === "Combo" && matchName(p.name, ["Liver", "Detox"]))
+        );
+      case "mens":
+        return allProducts.filter((p) =>
+          matchName(p.name, ["Triple Vitality", "Play High", "Men Vitality"])
+        );
+      case "pcos":
+        return allProducts.filter((p) =>
+          matchName(p.name, ["Ritucalm", "PCOS Care Kit"])
+        );
+      case "kit":
+        return allProducts.filter((p) => p.tag === "Combo" || /kit/i.test(p.name));
+      case "recommendations":
+      default:
+        return bestSellers;
+    }
+  }, [selectedCategory, allProducts]);
+
   return (
     <div className="min-h-screen">
       <Navbar />
@@ -79,10 +126,69 @@ const Shop = () => {
           <p className="mt-2 font-body text-base text-muted-foreground">
             Explore our complete range of plant-based nano supplements
           </p>
-          <div className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 lg:gap-6">
-            {[...bestSellers, ...combos].map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
+
+          {/* Mobile horizontal scroll filter */}
+          <div className="mt-8 -mx-4 overflow-x-auto px-4 lg:hidden">
+            <div className="flex gap-2 whitespace-nowrap pb-2">
+              {filterCategories.map((c) => (
+                <button
+                  key={c.key}
+                  onClick={() => setSelectedCategory(c.key)}
+                  className={`rounded-full border px-4 py-2 font-body text-sm transition-all ${
+                    selectedCategory === c.key
+                      ? "border-primary bg-primary text-primary-foreground"
+                      : "border-border bg-card text-foreground hover:text-accent"
+                  }`}
+                >
+                  {c.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-10 flex gap-8">
+            {/* Desktop sidebar */}
+            <aside className="hidden w-[260px] shrink-0 lg:block">
+              <div className="sticky top-24 rounded-xl border border-border bg-[#f3efe6] p-6">
+                <h2 className="font-display text-lg font-bold tracking-wide text-foreground">
+                  CATEGORIES
+                </h2>
+                <div className="mt-5 flex flex-col gap-3">
+                  {filterCategories.map((c) => {
+                    const active = selectedCategory === c.key;
+                    return (
+                      <button
+                        key={c.key}
+                        onClick={() => setSelectedCategory(c.key)}
+                        className={`text-left text-[17px] font-medium transition-all duration-300 hover:translate-x-1 hover:text-accent ${
+                          active
+                            ? "translate-x-1 font-semibold text-accent"
+                            : "text-foreground"
+                        }`}
+                      >
+                        {c.label}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            </aside>
+
+            {/* Products grid */}
+            <div className="flex-1">
+              {filteredProducts.length === 0 ? (
+                <p className="font-body text-muted-foreground">No products found.</p>
+              ) : (
+                <div
+                  key={selectedCategory}
+                  className="grid animate-fade-in grid-cols-2 gap-4 md:grid-cols-3 lg:gap-6"
+                >
+                  {filteredProducts.map((product) => (
+                    <ProductCard key={product.id} product={product} />
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </section>
