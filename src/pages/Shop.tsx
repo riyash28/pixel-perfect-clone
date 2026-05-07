@@ -121,12 +121,7 @@ const Shop = () => {
       </section>
 
       <section className="py-12 lg:py-16">
-        <div className="mx-auto max-w-7xl px-4">
-          <h1 className="font-display text-4xl font-bold text-foreground">All Products</h1>
-          <p className="mt-2 font-body text-base text-muted-foreground">
-            Explore our complete range of plant-based nano supplements
-          </p>
-
+        <div className="px-4 lg:pl-8 lg:pr-8">
           {/* Mobile horizontal scroll filter */}
           <div className="mt-8 -mx-4 overflow-x-auto px-4 lg:hidden">
             <div className="flex gap-2 whitespace-nowrap pb-2">
@@ -146,7 +141,7 @@ const Shop = () => {
             </div>
           </div>
 
-          <div className="mt-10 flex gap-8">
+          <div className="mt-6 flex gap-8">
             {/* Desktop sidebar */}
             <aside className="hidden w-[260px] shrink-0 lg:block">
               <div className="sticky top-24 rounded-xl border border-border bg-[#f3efe6] p-6">
@@ -176,6 +171,11 @@ const Shop = () => {
 
             {/* Products grid */}
             <div className="flex-1">
+              <h1 className="font-display text-4xl font-bold text-foreground">All Products</h1>
+              <p className="mt-2 font-body text-base text-muted-foreground">
+                Explore our complete range of plant-based nano supplements
+              </p>
+              <div className="mt-8" />
               {filteredProducts.length === 0 ? (
                 <p className="font-body text-muted-foreground">No products found.</p>
               ) : (
