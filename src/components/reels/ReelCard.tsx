@@ -1,21 +1,24 @@
 import { Play, ShoppingBag } from "lucide-react";
 
 interface ReelCardProps {
-  thumbnailUrl: string;
+  videoUrl: string;
   onPlay: () => void;
 }
 
-const ReelCard = ({ thumbnailUrl, onPlay }: ReelCardProps) => {
+const ReelCard = ({ videoUrl, onPlay }: ReelCardProps) => {
   return (
     <button
       onClick={onPlay}
       className="group relative flex-shrink-0 w-[200px] sm:w-[220px] lg:w-[240px] aspect-[9/16] rounded-2xl overflow-hidden cursor-pointer snap-center focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
     >
-      {/* Thumbnail */}
-      <img
-        src={thumbnailUrl}
-        alt="Reel thumbnail"
-        loading="lazy"
+      {/* Auto-playing looping reel preview */}
+      <video
+        src={videoUrl}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
         className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
       />
 

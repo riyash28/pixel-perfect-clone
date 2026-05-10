@@ -12,39 +12,39 @@ interface Product {
 
 interface Reel {
   url: string;
-  thumbnail: string;
+  video: string;
   products: Product[];
 }
 
 const reels: Reel[] = [
   {
     url: "https://www.instagram.com/reel/DLHgXwmTTOE/",
-    thumbnail: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400&h=700&fit=crop",
+    video: "https://cdn.pixabay.com/video/2023/10/17/185748-876342497_large.mp4",
     products: [{ id: 1, name: "Ritu Calm Bottle", price: "₹999", image: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=100&h=100&fit=crop" }],
   },
   {
     url: "https://www.instagram.com/reel/DRg6RBjk56H/",
-    thumbnail: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=400&h=700&fit=crop",
+    video: "https://cdn.pixabay.com/video/2024/03/08/203038-921392600_large.mp4",
     products: [{ id: 2, name: "Herbal Balance Pack", price: "₹1,499", image: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=100&h=100&fit=crop" }],
   },
   {
     url: "https://www.instagram.com/reel/DWUbaz7EyEe/",
-    thumbnail: "https://images.unsplash.com/photo-1471864190281-a93a3070b6de?w=400&h=700&fit=crop",
+    video: "https://cdn.pixabay.com/video/2022/12/05/142316-777964595_large.mp4",
     products: [{ id: 3, name: "Hormone Support Kit", price: "₹1,999", image: "https://images.unsplash.com/photo-1471864190281-a93a3070b6de?w=100&h=100&fit=crop" }],
   },
   {
     url: "https://www.instagram.com/reel/DVK5avGk7zr/",
-    thumbnail: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&h=700&fit=crop",
+    video: "https://cdn.pixabay.com/video/2023/05/16/162760-827985692_large.mp4",
     products: [{ id: 4, name: "Ayurvedic Capsules", price: "₹799", image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=100&h=100&fit=crop" }],
   },
   {
     url: "https://www.instagram.com/reel/DP6er6ak2mA/",
-    thumbnail: "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400&h=700&fit=crop",
+    video: "https://cdn.pixabay.com/video/2023/06/06/166293-834702757_large.mp4",
     products: [{ id: 5, name: "Wellness Combo", price: "₹1,299", image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=100&h=100&fit=crop" }],
   },
   {
     url: "https://www.instagram.com/reel/DO3mVeqEnbp/",
-    thumbnail: "https://images.unsplash.com/photo-1607004468138-e7e23ea26947?w=400&h=700&fit=crop",
+    video: "https://cdn.pixabay.com/video/2023/08/05/174362-852038073_large.mp4",
     products: [{ id: 6, name: "Natural Relief Pack", price: "₹1,099", image: "https://images.unsplash.com/photo-1607004468138-e7e23ea26947?w=100&h=100&fit=crop" }],
   },
 ];
@@ -105,7 +105,7 @@ const ReelSection = () => {
             {reels.map((reel, i) => (
               <ReelCard
                 key={i}
-                thumbnailUrl={reel.thumbnail}
+                videoUrl={reel.video}
                 onPlay={() => setActiveReel(reel)}
               />
             ))}
