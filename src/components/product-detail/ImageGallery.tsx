@@ -11,6 +11,7 @@ const ImageGallery = ({ images, productName, discount }: ImageGalleryProps) => {
   const [isZooming, setIsZooming] = useState(false);
   const [position, setPosition] = useState({ x: 50, y: 50 });
   const [lensPos, setLensPos] = useState({ x: 0, y: 0 });
+  const [panelPos, setPanelPos] = useState({ top: 0, left: 0, size: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
 
   const LENS_SIZE = 140;
@@ -27,6 +28,13 @@ const ImageGallery = ({ images, productName, discount }: ImageGalleryProps) => {
       x: Math.max(0, Math.min(width - LENS_SIZE, cx - LENS_SIZE / 2)),
       y: Math.max(0, Math.min(height - LENS_SIZE, cy - LENS_SIZE / 2)),
     });
+    // Panel anchored to viewport so it follows during scroll-while-hover
+    const size = Math.min(450, Math.max(320, height));
+    const vh = window.innerHeight;
+    let panelTop = top;
+    if (panelTop < 16) panelTop = 16;
+    if (panelTop + size > vh - 16) panelTop = Math.max(16, vh - size - 16);
+    setPanelPos({ top: panelTop, left: left + width + 24, size });
   };
 
   return (
@@ -89,10 +97,16 @@ const ImageGallery = ({ images, productName, discount }: ImageGalleryProps) => {
           </div>
         </div>
 
-        {/* Zoom Preview Panel - desktop only, appears on hover, positioned absolutely so it floats above adjacent column */}
+        {/* Zoom Preview Panel - fixed to viewport so it stays visible while scrolling on hover */}
         {isZooming && (
           <div
-            className="pointer-events-none absolute left-full top-0 z-30 ml-6 hidden aspect-square w-[450px] overflow-hidden rounded-2xl border border-border bg-white shadow-2xl animate-in fade-in duration-200 lg:block"
+            className="pointer-events-none fixed z-50 hidden overflow-hidden rounded-2xl border border-border bg-white shadow-2xl animate-in fade-in duration-200 lg:block"
+            style={{
+              top: panelPos.top,
+              left: panelPos.left,
+              width: panelPos.size,
+              height: panelPos.size,
+            }}
           >
             <div
               className="h-full w-full bg-no-repeat"
