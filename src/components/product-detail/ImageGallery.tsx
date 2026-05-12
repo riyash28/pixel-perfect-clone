@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import { createPortal } from "react-dom";
 
 interface ImageGalleryProps {
   images: string[];
@@ -97,27 +98,30 @@ const ImageGallery = ({ images, productName, discount }: ImageGalleryProps) => {
           </div>
         </div>
 
-        {/* Zoom Preview Panel - fixed to viewport so it stays visible while scrolling on hover */}
-        {isZooming && (
-          <div
-            className="pointer-events-none fixed z-50 hidden overflow-hidden rounded-2xl border border-border bg-white shadow-2xl animate-in fade-in duration-200 lg:block"
-            style={{
-              top: panelPos.top,
-              left: panelPos.left,
-              width: panelPos.size,
-              height: panelPos.size,
-            }}
-          >
+        {/* Zoom Preview Panel — portaled to body so it always sits above siblings (offer cards, etc.) */}
+        {isZooming &&
+          typeof document !== "undefined" &&
+          createPortal(
             <div
-              className="h-full w-full bg-no-repeat"
+              className="pointer-events-none fixed z-[9998] hidden overflow-hidden rounded-2xl border border-border bg-white shadow-2xl animate-in fade-in duration-200 lg:block"
               style={{
-                backgroundImage: `url(${images[selectedIndex]})`,
-                backgroundPosition: `${position.x}% ${position.y}%`,
-                backgroundSize: "250%",
+                top: panelPos.top,
+                left: panelPos.left,
+                width: panelPos.size,
+                height: panelPos.size,
               }}
-            />
-          </div>
-        )}
+            >
+              <div
+                className="h-full w-full bg-no-repeat"
+                style={{
+                  backgroundImage: `url(${images[selectedIndex]})`,
+                  backgroundPosition: `${position.x}% ${position.y}%`,
+                  backgroundSize: "250%",
+                }}
+              />
+            </div>,
+            document.body,
+          )}
       </div>
     </div>
   );
